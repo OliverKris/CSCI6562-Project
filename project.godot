@@ -11,8 +11,14 @@ config_version=5
 [application]
 
 config/name="CSCI6562Project"
+run/main_scene="uid://dft0d5fq0ygy"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
 
 [physics]
 

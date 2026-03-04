@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://wai3my3i1gto"]
+
+[ext_resource type="Script" uid="uid://cqk3n73loh0nf" path="res://City.gd" id="1_0d5ds"]
+[ext_resource type="Script" uid="uid://biih1e2p5wxfs" path="res://CityVisual.gd" id="1_qodpt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0d5ds"]
+radius = 24.0
+
+[node name="City" type="Area2D" unique_id=285548890]
+script = ExtResource("1_0d5ds")
+
+[node name="Visual" type="Node2D" parent="." unique_id=465387450]
+script = ExtResource("1_qodpt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1202812408]
+shape = SubResource("CircleShape2D_0d5ds")
+
+[node name="Label" type="Label" parent="." unique_id=1635512136]
+offset_left = -20.0
+offset_top = -11.0
+offset_right = 20.0
+offset_bottom = 12.0
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProductionTimer" type="Timer" parent="." unique_id=873530635]
+wait_time = 0.25
+autostart = true

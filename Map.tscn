@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://dft0d5fq0ygy"]
+
+[ext_resource type="Script" uid="uid://css60lr50660b" path="res://GraphMap.gd" id="1_3h1ab"]
+[ext_resource type="PackedScene" uid="uid://wai3my3i1gto" path="res://City.tscn" id="1_gfjgm"]
+[ext_resource type="Script" uid="uid://c71t6pm6wjg7x" path="res://CityData.gd" id="2_3vi7k"]
+
+[sub_resource type="Resource" id="Resource_3h1ab"]
+script = ExtResource("2_3vi7k")
+name = "Edo"
+owner = 1
+max_army = 20
+metadata/_custom_type_script = "uid://c71t6pm6wjg7x"
+
+[sub_resource type="Resource" id="Resource_3vi7k"]
+script = ExtResource("2_3vi7k")
+name = "Kyoto"
+metadata/_custom_type_script = "uid://c71t6pm6wjg7x"
+
+[sub_resource type="Resource" id="Resource_7if1s"]
+script = ExtResource("2_3vi7k")
+name = "Nara"
+owner = 2
+max_army = 100
+metadata/_custom_type_script = "uid://c71t6pm6wjg7x"
+
+[node name="GraphMap" type="Node2D" unique_id=793053204]
+script = ExtResource("1_3h1ab")
+
+[node name="Cities" type="Node2D" parent="." unique_id=2002832469]
+
+[node name="Friendly" parent="Cities" unique_id=285548890 instance=ExtResource("1_gfjgm")]
+position = Vector2(110, 105)
+data = SubResource("Resource_3h1ab")
+
+[node name="Neutral" parent="Cities" unique_id=1129574257 instance=ExtResource("1_gfjgm")]
+position = Vector2(294, 137)
+data = SubResource("Resource_3vi7k")
+
+[node name="Enemy" parent="Cities" unique_id=1103232393 instance=ExtResource("1_gfjgm")]
+position = Vector2(225, 250)
+data = SubResource("Resource_7if1s")
