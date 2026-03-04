@@ -3,6 +3,19 @@
 [ext_resource type="Script" uid="uid://css60lr50660b" path="res://GraphMap.gd" id="1_3h1ab"]
 [ext_resource type="PackedScene" uid="uid://wai3my3i1gto" path="res://City.tscn" id="1_gfjgm"]
 [ext_resource type="Script" uid="uid://c71t6pm6wjg7x" path="res://CityData.gd" id="2_3vi7k"]
+[ext_resource type="Script" uid="uid://da6fe1385wucd" path="res://RoadData.gd" id="2_v6avs"]
+[ext_resource type="Script" uid="uid://bvy5y3lmeggu8" path="res://RoadLayer.gd" id="4_7if1s"]
+
+[sub_resource type="Resource" id="Resource_8qak7"]
+script = ExtResource("2_v6avs")
+b_id = 1
+metadata/_custom_type_script = "uid://da6fe1385wucd"
+
+[sub_resource type="Resource" id="Resource_0f2yp"]
+script = ExtResource("2_v6avs")
+a_id = 1
+b_id = 2
+metadata/_custom_type_script = "uid://da6fe1385wucd"
 
 [sub_resource type="Resource" id="Resource_3h1ab"]
 script = ExtResource("2_3vi7k")
@@ -13,18 +26,25 @@ metadata/_custom_type_script = "uid://c71t6pm6wjg7x"
 
 [sub_resource type="Resource" id="Resource_3vi7k"]
 script = ExtResource("2_3vi7k")
+id = 1
 name = "Kyoto"
 metadata/_custom_type_script = "uid://c71t6pm6wjg7x"
 
 [sub_resource type="Resource" id="Resource_7if1s"]
 script = ExtResource("2_3vi7k")
+id = 2
 name = "Nara"
 owner = 2
+production_per_sec = 4.0
 max_army = 100
 metadata/_custom_type_script = "uid://c71t6pm6wjg7x"
 
 [node name="GraphMap" type="Node2D" unique_id=793053204]
 script = ExtResource("1_3h1ab")
+roads = Array[ExtResource("2_v6avs")]([SubResource("Resource_8qak7"), SubResource("Resource_0f2yp")])
+
+[node name="RoadLayer" type="Node2D" parent="." unique_id=228389654]
+script = ExtResource("4_7if1s")
 
 [node name="Cities" type="Node2D" parent="." unique_id=2002832469]
 
@@ -33,9 +53,9 @@ position = Vector2(110, 105)
 data = SubResource("Resource_3h1ab")
 
 [node name="Neutral" parent="Cities" unique_id=1129574257 instance=ExtResource("1_gfjgm")]
-position = Vector2(294, 137)
+position = Vector2(411, 121)
 data = SubResource("Resource_3vi7k")
 
 [node name="Enemy" parent="Cities" unique_id=1103232393 instance=ExtResource("1_gfjgm")]
-position = Vector2(225, 250)
+position = Vector2(281, 293)
 data = SubResource("Resource_7if1s")

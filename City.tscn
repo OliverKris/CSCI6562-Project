@@ -4,13 +4,14 @@
 [ext_resource type="Script" uid="uid://biih1e2p5wxfs" path="res://CityVisual.gd" id="1_qodpt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0d5ds"]
-radius = 24.0
+radius = 48.0
 
 [node name="City" type="Area2D" unique_id=285548890]
 script = ExtResource("1_0d5ds")
 
 [node name="Visual" type="Node2D" parent="." unique_id=465387450]
 script = ExtResource("1_qodpt")
+radius = 48.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1202812408]
 shape = SubResource("CircleShape2D_0d5ds")
