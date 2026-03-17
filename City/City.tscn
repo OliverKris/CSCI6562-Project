@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://wai3my3i1gto"]
 
-[ext_resource type="Script" uid="uid://cqk3n73loh0nf" path="res://City.gd" id="1_0d5ds"]
-[ext_resource type="Script" uid="uid://biih1e2p5wxfs" path="res://CityVisual.gd" id="1_qodpt"]
+[ext_resource type="Script" uid="uid://cqk3n73loh0nf" path="res://City/City.gd" id="1_0d5ds"]
+[ext_resource type="Script" uid="uid://biih1e2p5wxfs" path="res://City/CityVisual.gd" id="1_qodpt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0d5ds"]
 radius = 48.0
