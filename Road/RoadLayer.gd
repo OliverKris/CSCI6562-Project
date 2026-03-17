@@ -13,9 +13,20 @@ func set_graph(graph: GraphMap) -> void:
 func _draw() -> void:
 	if _graph == null:
 		return
-	
-	var segments: Array = _graph.get_road_segments()
-	for seg in segments:
-		var a: Vector2 = seg[0]
-		var b: Vector2 = seg[1]
-		draw_line(a, b, color, width, true)
+
+	for road: RoadData in _graph.roads:
+		if road == null:
+			continue
+
+		var city_a: City = _graph.get_city_by_id(road.a_id)
+		var city_b: City = _graph.get_city_by_id(road.b_id)
+
+		if city_a == null or city_b == null:
+			continue
+
+		# Because RoadLayer is inside GraphMap, convert city global positions
+		# into GraphMap-local space, then into RoadLayer-local space.
+		var a_in_graph: Vector2 = _graph.to_local(city_a.global_position)
+		var b_in_graph: Vector2 = _graph.to_local(city_b.global_position)
+
+		draw_line(a_in_graph, b_in_graph, color, width, true)

@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dxlka5t413n17"]
+
+[ext_resource type="Script" uid="uid://bo2y8ru5nljdc" path="res://Unit/Unit.gd" id="1_a3rga"]
+
+[node name="Unit" type="Node2D" unique_id=2092501692]
+script = ExtResource("1_a3rga")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1787352468]
+
+[node name="Label" type="Label" parent="." unique_id=1422557518]
+offset_right = 40.0
+offset_bottom = 23.0

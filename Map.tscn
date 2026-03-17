@@ -4,45 +4,47 @@
 [ext_resource type="PackedScene" uid="uid://wai3my3i1gto" path="res://City/City.tscn" id="1_gfjgm"]
 [ext_resource type="Script" uid="uid://c71t6pm6wjg7x" path="res://City/CityData.gd" id="2_3vi7k"]
 [ext_resource type="Script" uid="uid://da6fe1385wucd" path="res://Road/RoadData.gd" id="2_v6avs"]
+[ext_resource type="PackedScene" uid="uid://dxlka5t413n17" path="res://Unit/Unit.tscn" id="3_8qak7"]
 [ext_resource type="Script" uid="uid://bvy5y3lmeggu8" path="res://Road/RoadLayer.gd" id="4_7if1s"]
+
+[sub_resource type="Resource" id="Resource_v6avs"]
+script = ExtResource("2_v6avs")
+b_id = 1
+metadata/_custom_type_script = "uid://da6fe1385wucd"
 
 [sub_resource type="Resource" id="Resource_8qak7"]
 script = ExtResource("2_v6avs")
+a_id = 2
 b_id = 1
 metadata/_custom_type_script = "uid://da6fe1385wucd"
 
 [sub_resource type="Resource" id="Resource_0f2yp"]
 script = ExtResource("2_v6avs")
-a_id = 1
-b_id = 2
-metadata/_custom_type_script = "uid://da6fe1385wucd"
-
-[sub_resource type="Resource" id="Resource_v6avs"]
-script = ExtResource("2_v6avs")
-a_id = 3
+b_id = 4
 metadata/_custom_type_script = "uid://da6fe1385wucd"
 
 [sub_resource type="Resource" id="Resource_vm4q1"]
 script = ExtResource("2_v6avs")
 a_id = 2
-b_id = 3
+b_id = 4
 metadata/_custom_type_script = "uid://da6fe1385wucd"
 
 [sub_resource type="Resource" id="Resource_ud676"]
 script = ExtResource("2_v6avs")
-b_id = 4
+b_id = 3
 metadata/_custom_type_script = "uid://da6fe1385wucd"
 
 [sub_resource type="Resource" id="Resource_6f7pb"]
 script = ExtResource("2_v6avs")
-a_id = 2
-b_id = 4
+a_id = 3
+b_id = 2
 metadata/_custom_type_script = "uid://da6fe1385wucd"
 
 [sub_resource type="Resource" id="Resource_fhlij"]
 script = ExtResource("2_3vi7k")
 id = 4
 name = "City 4"
+max_army = 100
 metadata/_custom_type_script = "uid://c71t6pm6wjg7x"
 
 [sub_resource type="Resource" id="Resource_3h1ab"]
@@ -57,24 +59,26 @@ script = ExtResource("2_3vi7k")
 id = 2
 name = "City 2"
 owner = 2
-production_per_sec = 4.0
 max_army = 100
 metadata/_custom_type_script = "uid://c71t6pm6wjg7x"
 
 [sub_resource type="Resource" id="Resource_dbu0r"]
 script = ExtResource("2_3vi7k")
 id = 1
+max_army = 100
 metadata/_custom_type_script = "uid://c71t6pm6wjg7x"
 
 [sub_resource type="Resource" id="Resource_bhm4d"]
 script = ExtResource("2_3vi7k")
 id = 3
 name = "City 3"
+max_army = 100
 metadata/_custom_type_script = "uid://c71t6pm6wjg7x"
 
 [node name="GraphMap" type="Node2D" unique_id=793053204]
 script = ExtResource("1_3h1ab")
-roads = Array[ExtResource("2_v6avs")]([SubResource("Resource_8qak7"), SubResource("Resource_0f2yp"), SubResource("Resource_v6avs"), SubResource("Resource_vm4q1"), SubResource("Resource_ud676"), SubResource("Resource_6f7pb")])
+roads = Array[ExtResource("2_v6avs")]([SubResource("Resource_v6avs"), SubResource("Resource_8qak7"), SubResource("Resource_0f2yp"), SubResource("Resource_vm4q1"), SubResource("Resource_ud676"), SubResource("Resource_6f7pb")])
+unit_scene = ExtResource("3_8qak7")
 
 [node name="RoadLayer" type="Node2D" parent="." unique_id=228389654]
 script = ExtResource("4_7if1s")
@@ -100,3 +104,5 @@ data = SubResource("Resource_dbu0r")
 [node name="3" parent="Cities" unique_id=400718759 instance=ExtResource("1_gfjgm")]
 position = Vector2(796, 317)
 data = SubResource("Resource_bhm4d")
+
+[node name="Units" type="Node2D" parent="." unique_id=684526046]
