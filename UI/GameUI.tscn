@@ -1,0 +1,99 @@
+[gd_scene format=3 uid="uid://uyvmyacuhary"]
+
+[ext_resource type="Script" uid="uid://dmul66k1c3bo8" path="res://UI/GameUI.gd" id="1_4itvn"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_ltpa0"]
+
+[node name="GameUi" type="Control" unique_id=780121621]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_4itvn")
+
+[node name="TopBar" type="PanelContainer" parent="." unique_id=357829125]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 72.0
+grow_horizontal = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TopBar" unique_id=476965668]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="TopBar/HBoxContainer" unique_id=1026840888]
+layout_mode = 2
+texture = SubResource("ImageTexture_ltpa0")
+
+[node name="Gold" type="Label" parent="TopBar/HBoxContainer" unique_id=792971414]
+layout_mode = 2
+text = "Gold"
+
+[node name="TextureRect2" type="TextureRect" parent="TopBar/HBoxContainer" unique_id=142013524]
+layout_mode = 2
+
+[node name="Troops" type="Label" parent="TopBar/HBoxContainer" unique_id=2141042486]
+layout_mode = 2
+text = "Troops"
+
+[node name="SidePanel" type="PanelContainer" parent="." unique_id=1799400505]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -260.0
+offset_top = -200.0
+offset_bottom = 200.0
+grow_horizontal = 0
+grow_vertical = 2
+
+[node name="HBoxContainer" type="VBoxContainer" parent="SidePanel" unique_id=274980786]
+layout_mode = 2
+
+[node name="Selected Node" type="Label" parent="SidePanel/HBoxContainer" unique_id=1859170711]
+layout_mode = 2
+text = "Selected City"
+
+[node name="HSeparator" type="HSeparator" parent="SidePanel/HBoxContainer" unique_id=1012423543]
+layout_mode = 2
+
+[node name="Troops" type="Label" parent="SidePanel/HBoxContainer" unique_id=757422878]
+layout_mode = 2
+text = "Toops"
+
+[node name="Owner" type="Label" parent="SidePanel/HBoxContainer" unique_id=1370783286]
+layout_mode = 2
+text = "Owner"
+
+[node name="Button" type="Label" parent="SidePanel/HBoxContainer" unique_id=1570511220]
+layout_mode = 2
+text = "Button"
+
+[node name="BottomBar" type="PanelContainer" parent="." unique_id=481357127]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -80.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BottomBar" unique_id=1745873219]
+layout_mode = 2
+
+[node name="Attack" type="Button" parent="BottomBar/HBoxContainer" unique_id=1603324548]
+layout_mode = 2
+text = "Attack"
+
+[node name="Defend" type="Button" parent="BottomBar/HBoxContainer" unique_id=1533236806]
+layout_mode = 2
+text = "Defend"
+
+[node name="Reinforce" type="Button" parent="BottomBar/HBoxContainer" unique_id=1806943873]
+layout_mode = 2
+text = "Reinforce"
