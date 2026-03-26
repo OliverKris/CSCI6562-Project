@@ -1,7 +1,7 @@
-[gd_scene format=3 uid="uid://wai3my3i1gto"]
+[gd_scene format=3 uid="uid://c6y25y4mso78f"]
 
-[ext_resource type="Script" uid="uid://cqk3n73loh0nf" path="res://City/City.gd" id="1_0d5ds"]
-[ext_resource type="Script" uid="uid://biih1e2p5wxfs" path="res://City/CityVisual.gd" id="1_qodpt"]
+[ext_resource type="Script" uid="uid://c1xo3vo81esu2" path="res://Levels/City/City.gd" id="1_0d5ds"]
+[ext_resource type="Script" uid="uid://bui3sv4x8nijg" path="res://Levels/City/CityVisual.gd" id="1_qodpt"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0d5ds"]
 radius = 48.0
@@ -9,14 +9,14 @@ radius = 48.0
 [node name="City" type="Area2D" unique_id=285548890]
 script = ExtResource("1_0d5ds")
 
-[node name="Visual" type="Node2D" parent="." unique_id=465387450]
+[node name="CityVisual" type="Node2D" parent="." unique_id=465387450]
 script = ExtResource("1_qodpt")
 radius = 48.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1202812408]
 shape = SubResource("CircleShape2D_0d5ds")
 
-[node name="Label" type="Label" parent="." unique_id=1635512136]
+[node name="ArmyLabel" type="Label" parent="." unique_id=1635512136]
 offset_left = -20.0
 offset_top = -11.0
 offset_right = 20.0
