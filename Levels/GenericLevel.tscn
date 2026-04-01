@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c6y25y4mso78f" path="res://Levels/City/City.tscn" id="2_a0j4s"]
 [ext_resource type="Resource" uid="uid://cogw6880wpgrw" path="res://Levels/LevelData/Level1Data.tres" id="2_ji6x8"]
 [ext_resource type="PackedScene" uid="uid://dxlka5t413n17" path="res://Unit/Unit.tscn" id="4_dcmvf"]
+[ext_resource type="PackedScene" path="res://Battle/Battle.tscn" id="5_bat01"]
 
 [node name="LevelRoot" type="Node" unique_id=290238562]
 
@@ -15,6 +16,7 @@ script = ExtResource("1_b72t8")
 level_data = ExtResource("2_ji6x8")
 city_scene = ExtResource("2_a0j4s")
 unit_scene = ExtResource("4_dcmvf")
+battle_scene = ExtResource("5_bat01")
 
 [node name="RoadLayer" type="Node2D" parent="GraphMap" unique_id=2027579917]
 script = ExtResource("1_65pcf")

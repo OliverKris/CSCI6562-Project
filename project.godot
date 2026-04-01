@@ -11,15 +11,24 @@ config_version=5
 [application]
 
 config/name="CSCI6562Project"
-run/main_scene="uid://dft0d5fq0ygy"
+run/main_scene="res://UI/MainMenu.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+CycleClock="*uid://c4rt1ghrw3cqm"
+FactionState="*uid://dq00uwal06v7b"
 
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/stretch/mode="canvas_items"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/HexLevelEditor/plugin.cfg", "res://addons/hex/plugin.cfg")
 
 [physics]
 

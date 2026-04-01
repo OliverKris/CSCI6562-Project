@@ -29,4 +29,9 @@ func _draw() -> void:
 		var a_in_graph: Vector2 = _graph.to_local(city_a.global_position)
 		var b_in_graph: Vector2 = _graph.to_local(city_b.global_position)
 
-		draw_line(a_in_graph, b_in_graph, color, width, true)
+		var dir: Vector2 = (b_in_graph - a_in_graph).normalized()
+		var a_r: float = city_a.get_radius()
+		var b_r: float = city_b.get_radius()
+		var a_edge: Vector2 = a_in_graph + dir * a_r
+		var b_edge: Vector2 = b_in_graph - dir * b_r
+		draw_line(a_edge, b_edge, color, width, true)

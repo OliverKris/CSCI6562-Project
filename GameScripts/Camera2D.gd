@@ -13,12 +13,12 @@ var pan_button: int = -1
 func _ready() -> void:
 	position = get_viewport_rect().size / 2.0
 
-func _input(event: InputEvent) -> void:
+func _unhandled_input(event: InputEvent) -> void:
 	_handle_pan(event)
 	_handle_zoom(event)
 
 func _handle_pan(event: InputEvent) -> void:
-	# Right click drag always pans
+	# Right click drag pans
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_RIGHT:
 		if event.pressed:
 			_begin_pan(event.position, MOUSE_BUTTON_RIGHT)
