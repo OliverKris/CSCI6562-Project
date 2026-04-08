@@ -1,8 +1,138 @@
 [gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://cogw6880wpgrw"]
 
-[ext_resource type="Script" uid="uid://04mmgksubmr0" path="res://Levels/CitySpawnData.gd" id="1_at654"]
-[ext_resource type="Script" uid="uid://chv0trdqvb7ia" path="res://Levels/Road/RoadData.gd" id="2_eek6d"]
-[ext_resource type="Script" uid="uid://bn4eklp3iotkh" path="res://Levels/LevelData/LevelData.gd" id="3_fnc50"]
+[ext_resource type="Script" uid="uid://3kdof3rbbslq" path="res://Levels/CitySpawnData.gd" id="1_at654"]
+[ext_resource type="Script" uid="uid://damgjaiqnpjro" path="res://Levels/Road/RoadData.gd" id="2_eek6d"]
+[ext_resource type="Script" uid="uid://brgt8c6w87day" path="res://Levels/LevelData/LevelData.gd" id="3_fnc50"]
+
+[sub_resource type="Resource" id="Resource_eek6d"]
+script = ExtResource("1_at654")
+id = 9
+city_name = "City"
+hex_coord = Vector2i(15, -2)
+owner = 1
+
+[sub_resource type="Resource" id="Resource_at654"]
+script = ExtResource("1_at654")
+id = 10
+city_name = "City"
+hex_coord = Vector2i(3, 4)
+owner = 2
+
+[sub_resource type="Resource" id="Resource_wex0x"]
+script = ExtResource("1_at654")
+id = 11
+city_name = "City"
+hex_coord = Vector2i(7, 5)
+
+[sub_resource type="Resource" id="Resource_xdqi8"]
+script = ExtResource("1_at654")
+id = 12
+city_name = "City"
+hex_coord = Vector2i(11, 3)
+
+[sub_resource type="Resource" id="Resource_fnc50"]
+script = ExtResource("1_at654")
+id = 13
+city_name = "City"
+hex_coord = Vector2i(7, 2)
+
+[sub_resource type="Resource" id="Resource_q8tqk"]
+script = ExtResource("1_at654")
+id = 14
+city_name = "City"
+hex_coord = Vector2i(7, -1)
+
+[sub_resource type="Resource" id="Resource_fvwbr"]
+script = ExtResource("1_at654")
+id = 15
+city_name = "City"
+hex_coord = Vector2i(11, 0)
+
+[sub_resource type="Resource" id="Resource_xokrq"]
+script = ExtResource("1_at654")
+id = 16
+city_name = "City"
+hex_coord = Vector2i(11, -3)
+
+[sub_resource type="Resource" id="Resource_cvhbl"]
+script = ExtResource("2_eek6d")
+a_id = 9
+b_id = 15
+length = 4.0
+
+[sub_resource type="Resource" id="Resource_6lny5"]
+script = ExtResource("2_eek6d")
+a_id = 15
+b_id = 13
+length = 4.0
+
+[sub_resource type="Resource" id="Resource_iqke0"]
+script = ExtResource("2_eek6d")
+a_id = 13
+b_id = 10
+length = 4.0
+
+[sub_resource type="Resource" id="Resource_b8k5c"]
+script = ExtResource("2_eek6d")
+a_id = 10
+b_id = 11
+length = 5.0
+
+[sub_resource type="Resource" id="Resource_td5e1"]
+script = ExtResource("2_eek6d")
+a_id = 11
+b_id = 12
+length = 4.0
+
+[sub_resource type="Resource" id="Resource_mxny6"]
+script = ExtResource("2_eek6d")
+a_id = 12
+b_id = 9
+length = 5.0
+
+[sub_resource type="Resource" id="Resource_347iq"]
+script = ExtResource("2_eek6d")
+a_id = 9
+b_id = 16
+length = 5.0
+
+[sub_resource type="Resource" id="Resource_wdlm0"]
+script = ExtResource("2_eek6d")
+a_id = 16
+b_id = 14
+length = 4.0
+
+[sub_resource type="Resource" id="Resource_66gdb"]
+script = ExtResource("2_eek6d")
+a_id = 14
+b_id = 10
+length = 5.0
+
+[sub_resource type="Resource" id="Resource_ujked"]
+script = ExtResource("2_eek6d")
+a_id = 13
+b_id = 14
+length = 3.0
+
+[sub_resource type="Resource" id="Resource_qjswc"]
+script = ExtResource("2_eek6d")
+a_id = 16
+b_id = 15
+length = 3.0
+
+[sub_resource type="Resource" id="Resource_m26va"]
+script = ExtResource("2_eek6d")
+a_id = 15
+b_id = 12
+length = 3.0
+
+[sub_resource type="Resource" id="Resource_hffle"]
+script = ExtResource("2_eek6d")
+a_id = 11
+b_id = 13
+length = 3.0
 
 [resource]
 script = ExtResource("3_fnc50")
+cities = Array[ExtResource("1_at654")]([SubResource("Resource_eek6d"), SubResource("Resource_at654"), SubResource("Resource_wex0x"), SubResource("Resource_xdqi8"), SubResource("Resource_fnc50"), SubResource("Resource_q8tqk"), SubResource("Resource_fvwbr"), SubResource("Resource_xokrq")])
+roads = Array[ExtResource("2_eek6d")]([SubResource("Resource_cvhbl"), SubResource("Resource_6lny5"), SubResource("Resource_iqke0"), SubResource("Resource_b8k5c"), SubResource("Resource_td5e1"), SubResource("Resource_mxny6"), SubResource("Resource_347iq"), SubResource("Resource_wdlm0"), SubResource("Resource_66gdb"), SubResource("Resource_ujked"), SubResource("Resource_qjswc"), SubResource("Resource_m26va"), SubResource("Resource_hffle")])

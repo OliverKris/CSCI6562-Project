@@ -91,6 +91,11 @@ func _exit_tree() -> void:
 func _on_cycle() -> void:
 	if _game_over:
 		return
+		
+	for c in cities_node.get_children():
+		if c is City:
+			c.produce_once()
+		
 	_check_win_loss()
 
 func _process(_delta: float) -> void:
@@ -155,7 +160,8 @@ func build_from_level_data() -> void:
 			cities_node.add_child(city)
 			city.position = hex_to_world(city_def.hex_coord)
 			city.setup_from_spawn_data(city_def)
-			city.captured.connect(_on_city_captured)
+			if not city.captured.is_connected(_on_city_captured):
+				city.captured.connect(_on_city_captured)
 
 	roads = level_data.roads.duplicate()
 	_register_cities()

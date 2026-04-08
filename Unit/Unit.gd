@@ -3,7 +3,7 @@ class_name Unit
 
 signal arrived(unit: Unit, target_city: City)
 
-@export var pixels_per_road_unit: float = 30.0
+@export var pixels_per_road_unit: float = 150.0
 @export var radius: float = 8.0
 
 var source_city: City

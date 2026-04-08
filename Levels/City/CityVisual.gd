@@ -1,21 +1,43 @@
 extends Node2D
 
-@export var radius: float = 24.0
-@export var fill_color: Color = Color(0.2, 0.6, 0.9, 1.0)
-@export var outline_color: Color = Color(0.05, 0.05, 0.08, 1.0)
-@export var outline_width: float = 2.0
+@onready var sprite: Sprite2D = $Sprite2D
 
-func _draw():
-	draw_circle(Vector2.ZERO, radius, fill_color)
-	draw_arc(Vector2.ZERO, radius, 0.0, TAU, 64, outline_color, outline_width)
+@export var base_scale: Vector2 = Vector2.ONE
+@export var selected_scale_multiplier: float = 1.1
 
-func set_selected(selected: bool):
-	outline_color = Color(0.9, 0.8, 0.2, 1.0) if selected else Color(0.05, 0.05, 0.08, 1.0)
-	queue_redraw()
+@export var player_color: Color = Color(0.2, 0.7, 1.0, 1.0)
+@export var enemy_color: Color = Color(1.0, 0.3, 0.3, 1.0)
+@export var neutral_color: Color = Color(0.6, 0.6, 0.6, 1.0)
 
-func set_faction(owner: int):
+var current_owner: int = 0
+
+func _ready() -> void:
+	scale = base_scale
+
+func set_faction(owner: int) -> void:
+	current_owner = owner
+
+	if sprite == null:
+		return
+
 	match owner:
-		1: fill_color = Color(0.2, 0.7, 1.0) # player
-		2: fill_color = Color(1.0, 0.3, 0.3) # enemy
-		_: fill_color = Color(0.6, 0.6, 0.6) # neutral
-	queue_redraw()
+		1:
+			sprite.modulate = player_color
+		2:
+			sprite.modulate = enemy_color
+		_:
+			sprite.modulate = neutral_color
+
+func set_selected(selected: bool) -> void:
+	if selected:
+		scale = base_scale * selected_scale_multiplier
+	else:
+		scale = base_scale
+
+func get_radius() -> float:
+	if sprite == null or sprite.texture == null:
+		return 24.0
+
+	var tex_size: Vector2 = sprite.texture.get_size()
+	var effective_size: Vector2 = tex_size * sprite.scale * scale
+	return max(effective_size.x, effective_size.y) * 0.5
