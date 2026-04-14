@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://dxlka5t413n17"]
+
+[ext_resource type="Script" uid="uid://dol8l0u21jo0s" path="res://World/Unit/Unit.gd" id="1_a3rga"]
+[ext_resource type="Texture2D" uid="uid://uc72lkr3gi2h" path="res://Sprites/unit.png" id="2_ij4mw"]
+
+[node name="Unit" type="Node2D" unique_id=2092501692]
+z_index = 10
+script = ExtResource("1_a3rga")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1787352468]
+scale = Vector2(3, 3)
+texture = ExtResource("2_ij4mw")
+
+[node name="Label" type="Label" parent="." unique_id=1422557518]
+offset_right = 40.0
+offset_bottom = 23.0

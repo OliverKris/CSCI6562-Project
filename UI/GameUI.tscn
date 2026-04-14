@@ -2,6 +2,9 @@
 
 [ext_resource type="Script" uid="uid://dmul66k1c3bo8" path="res://UI/GameUI.gd" id="1_4itvn"]
 [ext_resource type="StyleBox" uid="uid://cmbshw3lygs34" path="res://UI/ui_style_box_texture.tres" id="2_lwtm8"]
+[ext_resource type="Texture2D" uid="uid://22ai8w25kqaw" path="res://UI/goldicons2.tres" id="3_7csst"]
+[ext_resource type="FontFile" uid="uid://bcu7ufltrpbt2" path="res://UI/Fonts/CozetteVector.ttf" id="3_hqqrp"]
+[ext_resource type="PackedScene" uid="uid://cgilpowmtbmlt" path="res://UI/Buttons/SpeedButton.tscn" id="4_dgedd"]
 
 [node name="GameUi" type="Control" unique_id=780121621]
 process_mode = 3
@@ -13,6 +16,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_4itvn")
+gold_icon_sheet = ExtResource("3_7csst")
 
 [node name="TopBar" type="PanelContainer" parent="." unique_id=357829125]
 layout_mode = 1
@@ -26,34 +30,54 @@ theme_override_styles/panel = ExtResource("2_lwtm8")
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="Gold" type="Label" parent="TopBar/HBoxContainer" unique_id=792971414]
+[node name="GoldContainer" type="HBoxContainer" parent="TopBar/HBoxContainer" unique_id=945226827]
 layout_mode = 2
+
+[node name="GoldIcon" type="TextureRect" parent="TopBar/HBoxContainer/GoldContainer" unique_id=831408943]
+layout_mode = 2
+texture = ExtResource("3_7csst")
+
+[node name="Gold" type="Label" parent="TopBar/HBoxContainer/GoldContainer" unique_id=792971414]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_hqqrp")
 text = "Gold: 0"
 
 [node name="Troops" type="Label" parent="TopBar/HBoxContainer" unique_id=2141042486]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_hqqrp")
 text = "Troops: 0"
 
 [node name="Spacer" type="Control" parent="TopBar/HBoxContainer" unique_id=2141042491]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="SpeedSlower" type="Button" parent="TopBar/HBoxContainer" unique_id=2141042492]
+[node name="SpeedContainer" type="HBoxContainer" parent="TopBar/HBoxContainer" unique_id=1010419208]
 layout_mode = 2
-text = "<<"
+theme_override_constants/separation = 10
+alignment = 1
 
-[node name="SpeedLabel" type="Label" parent="TopBar/HBoxContainer" unique_id=2141042493]
-custom_minimum_size = Vector2(32, 0)
+[node name="SpeedSlower" parent="TopBar/HBoxContainer/SpeedContainer" unique_id=934925372 instance=ExtResource("4_dgedd")]
 layout_mode = 2
+flipped = true
+
+[node name="SpeedLabel" type="Label" parent="TopBar/HBoxContainer/SpeedContainer" unique_id=2141042493]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_hqqrp")
+theme_override_font_sizes/font_size = 32
 text = "1x"
 horizontal_alignment = 1
 
-[node name="SpeedFaster" type="Button" parent="TopBar/HBoxContainer" unique_id=2141042494]
+[node name="SpeedFaster" parent="TopBar/HBoxContainer/SpeedContainer" unique_id=1289328742 instance=ExtResource("4_dgedd")]
 layout_mode = 2
-text = ">>"
+flip_h = true
 
 [node name="PauseHint" type="Label" parent="TopBar/HBoxContainer" unique_id=2141042490]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 text = "  ESC: pause"
 
 [node name="SidePanel" type="PanelContainer" parent="." unique_id=1799400505]

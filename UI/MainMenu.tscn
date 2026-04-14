@@ -1,22 +1,46 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://q8pl84yttemw"]
 
-[ext_resource type="Script" path="res://UI/MainMenu.gd" id="1_menu"]
+[sub_resource type="GDScript" id="GDScript_f0jmi"]
+script/source = "extends Control
 
-[node name="MainMenu" type="Control"]
+@onready var play_button: Button = $VBoxContainer/PlayButton
+@onready var tutorial_button: Button = $VBoxContainer/TutorialButton
+@onready var quit_button: Button = $VBoxContainer/QuitButton
+
+func _ready() -> void:
+	play_button.pressed.connect(_on_play)
+	tutorial_button.pressed.connect(_on_tutorial)
+	quit_button.pressed.connect(_on_quit)
+
+func _on_play() -> void:
+	get_tree().change_scene_to_file(\"res://Game.tscn\")
+
+func _on_tutorial() -> void:
+	get_tree().change_scene_to_file(\"res://UI/Tutorial.tscn\")
+
+func _on_quit() -> void:
+	get_tree().quit()
+"
+
+[node name="MainMenu" type="Control" unique_id=1364776555]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-script = ExtResource("1_menu")
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_f0jmi")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="Background" type="ColorRect" parent="." unique_id=2033872807]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0.08, 0.06, 0.04, 1)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1239761246]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -31,32 +55,32 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
 
-[node name="Title" type="Label" parent="VBoxContainer"]
+[node name="Title" type="Label" parent="VBoxContainer" unique_id=331776450]
 layout_mode = 2
+theme_override_font_sizes/font_size = 48
 text = "Sengoku Jidai"
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 48
 
-[node name="Subtitle" type="Label" parent="VBoxContainer"]
+[node name="Subtitle" type="Label" parent="VBoxContainer" unique_id=1915006154]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 text = "戦国時代"
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 24
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=1300546767]
 layout_mode = 2
 
-[node name="PlayButton" type="Button" parent="VBoxContainer"]
+[node name="PlayButton" type="Button" parent="VBoxContainer" unique_id=1698454412]
 layout_mode = 2
+theme_override_font_sizes/font_size = 22
 text = "Play"
-theme_override_font_sizes/font_size = 22
 
-[node name="TutorialButton" type="Button" parent="VBoxContainer"]
+[node name="TutorialButton" type="Button" parent="VBoxContainer" unique_id=60754022]
 layout_mode = 2
+theme_override_font_sizes/font_size = 22
 text = "Tutorial"
-theme_override_font_sizes/font_size = 22
 
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
+[node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=926239426]
 layout_mode = 2
-text = "Quit"
 theme_override_font_sizes/font_size = 22
+text = "Quit"

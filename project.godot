@@ -11,9 +11,8 @@ config_version=5
 [application]
 
 config/name="CSCI6562Project"
-run/main_scene="res://UI/MainMenu.tscn"
+run/main_scene="uid://q8pl84yttemw"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
 
 [autoload]
 
@@ -37,4 +36,5 @@ enabled=PackedStringArray("res://addons/HexLevelEditor/plugin.cfg")
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
