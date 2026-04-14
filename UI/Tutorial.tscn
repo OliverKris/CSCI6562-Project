@@ -85,7 +85,14 @@ horizontal_alignment = 1
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="TutorialText" type="RichTextLabel" parent="MarginContainer/VBoxContainer/ScrollContainer" unique_id=1840359719]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/VBoxContainer/ScrollContainer" unique_id=1236566434]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 320
+theme_override_constants/margin_right = 320
+
+[node name="TutorialText" type="RichTextLabel" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer" unique_id=1840359719]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -109,21 +116,25 @@ text = "[center][b][color=#f0d080]✦  Welcome, Daimyō  ✦[/color][/b][/center
 
 [center][b][color=#f0d080]🏯 Cities 🏯[/color][/b][/center]
 
-[center]Cities are the lifeblood of your domain. Each city produces gold and troops every cycle, and can be upgraded using accumulated gold:[/center]
+[center]Cities are the lifeblood of your domain. Each city produces gold and troops every cycle. Troops can be used to defend or capture cities. Gold can be used to upgrade your controlled cities in the following ways:[/center]
 
-[center]• [b]Gold Production[/b] — Increase gold earned per cycle
-• [b]Unit Production[/b] — Increase troops trained per cycle
-• [b]Improve Defenses[/b] — Strengthen the garrison's defensive bonus[/center]
+							• [b]Gold Production:[/b] Increase gold earned per cycle
+							• [b]Unit Production:[/b] Increase troops trained per cycle
+							• [b]Improve Defenses:[/b] Strengthen the garrison's defensive bonus
 
-[center][i]Controls: hover the cursor over a city and left-click to select it, then click an upgrade in the side panel.[/i][/center]
+[center][b]Upgrades:[/b] Invest in production and gold in safe interior cities and harden the defenses of exposed frontier cities. Upgrade costs scale steeply, so spread your investments wisely.[/center]
+
+[center][i]How to Upgrade: Hover the cursor over a city, left-click to select it, then select an upgrade in the side panel.[/i][/center]
 
 [center]——————————————————————————————[/center]
 
 [center][b][color=#f0d080]Units[/color][/b][/center]
 
-[center]Units are the soldiers that garrison your cities and march to war. Select troops from a friendly city and drag to an adjacent city to send them. They can reinforce allied cities or storm enemy positions. A city may only send one march at a time — wait until the army arrives or is destroyed before sending another.[/center]
+[center]Units are the soldiers that garrison your cities and march to war. Select a percentage of the troops from a friendly city and drag to an adjacent city to send them. They can reinforce allied cities or storm enemy positions. A city may only send one march at a time.[/center]
 
-[center][i]Controls: select a city, set the send ratio with the slider, then drag to the destination city.[/i][/center]
+[center][b]Troop Concentration:[/b] Combat effectiveness improves when you outnumber the enemy, so always make sure to position your units to outnumber the enemy at any particular encounter. A wise Daimyō never finds themself fighting a disadvantageous battle.[/center]
+
+[center][i]How to Send Troops: Select a city, set the send ratio with the slider, then drag to the destination city.[/i][/center]
 
 [center]——————————————————————————————[/center]
 
@@ -131,23 +142,13 @@ text = "[center][b][color=#f0d080]✦  Welcome, Daimyō  ✦[/color][/b][/center
 
 [center]Combat occurs in three scenarios:[/center]
 
-[center]• [b]Garrison Defense[/b] — an enemy army reaches one of your cities
-• [b]Field Battle[/b] — two opposing armies meet on a road and lock into battle
-• [b]Siege Attack[/b] — your army reaches an enemy city[/center]
+						• [b]Garrison Defense:[/b] An enemy army reaches one of your cities
+						• [b]Field Battle:[/b] Two opposing armies meet on a road and lock into battle
+						• [b]Siege Attack:[/b] Your army reaches an enemy city
 
-[center]Garrisons provide a defensive bonus depending on the city's defense level, so you will need greater numbers to take a fortified position. When a garrison falls, the victors occupy the city and it begins producing for them. Cities under siege do [b]not[/b] produce troops — only gold — so strike hard and fast.[/center]
+[center][b]Garrisons Battles:[/b] Garrisons provide a defensive bonus depending on the city's defense level, so you will need greater numbers to take a fortified position. When a garrison falls, the victors occupy the city and it begins producing for them. Cities under siege do not produce units, so sending out probes to disrupt enemy production could prove useful.[/center]
 
-[center]——————————————————————————————[/center]
-
-[center][b][color=#f0d080]Strategy[/color][/b][/center]
-
-[center][b]Upgrades:[/b] Invest in production and gold in safe interior cities; harden the defenses of exposed frontier cities. Upgrade costs scale steeply, so spread your investments wisely.[/center]
-
-[center][b]Troop Concentration:[/b] Combat effectiveness improves when you outnumber the enemy. A wise Daimyō commits only enough force to guarantee victory — defeating a numerically superior foe in detail is the mark of a true commander.[/center]
-
-[center][b]Reactive Battles:[/b] Sending a sortie against an enemy army on the road can weaken it and buy time for reinforcements. Split-second decisions on the march can turn the tide of war.[/center]
-
-"
+[center][b]Field Battles:[/b] Sending a sortie against an enemy army on the road can weaken it and buy time for reinforcements. Split-second decisions on the march can turn the tide of war.[/center]"
 fit_content = true
 
 [node name="FooterDivider" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1086313137]
