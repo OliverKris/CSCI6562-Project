@@ -164,6 +164,7 @@ func _toggle_pause() -> void:
 func _on_resume() -> void:
 	_paused = false
 	CycleClock.resume_clock()
+	pause_btn.set_toggled_state(_paused)
 	get_tree().paused = false
 	if pause_panel != null:
 		pause_panel.visible = false
