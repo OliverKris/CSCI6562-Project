@@ -4,21 +4,30 @@ var graph_map: GraphMap = null
 var _selected_city: City = null
 var _paused: bool = false
 
+# ====================
+# Dynamic UI Variables
+# ====================
 
-# Gold counter
+# Gold Counter
 @onready var gold_label: Label = $TopBar/HBoxContainer/GoldContainer/Gold
 @onready var gold_icon: TextureRect = $TopBar/HBoxContainer/GoldContainer/GoldIcon
-
 @export var gold_icon_sheet: Texture2D
-
 var _gold_icon_frames: Array[AtlasTexture] = []
 const GOLD_ICON_COUNT := 8
 const GOLD_ICON_SIZE := Vector2i(32, 32)
 
+# Troop Counter
 @onready var troops_label: Label = $TopBar/HBoxContainer/Troops
+
+# Speed Controls
 @onready var speed_label: Label = $TopBar/HBoxContainer/SpeedContainer/SpeedLabel
 @onready var speed_slower_btn: TextureButton = $TopBar/HBoxContainer/SpeedContainer/SpeedSlower
 @onready var speed_faster_btn: TextureButton = $TopBar/HBoxContainer/SpeedContainer/SpeedFaster
+var _speed_index: int = 1  # default 1x
+const SPEEDS: Array = [0.5, 1.0, 2.0, 4.0]
+const SPEED_LABELS: Array = ["0.5x", "1x", "2x", "4x"]
+
+
 
 @onready var side_panel = $SidePanel
 @onready var city_name_label: Label = $SidePanel/VBoxContainer/Selected_Node
@@ -37,10 +46,6 @@ const GOLD_ICON_SIZE := Vector2i(32, 32)
 @onready var pause_panel = $PausePanel
 @onready var resume_btn: Button = $PausePanel/VBoxContainer/ResumeButton
 @onready var main_menu_btn_pause: Button = $PausePanel/VBoxContainer/MainMenuButton
-
-const SPEEDS: Array = [0.5, 1.0, 2.0, 4.0]
-const SPEED_LABELS: Array = ["0.5x", "1x", "2x", "4x"]
-var _speed_index: int = 1  # default 1x
 
 func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
@@ -81,10 +86,6 @@ func _ready() -> void:
 	# Create gold icon animations and set current icon
 	_build_gold_icon_frames()
 	_update_gold_display(FactionState.get_gold(1))
-	
-	
-	
-	
 	
 	_apply_speed_index()
 

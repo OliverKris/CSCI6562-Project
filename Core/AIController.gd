@@ -83,6 +83,7 @@ func _try_ai_upgrades() -> void:
 		return
 
 	# Commented out AI upgrades
+	# FIXME
 
 	#match best_type:
 		#"production": best_city.try_upgrade_production()

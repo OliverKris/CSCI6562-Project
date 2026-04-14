@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://dj3o1gq7f0nnb"]
+
+[ext_resource type="Script" uid="uid://dliurwl8j5p32" path="res://UI/Tiles.gd" id="1_83hj0"]
+[ext_resource type="Texture2D" uid="uid://dfnrs1f8jk5li" path="res://Sprites/Tiles/grass1.png" id="2_h6jks"]
+
+[node name="HexGroundTest" type="Node2D" unique_id=439838287]
+script = ExtResource("1_83hj0")
+grass_textures = Array[Texture2D]([ExtResource("2_h6jks")])
