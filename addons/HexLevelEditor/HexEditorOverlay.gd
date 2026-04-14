@@ -232,7 +232,9 @@ func _place_city(hex: Vector2i) -> void:
 	spawn.city_name = _name_edit.text if _name_edit != null and _name_edit.text != "" else ("City %d" % spawn.id)
 	spawn.owner = _owner_option.selected if _owner_option != null else 0
 	spawn.army = int(_army_spin.value) if _army_spin != null else 10
-	_graph_map.level_data.cities.append(spawn)
+	var cities := _graph_map.level_data.cities.duplicate()
+	cities.append(spawn)
+	_graph_map.level_data.cities = cities
 	_mark_dirty()
 	_update_status("Placed '%s' at (%d,%d)" % [spawn.city_name, hex.x, hex.y])
 	_request_redraw()
@@ -244,8 +246,11 @@ func _remove_city_at(hex: Vector2i) -> void:
 	for i in range(ld.cities.size()):
 		if ld.cities[i].hex_coord == hex:
 			var removed_id: int = ld.cities[i].id
-			ld.cities.remove_at(i)
-			ld.roads = ld.roads.filter(func(r: RoadData) -> bool:
+			var cities := ld.cities.duplicate()
+			cities.remove_at(i)
+			ld.cities = cities
+			var roads := ld.roads.duplicate()
+			ld.roads = roads.filter(func(r: RoadData) -> bool:
 				return r.a_id != removed_id and r.b_id != removed_id)
 			if _road_first_id == removed_id:
 				_road_first_id = -1
@@ -280,7 +285,9 @@ func _handle_road_click(hex: Vector2i) -> void:
 	for i in range(ld.roads.size()):
 		var r: RoadData = ld.roads[i]
 		if (r.a_id == a and r.b_id == b) or (r.a_id == b and r.b_id == a):
-			ld.roads.remove_at(i)
+			var roads := ld.roads.duplicate()
+			roads.remove_at(i)
+			ld.roads = roads
 			_mark_dirty()
 			_update_status("Removed road: %s <-> %s" % [
 				_find_city_spawn(a).city_name if _find_city_spawn(a) else str(a),
@@ -292,7 +299,9 @@ func _handle_road_click(hex: Vector2i) -> void:
 	road.a_id = a; road.b_id = b
 	var sa := _find_city_spawn(a); var sb := _find_city_spawn(b)
 	road.length = _hex_distance(sa.hex_coord, sb.hex_coord) if sa and sb else 1.0
-	ld.roads.append(road)
+	var roads := ld.roads.duplicate()
+	roads.append(road)
+	ld.roads = roads
 	_mark_dirty()
 	_update_status("Added road: %s <-> %s (len %.2f)" % [
 		sa.city_name if sa else str(a), sb.city_name if sb else str(b), road.length])

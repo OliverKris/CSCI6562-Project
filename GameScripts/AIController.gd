@@ -3,8 +3,8 @@ class_name AIController
 
 const AI_OWNER: int = 2
 
-# How many cycles between attack decisions
-@export var decision_every_n_cycles: int = 3
+# How many cycles between attack decisions (increase to slow AI down)
+@export var decision_every_n_cycles: int = 8
 @export var min_attack_troops: int = 8
 @export var attack_ratio: float = 0.6
 @export var reinforce_ratio: float = 0.4
@@ -27,13 +27,12 @@ func _on_cycle() -> void:
 	if graph_map == null:
 		return
 
-	# Upgrade decision every cycle
-	_try_ai_upgrades()
-
-	# Attack decision every N cycles
+	# Attack/intercept decision every N cycles
 	_cycle_count += 1
 	if _cycle_count >= decision_every_n_cycles:
 		_cycle_count = 0
+		# Upgrade decisions bundled with attack decisions so AI isn't too reactive
+		_try_ai_upgrades()
 		_make_attack_decisions()
 
 func _try_ai_upgrades() -> void:
@@ -45,8 +44,6 @@ func _try_ai_upgrades() -> void:
 	if gold <= 0:
 		return
 
-	# Prioritise cheapest available upgrade across all AI cities.
-	# Order: production > gold > defense (on threatened cities)
 	var best_city: City = null
 	var best_cost: int = 999999
 	var best_type: String = ""
@@ -55,7 +52,6 @@ func _try_ai_upgrades() -> void:
 		if city.data == null:
 			continue
 
-		# Production upgrade
 		if city.data.production_level < 3:
 			var cost := city.data.get_production_upgrade_cost()
 			if cost < best_cost and FactionState.can_afford(AI_OWNER, float(cost)):
@@ -63,7 +59,6 @@ func _try_ai_upgrades() -> void:
 				best_city = city
 				best_type = "production"
 
-		# Gold upgrade
 		if city.data.gold_level < 3:
 			var cost := city.data.get_gold_upgrade_cost()
 			if cost < best_cost and FactionState.can_afford(AI_OWNER, float(cost)):
@@ -71,7 +66,6 @@ func _try_ai_upgrades() -> void:
 				best_city = city
 				best_type = "gold"
 
-		# Defense upgrade only on threatened cities
 		if city.data.defense_level < 3 and _is_threatened(city):
 			var cost := city.data.get_defense_upgrade_cost()
 			if cost < best_cost and FactionState.can_afford(AI_OWNER, float(cost)):
@@ -83,9 +77,11 @@ func _try_ai_upgrades() -> void:
 		return
 
 	match best_type:
-		"production": best_city.try_upgrade_production()
-		"gold":       best_city.try_upgrade_gold()
-		"defense":    best_city.try_upgrade_defense()
+		"production": best_city.data.apply_production_upgrade()
+		"gold":       best_city.data.apply_gold_upgrade()
+		"defense":    best_city.data.apply_defense_upgrade()
+
+	best_city.refresh_from_data()
 
 func _is_threatened(city: City) -> bool:
 	if graph_map == null or city.data == null:
@@ -120,6 +116,21 @@ func _decide_for_city(city: City) -> void:
 			enemy_neighbors.append(neighbor)
 		else:
 			friendly_neighbors.append(neighbor)
+
+	# Priority 0: Intercept an incoming enemy army marching toward this city
+	# (only if the city itself is not already under active siege)
+	if not _city_is_under_siege(city):
+		for neighbor in enemy_neighbors:
+			if neighbor.data == null:
+				continue
+			var road := graph_map.get_road_between(city.data.id, neighbor.data.id)
+			if road == null:
+				continue
+			# Check if an enemy unit is marching toward this city along that road
+			if _enemy_marching_toward(road, city) and city.data.army >= min_attack_troops:
+				# Send an interception sortie — use the full attack ratio for maximum effect
+				graph_map.send_units_from(city, neighbor, attack_ratio)
+				return
 
 	# Priority 1: Attack if clearly outnumbering
 	var best_target: City = null
@@ -168,6 +179,34 @@ func _decide_for_city(city: City) -> void:
 	# Priority 3: Attack weakest adjacent enemy anyway
 	if best_target != null:
 		graph_map.send_units_from(city, best_target, attack_ratio)
+
+## Returns true if an active city-battle (enemy already at city walls) targets this city.
+func _city_is_under_siege(city: City) -> bool:
+	if graph_map == null or graph_map.battles_node == null:
+		return false
+	for child in graph_map.battles_node.get_children():
+		if child is Battle:
+			var b: Battle = child as Battle
+			if b.attacker_owner != AI_OWNER and b.target_city == city:
+				return true
+	return false
+
+## Returns true if an enemy unit is currently marching along road toward target_city.
+func _enemy_marching_toward(road: RoadData, target_city: City) -> bool:
+	if graph_map == null or graph_map.units_node == null or road == null:
+		return false
+	for child in graph_map.units_node.get_children():
+		if child is Unit:
+			var u: Unit = child as Unit
+			if u.unit_owner == AI_OWNER:
+				continue
+			if u.road == null:
+				continue
+			var same: bool = (u.road.a_id == road.a_id and u.road.b_id == road.b_id) \
+				or (u.road.a_id == road.b_id and u.road.b_id == road.a_id)
+			if same and u.target_city == target_city:
+				return true
+	return false
 
 func _get_ai_cities() -> Array[City]:
 	var result: Array[City] = []

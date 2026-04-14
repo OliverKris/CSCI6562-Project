@@ -1,62 +1,91 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://cee1l7i5l0agi"]
 
-[ext_resource type="Script" path="res://UI/MainMenu.gd" id="1_menu"]
+[ext_resource type="Script" uid="uid://cim1wrwgmcogl" path="res://UI/MainMenu.gd" id="1_menu"]
+[ext_resource type="Texture2D" uid="uid://d1y0hgnoi47n2" path="res://UI/cherry_blossom.jpg" id="2_bg"]
+[ext_resource type="Shader" uid="uid://cwkuceblnxcsb" path="res://UI/bg_scroll.gdshader" id="3_shader"]
 
-[node name="MainMenu" type="Control"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_scroll"]
+shader = ExtResource("3_shader")
+shader_parameter/offset = 0.0
+
+[node name="MainMenu" type="Control" unique_id=804300949]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_menu")
 
-[node name="Background" type="ColorRect" parent="."]
+[node name="BackgroundScroll" type="TextureRect" parent="." unique_id=858017566]
+material = SubResource("ShaderMaterial_scroll")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-color = Color(0.08, 0.06, 0.04, 1)
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_bg")
+expand_mode = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Overlay" type="ColorRect" parent="." unique_id=548227785]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.05, 0.03, 0.02, 0.55)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1141494922]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -160.0
-offset_top = -140.0
-offset_right = 160.0
-offset_bottom = 140.0
+offset_left = -180.0
+offset_top = -160.0
+offset_right = 180.0
+offset_bottom = 160.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
 
-[node name="Title" type="Label" parent="VBoxContainer"]
+[node name="Title" type="Label" parent="VBoxContainer" unique_id=585097480]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.98, 0.92, 0.78, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 52
 text = "Sengoku Jidai"
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 48
 
-[node name="Subtitle" type="Label" parent="VBoxContainer"]
+[node name="Subtitle" type="Label" parent="VBoxContainer" unique_id=1110332969]
 layout_mode = 2
-text = "戦国時代"
+theme_override_colors/font_color = Color(0.9, 0.75, 0.5, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_font_sizes/font_size = 26
+text = "The Age of Warring States"
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 24
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=1810625167]
 layout_mode = 2
 
-[node name="PlayButton" type="Button" parent="VBoxContainer"]
+[node name="PlayButton" type="Button" parent="VBoxContainer" unique_id=876605513]
 layout_mode = 2
+theme_override_font_sizes/font_size = 22
 text = "Play"
-theme_override_font_sizes/font_size = 22
 
-[node name="TutorialButton" type="Button" parent="VBoxContainer"]
+[node name="TutorialButton" type="Button" parent="VBoxContainer" unique_id=1261244247]
 layout_mode = 2
+theme_override_font_sizes/font_size = 22
 text = "Tutorial"
-theme_override_font_sizes/font_size = 22
 
-[node name="QuitButton" type="Button" parent="VBoxContainer"]
+[node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=930389834]
 layout_mode = 2
-text = "Quit"
 theme_override_font_sizes/font_size = 22
+text = "Quit"
