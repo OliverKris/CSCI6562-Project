@@ -297,9 +297,13 @@ func _do_send(from_city: City, to_city: City, ratio: float) -> void:
 	if road == null:
 		return
 
-	# --- Road-occupancy restriction ---
 	# A faction may only have one unit (marching or fighting) on a road at a time.
 	if _is_road_occupied_by(road, from_city.data.owner):
+		return
+
+	# Cannot send if an enemy battle has ALREADY REACHED from_city (city is under siege).
+	# But CAN send to intercept an enemy still marching along the road toward from_city.
+	if _is_city_under_active_siege(from_city):
 		return
 
 	var send_amount: int = from_city.compute_send_amount(ratio, min_send_amount)
@@ -368,11 +372,10 @@ func _on_battle_ended(_battle: Battle, _survivors: int, _owner: int) -> void:
 		game_ui.refresh_selected_city()
 
 ## Returns true if the given faction already has a unit marching OR a battle
-## active on this road, enforcing the one-unit-per-road-per-faction rule.
+## active on this road (one-unit-per-road-per-faction rule).
 func _is_road_occupied_by(road: RoadData, faction_owner: int) -> bool:
 	if road == null:
 		return false
-	# Check travelling units
 	if units_node != null:
 		for child in units_node.get_children():
 			if child is Unit:
@@ -382,7 +385,6 @@ func _is_road_occupied_by(road: RoadData, faction_owner: int) -> bool:
 						or (u.road.a_id == road.b_id and u.road.b_id == road.a_id)
 					if same:
 						return true
-	# Check active battles (parked at the far end of the road)
 	if battles_node != null:
 		for child in battles_node.get_children():
 			if child is Battle:
@@ -392,6 +394,22 @@ func _is_road_occupied_by(road: RoadData, faction_owner: int) -> bool:
 						or (b.road.a_id == road.b_id and b.road.b_id == road.a_id)
 					if same:
 						return true
+	return false
+
+## Returns true if from_city is currently under active siege (enemy battle
+## has already arrived at the city). In this case, sending a sortie would be
+## pointless since the city-battle is already underway.
+## This does NOT block sending if an enemy is merely marching toward the city —
+## in that case the player can intercept with a field battle.
+func _is_city_under_active_siege(from_city: City) -> bool:
+	if from_city == null or from_city.data == null:
+		return false
+	if battles_node != null:
+		for child in battles_node.get_children():
+			if child is Battle:
+				var b: Battle = child as Battle
+				if b.attacker_owner != from_city.data.owner and b.target_city == from_city:
+					return true
 	return false
 
 func get_road_between(a: int, b: int) -> RoadData:

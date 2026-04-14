@@ -23,7 +23,9 @@ func resume_clock() -> void:
 func _process(delta: float) -> void:
 	if _paused:
 		return
-	_timer += delta * speed_scale
+	# Clamp delta to avoid multi-firing on lag spikes (e.g. after a freeze)
+	var clamped_delta: float = min(delta, BASE_INTERVAL)
+	_timer += clamped_delta * speed_scale
 	if _timer >= BASE_INTERVAL:
-		_timer -= BASE_INTERVAL
+		_timer = fmod(_timer, BASE_INTERVAL)
 		emit_signal("cycle_ticked")

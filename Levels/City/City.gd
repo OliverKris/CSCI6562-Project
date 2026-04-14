@@ -130,8 +130,19 @@ func produce_once() -> void:
 		return
 	if data.owner == 0:
 		return
-		
-	add_units(production_amount)
+
+	# Only produce troops if the city is NOT under attack
+	if not _is_under_attack():
+		add_units(data.production_per_cycle)
+
+	# Gold is always produced (even under attack)
+	FactionState.add_gold(data.owner, data.gold_per_cycle)
+
+func _is_under_attack() -> bool:
+	for battle in get_tree().get_nodes_in_group("active_battles"):
+		if battle is Battle and battle.target_city == self:
+			return true
+	return false
 
 func _ready() -> void:
 	if collision_shape != null and collision_shape.shape != null:
