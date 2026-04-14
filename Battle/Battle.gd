@@ -77,10 +77,12 @@ func _on_cycle() -> void:
 		_finish(attacker_count)
 		return
 
-	# Synchronized damage: calculate both damage values first, then apply simultaneously.
-	# Each side takes max(1, floor(opponent_count / 4)) damage per cycle.
-	var attacker_damage: int = maxi(1, garrison / 4)
-	var garrison_damage: int = maxi(1, attacker_count / 4)
+	# Square-root scaling: each side loses ceil(sqrt(opponent)) per cycle.
+	# This slows down lopsided battles — a 100-vs-10 fight now takes many
+	# more ticks than a 10-vs-10 fight, giving smaller defenders a real chance
+	# and preventing instant wipes from large armies.
+	var attacker_damage: int = maxi(1, int(sqrt(float(garrison))))
+	var garrison_damage: int = maxi(1, int(sqrt(float(attacker_count))))
 
 	attacker_count -= attacker_damage
 	target_city.data.army -= garrison_damage

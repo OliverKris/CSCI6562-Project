@@ -106,6 +106,21 @@ func apply_capture(remaining_army: int, new_owner: int) -> void:
 	if data.owner != old_owner:
 		captured.emit(self, data.owner)
 
+func try_upgrade_production() -> void:
+	if data != null:
+		if data.apply_production_upgrade():
+			refresh_from_data()
+
+func try_upgrade_gold() -> void:
+	if data != null:
+		if data.apply_gold_upgrade():
+			refresh_from_data()
+
+func try_upgrade_defense() -> void:
+	if data != null:
+		if data.apply_defense_upgrade():
+			refresh_from_data()
+
 func can_send_units() -> bool:
 	return data != null and data.owner == 1 and data.army > 0
 
