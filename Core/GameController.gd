@@ -11,6 +11,7 @@ class_name GameController
 @export var game_camera: Camera2D
 
 @onready var world: Node = $"../World"
+@onready var level_container: Node = $"../World/LevelContainer"
 @onready var units_node: Node = $"../World/Units"
 @onready var battles_node: Node = $"../World/Battles"
 @onready var drag_overlay: Node = $"../World/DragOverlay"
@@ -64,7 +65,7 @@ func load_level_scene(level_scene: PackedScene) -> void:
 	_clear_current_level()
 
 	current_level = level_scene.instantiate()
-	world.add_child(current_level)
+	level_container.add_child(current_level)
 
 	graph_map = _find_graph_map(current_level)
 	if graph_map == null:
@@ -72,6 +73,11 @@ func load_level_scene(level_scene: PackedScene) -> void:
 		return
 
 	_setup_graph_map()
+	graph_map.initialize_level()
+	if game_camera != null:
+		game_camera.global_position = graph_map.get_graph_center()
+	else:
+		push_warning("GameController: game_camera is null, cannot center map.")
 
 func _clear_current_level() -> void:
 	if current_level != null:

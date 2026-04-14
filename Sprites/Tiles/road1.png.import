@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cxbyrgv8fkmx8"
-path="res://.godot/imported/fastforwardbutton.png-7731a77b6e021ad3c1d67b5896c00c15.ctex"
+uid="uid://b66pgqhyh15q8"
+path="res://.godot/imported/road1.png-5f3a8f5def7b16415e42ef30720debbb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Buttons/fastforwardbutton.png"
-dest_files=["res://.godot/imported/fastforwardbutton.png-7731a77b6e021ad3c1d67b5896c00c15.ctex"]
+source_file="res://Sprites/Tiles/road1.png"
+dest_files=["res://.godot/imported/road1.png-5f3a8f5def7b16415e42ef30720debbb.ctex"]
 
 [params]
 

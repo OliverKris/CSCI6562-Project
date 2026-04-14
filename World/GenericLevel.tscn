@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c6y25y4mso78f" path="res://World/City/City.tscn" id="2_a0j4s"]
 [ext_resource type="PackedScene" uid="uid://dxlka5t413n17" path="res://World/Unit/Unit.tscn" id="4_dcmvf"]
 [ext_resource type="PackedScene" path="res://World/Battle/Battle.tscn" id="5_bat01"]
+[ext_resource type="Texture2D" uid="uid://b66pgqhyh15q8" path="res://Sprites/Tiles/road1.png" id="6_bw0wn"]
 
 [sub_resource type="Resource" id="Resource_ji6x8"]
 metadata/__load_path__ = "res://Levels/LevelData/Level1Data.tres"
@@ -22,5 +23,6 @@ battle_scene = ExtResource("5_bat01")
 
 [node name="RoadLayer" type="Node2D" parent="GraphMap" unique_id=2027579917]
 script = ExtResource("1_65pcf")
+road_textures = Array[Texture2D]([ExtResource("6_bw0wn")])
 
 [node name="Cities" type="Node2D" parent="GraphMap" unique_id=1260987525]

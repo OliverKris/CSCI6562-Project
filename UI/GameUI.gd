@@ -21,12 +21,14 @@ const GOLD_ICON_SIZE := Vector2i(32, 32)
 
 # Speed Controls
 @onready var speed_label: Label = $TopBar/HBoxContainer/SpeedContainer/SpeedLabel
-@onready var speed_slower_btn: TextureButton = $TopBar/HBoxContainer/SpeedContainer/SpeedSlower
-@onready var speed_faster_btn: TextureButton = $TopBar/HBoxContainer/SpeedContainer/SpeedFaster
+@onready var speed_slower_btn: TextureButton = $TopBar/HBoxContainer/SpeedContainer/SlowCenterContainer/SlowDown
+@onready var speed_faster_btn: TextureButton = $TopBar/HBoxContainer/SpeedContainer/SpeedCenterContainer/SpeedUp
 var _speed_index: int = 1  # default 1x
 const SPEEDS: Array = [0.5, 1.0, 2.0, 4.0]
 const SPEED_LABELS: Array = ["0.5x", "1x", "2x", "4x"]
 
+# Pause Controls
+@onready var pause_btn: TextureButton = $TopBar/HBoxContainer/PauseContainer/Pause
 
 
 @onready var side_panel = $SidePanel
@@ -77,9 +79,11 @@ func _ready() -> void:
 	if main_menu_btn_go != null:
 		main_menu_btn_go.pressed.connect(_on_main_menu)
 	if speed_slower_btn != null:
-		speed_slower_btn.button_down.connect(_on_speed_slower)
+		speed_slower_btn.pressed.connect(_on_speed_slower)
 	if speed_faster_btn != null:
-		speed_faster_btn.button_down.connect(_on_speed_faster)
+		speed_faster_btn.pressed.connect(_on_speed_faster)
+	if pause_btn != null:
+		pause_btn.button_down.connect(_toggle_pause)
 
 	FactionState.gold_changed.connect(_on_gold_changed)
 	

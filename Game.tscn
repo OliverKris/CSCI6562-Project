@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://dj3o1gq7f0nnb" path="res://HexGroundTest.tscn" id="1_joorw"]
 [ext_resource type="Script" uid="uid://cinv73jthkfa" path="res://Core/GameController.gd" id="5_t88pq"]
-[ext_resource type="PackedScene" uid="uid://cbvhpscow3qng" path="res://World/GenericLevel.tscn" id="6_r0x5m"]
 [ext_resource type="PackedScene" uid="uid://uyvmyacuhary" path="res://UI/GameUI.tscn" id="7_0f2yp"]
 [ext_resource type="PackedScene" uid="uid://ufj8ovng30v" path="res://LevelData/Level1.tscn" id="7_3mrqo"]
 [ext_resource type="Script" uid="uid://c8bgr2ikgw8m7" path="res://Core/DragOverlay.gd" id="7_ud676"]
@@ -24,8 +23,6 @@ script = ExtResource("7_vm4q1")
 [node name="World" type="Node" parent="." unique_id=1978962306]
 
 [node name="LevelContainer" type="Node2D" parent="World" unique_id=1157508564]
-
-[node name="LevelRoot" parent="World/LevelContainer" unique_id=1973178716 instance=ExtResource("6_r0x5m")]
 
 [node name="Units" type="Node2D" parent="World" unique_id=1103904084]
 

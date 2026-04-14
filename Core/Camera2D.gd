@@ -6,7 +6,7 @@ var pan_origin_camera: Vector2 = Vector2.ZERO
 var pan_button: int = -1
 
 @export var zoom_step: float = 0.15
-@export var zoom_min: float = 0.3
+@export var zoom_min: float = 0.7
 @export var zoom_max: float = 2.5
 @export var gesture_zoom_strength: float = 0.25
 
