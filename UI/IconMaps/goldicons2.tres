@@ -1,0 +1,6 @@
+[gd_resource type="AtlasTexture" format=3 uid="uid://22ai8w25kqaw"]
+
+[ext_resource type="Texture2D" uid="uid://bwgcdlygebj46" path="res://Sprites/Icons/goldicons2.png" id="1_nauxy"]
+
+[resource]
+atlas = ExtResource("1_nauxy")

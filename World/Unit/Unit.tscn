@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dxlka5t413n17"]
+
+[ext_resource type="Script" uid="uid://dol8l0u21jo0s" path="res://World/Unit/Unit.gd" id="1_a3rga"]
+[ext_resource type="Texture2D" uid="uid://uc72lkr3gi2h" path="res://Sprites/unit.png" id="2_ij4mw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_unit"]
+radius = 8.0
+
+[node name="Unit" type="Area2D" unique_id=2092501692]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_a3rga")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=3847291011]
+shape = SubResource("CircleShape2D_unit")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1787352468]
+scale = Vector2(3, 3)
+texture = ExtResource("2_ij4mw")
+
+[node name="Label" type="Label" parent="." unique_id=1422557518]
+offset_right = 40.0
+offset_bottom = 23.0
