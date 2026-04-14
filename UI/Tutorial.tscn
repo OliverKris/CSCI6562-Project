@@ -1,0 +1,113 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://UI/Tutorial.gd" id="1_tut"]
+
+[node name="Tutorial" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource("1_tut")
+
+[node name="Background" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color(0.08, 0.06, 0.04, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme_override_constants/margin_left = 60
+theme_override_constants/margin_right = 60
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Tutorial"
+theme_override_font_sizes/font_size = 36
+
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="TutorialText" type="RichTextLabel" parent="MarginContainer/VBoxContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+fit_content = true
+bbcode_enabled = true
+text = "[b]Welcome, Daimyō![/b]
+
+Japan is in a state of chaos. The shogun's grip over the realm has weakened, and local daimyo now fight for regional control. You are in a fight for survival. Your father has just unexpectedly died, leaving his territory to you as the legitimate heir. However, many challenge your succession and prop up your brother as a rival claimant. Fight your brother and local governors to reclaim your father's territory. This succession crisis isn't the only threat however. Neighboring daimyo sense blood in the water and wish to take advantage of your weakened state. Once you eliminate these imminent threats, you will have a strong foundation to expand and conquer all of Japan and establish a new Shogunate. Master city management, force concentration, and strategic expansion to achieve total domination.
+
+[b]Game State and Objective[/b]
+
+You will start off by viewing a map of the province where you reside.
+The province contains a network of cities connected by roads
+Both you and enemy control a city
+All other cities are neutral and defended by preset garrisons
+Defend your territory, defeat the enemy Daimyō, and conquer the entire province by capturing every city!
+
+[b]Cities[/b]
+
+Cities are entities on the map that the player can interact with throughout the game. They produce some amount of gold and some number of troops every cycle. They contain units, simultaneously acting as garrisons to protect from enemy attacks and rallying points for troops to be sent out. They can be upgraded using the gold that is produced in cities in the following ways:
+[ul]
+Gold production: Increase the amount of gold produced by a city every cycle
+Unit production: Increase the number of units produced by a city every cycle
+Improve defenses: Increase the defensive bonus during garrison combat
+[/ul]
+
+[b]Controls:[/b]
+[ul]
+Select a city by hovering the cursor over it and left clicking it
+Select the upgrade in the city by left clicking it in the UI
+[/ul]
+
+[b]Units[/b]
+
+Units are the soldiers that are produced and reside in cities. You can select a number of troops from a friendly city and send them along connected roads. They can be moved between your cities to reinforce and can be moved towards enemy cities to attack. These are the tools that you and the enemy will be using to capture and defend cities.
+
+[b]Movement rule:[/b]
+A city may only send one march at a time. You must wait until that army arrives at an ally city or is destroyed before sending another.
+
+[b]Controls:[/b]
+[ul]
+Select a city by hovering the cursor over it and left clicking it
+Select the number of units in the UI
+Send out the troops to the enemy or ally city by right clicking it
+[/ul]
+
+[b]Combat Scenarios[/b]
+
+Units are used to attack and defend. Combat occurs in three scenarios:
+[ul]
+Garrison Defense: Occurs when an enemy army reaches one of your cities
+Field Battle: Occurs when two opposing armies meet on a road between cities
+Siege Attack: Occurs when an ally army reaches one of the enemy cities
+[/ul]
+Garrisons provide a defensive bonus to combat, depending on the defense level of the city. This ensures that a larger number of units need to be used to take over a city. When a garrison loses, the units that defeat it will then occupy the city. The city is then captured by the victors and will begin producing gold and troops for them.
+
+[b]Strategy[/b]
+
+[b]Strategic Upgrades[/b]
+Depending on the position of the city, there might be incentives to upgrade them in different ways. Upgrade the troop and gold production in safer cities, and would upgrade the defenses of vulnerable cities. The cost increases as cities are upgraded, so make sure to spread out your upgrades strategically.
+
+[b]Troop Concentration[/b]
+Combat effectiveness improves when you outnumber the enemy in a logarithmic manner. A wise Daimyō always fights an advantageous battle and should only commit enough force to guarantee victory. The right force concentration can lead to victories against a numerically superior foe by defeating them in detail.
+
+[b]Reactive Battles[/b]
+Attacking enemy troops travelling along the way to your garrison can weaken them and delay for reinforcements, so split second decisions on sending out a sortie can change the course of battle."
+
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Back to Menu"
+theme_override_font_sizes/font_size = 18
