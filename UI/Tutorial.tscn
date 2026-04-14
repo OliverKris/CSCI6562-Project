@@ -1,106 +1,113 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://t5aw7gxjjhxo"]
 
-[ext_resource type="Script" path="res://UI/Tutorial.gd" id="1_tut"]
-[ext_resource type="Texture2D" path="res://UI/cherry_blossom.jpg" id="2_bg"]
+[ext_resource type="Script" uid="uid://cpi05qxsvsg2s" path="res://UI/Tutorial.gd" id="1_tut"]
+[ext_resource type="Texture2D" uid="uid://d1y0hgnoi47n2" path="res://UI/cherry_blossom.jpg" id="2_bg"]
 
-[node name="Tutorial" type="Control"]
+[node name="Tutorial" type="Control" unique_id=920627524]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("1_tut")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=29277146]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 texture = ExtResource("2_bg")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Overlay" type="ColorRect" parent="."]
+[node name="Overlay" type="ColorRect" parent="." unique_id=342631346]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 color = Color(0.05, 0.03, 0.02, 0.78)
 
-[node name="MarginContainer" type="MarginContainer" parent="."]
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1046266188]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/margin_left = 200
-theme_override_constants/margin_right = 200
 theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 200
 theme_override_constants/margin_bottom = 32
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=946991012]
 layout_mode = 2
 theme_override_constants/separation = 18
 
-[node name="HeaderBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="HeaderBox" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=507096257]
 layout_mode = 2
 alignment = 1
 
-[node name="TitleDecorLeft" type="Label" parent="MarginContainer/VBoxContainer/HeaderBox"]
+[node name="TitleDecorLeft" type="Label" parent="MarginContainer/VBoxContainer/HeaderBox" unique_id=1757103067]
 layout_mode = 2
-text = "⚔  "
-theme_override_font_sizes/font_size = 28
 theme_override_colors/font_color = Color(0.85, 0.65, 0.25, 1)
+theme_override_font_sizes/font_size = 28
+text = "⚔  "
 
-[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/HeaderBox"]
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer/HeaderBox" unique_id=897755162]
 layout_mode = 2
-text = "Commander's Handbook"
-horizontal_alignment = 1
-theme_override_font_sizes/font_size = 32
 theme_override_colors/font_color = Color(0.98, 0.92, 0.75, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.9)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
+theme_override_font_sizes/font_size = 32
+text = "Commander's Handbook"
+horizontal_alignment = 1
 
-[node name="TitleDecorRight" type="Label" parent="MarginContainer/VBoxContainer/HeaderBox"]
+[node name="TitleDecorRight" type="Label" parent="MarginContainer/VBoxContainer/HeaderBox" unique_id=738170435]
 layout_mode = 2
-text = "  ⚔"
-theme_override_font_sizes/font_size = 28
 theme_override_colors/font_color = Color(0.85, 0.65, 0.25, 1)
+theme_override_font_sizes/font_size = 28
+text = "  ⚔"
 
-[node name="Divider" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="Divider" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1777982028]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.55, 0.25, 0.7)
+theme_override_font_sizes/font_size = 12
 text = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 12
-theme_override_colors/font_color = Color(0.7, 0.55, 0.25, 0.7)
 
-[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="MarginContainer/VBoxContainer" unique_id=753745216]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="TutorialText" type="RichTextLabel" parent="MarginContainer/VBoxContainer/ScrollContainer"]
+[node name="TutorialText" type="RichTextLabel" parent="MarginContainer/VBoxContainer/ScrollContainer" unique_id=1840359719]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-fit_content = true
-bbcode_enabled = true
+theme_override_colors/default_color = Color(0.93, 0.88, 0.78, 1)
 theme_override_font_sizes/normal_font_size = 20
 theme_override_font_sizes/bold_font_size = 21
-theme_override_colors/default_color = Color(0.93, 0.88, 0.78, 1)
+bbcode_enabled = true
 text = "[center][b][color=#f0d080]✦  Welcome, Daimyō  ✦[/color][/b][/center]
 
 [center]Japan is in a state of chaos. The shogun's grip over the realm has weakened, and local daimyo now fight for regional control. You are in a fight for survival. Your father has just unexpectedly died, leaving his territory to you as the legitimate heir. However, many challenge your succession and prop up your brother as a rival claimant.[/center]
 
 [center]Fight your brother and local governors to reclaim your father's territory. This succession crisis isn't the only threat — neighboring daimyo sense blood in the water and wish to take advantage of your weakened state. Once you eliminate these imminent threats, you will have a strong foundation to expand and conquer all of Japan and establish a new Shogunate. Master city management, force concentration, and strategic expansion to achieve total domination.[/center]
 
-[center]— 〜 —[/center]
+[center]——————————————————————————————[/center]
 
-[center][b][color=#f0d080]🏯  Game State & Objective[/color][/b][/center]
+[center][b][color=#f0d080]Game State & Objective[/color][/b][/center]
 
 [center]You will start by viewing a map of your province — a network of cities connected by roads. Both you and the enemy control a city; all others are neutral and defended by preset garrisons. Defend your territory, defeat the enemy Daimyō, and conquer the entire province by capturing every city![/center]
 
-[center]— 〜 —[/center]
+[center]——————————————————————————————[/center]
 
-[center][b][color=#f0d080]🏙  Cities[/color][/b][/center]
+[center][b][color=#f0d080]🏯 Cities 🏯[/color][/b][/center]
 
 [center]Cities are the lifeblood of your domain. Each city produces gold and troops every cycle, and can be upgraded using accumulated gold:[/center]
 
@@ -110,17 +117,17 @@ text = "[center][b][color=#f0d080]✦  Welcome, Daimyō  ✦[/color][/b][/center
 
 [center][i]Controls: hover the cursor over a city and left-click to select it, then click an upgrade in the side panel.[/i][/center]
 
-[center]— 〜 —[/center]
+[center]——————————————————————————————[/center]
 
-[center][b][color=#f0d080]⚔  Units[/color][/b][/center]
+[center][b][color=#f0d080]Units[/color][/b][/center]
 
 [center]Units are the soldiers that garrison your cities and march to war. Select troops from a friendly city and drag to an adjacent city to send them. They can reinforce allied cities or storm enemy positions. A city may only send one march at a time — wait until the army arrives or is destroyed before sending another.[/center]
 
 [center][i]Controls: select a city, set the send ratio with the slider, then drag to the destination city.[/i][/center]
 
-[center]— 〜 —[/center]
+[center]——————————————————————————————[/center]
 
-[center][b][color=#f0d080]⚔  Combat[/color][/b][/center]
+[center][b][color=#f0d080]Combat[/color][/b][/center]
 
 [center]Combat occurs in three scenarios:[/center]
 
@@ -130,9 +137,9 @@ text = "[center][b][color=#f0d080]✦  Welcome, Daimyō  ✦[/color][/b][/center
 
 [center]Garrisons provide a defensive bonus depending on the city's defense level, so you will need greater numbers to take a fortified position. When a garrison falls, the victors occupy the city and it begins producing for them. Cities under siege do [b]not[/b] produce troops — only gold — so strike hard and fast.[/center]
 
-[center]— 〜 —[/center]
+[center]——————————————————————————————[/center]
 
-[center][b][color=#f0d080]🎌  Strategy[/color][/b][/center]
+[center][b][color=#f0d080]Strategy[/color][/b][/center]
 
 [center][b]Upgrades:[/b] Invest in production and gold in safe interior cities; harden the defenses of exposed frontier cities. Upgrade costs scale steeply, so spread your investments wisely.[/center]
 
@@ -140,20 +147,17 @@ text = "[center][b][color=#f0d080]✦  Welcome, Daimyō  ✦[/color][/b][/center
 
 [center][b]Reactive Battles:[/b] Sending a sortie against an enemy army on the road can weaken it and buy time for reinforcements. Split-second decisions on the march can turn the tide of war.[/center]
 
-[center]— 〜 —[/center]
-
-[center][color=#c0a060][i]\"The supreme art of war is to subdue the enemy without fighting.\"[/i]
-— Sun Tzu[/color][/center]
 "
+fit_content = true
 
-[node name="FooterDivider" type="Label" parent="MarginContainer/VBoxContainer"]
+[node name="FooterDivider" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1086313137]
 layout_mode = 2
+theme_override_colors/font_color = Color(0.7, 0.55, 0.25, 0.7)
+theme_override_font_sizes/font_size = 12
 text = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 horizontal_alignment = 1
-theme_override_font_sizes/font_size = 12
-theme_override_colors/font_color = Color(0.7, 0.55, 0.25, 0.7)
 
-[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer"]
+[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=33360291]
 layout_mode = 2
-text = "◀  Return to Menu"
 theme_override_font_sizes/font_size = 18
+text = "◀  Return to Menu"
