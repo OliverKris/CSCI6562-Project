@@ -85,11 +85,12 @@ func _ready() -> void:
 	if pause_btn != null:
 		pause_btn.button_down.connect(_toggle_pause)
 
-	FactionState.gold_changed.connect(_on_gold_changed)
+	if FactionState != null:
+		FactionState.gold_changed.connect(_on_gold_changed)
 	
 	# Create gold icon animations and set current icon
 	_build_gold_icon_frames()
-	_update_gold_display(FactionState.get_gold(1))
+	_update_gold_display(FactionState.get_gold(1) if FactionState != null else 0.0)
 	
 	_apply_speed_index()
 
@@ -207,7 +208,7 @@ func _refresh_top_bar() -> void:
 		if city.data != null and city.data.owner == 1:
 			total_troops += city.data.army
 	
-	_update_gold_display(FactionState.get_gold(1))
+	_update_gold_display(FactionState.get_gold(1) if FactionState != null else 0.0)
 	
 	if troops_label != null:
 		troops_label.text = "Troops: %d" % total_troops
