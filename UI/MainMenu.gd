@@ -3,9 +3,9 @@ extends Control
 ## How many levels exist. Keep in sync with GameController.level_scenes array.
 const LEVEL_COUNT: int = 3  # update this as you add levels
 
-@onready var play_button: Button = $VBoxContainer/PlayButton
-@onready var tutorial_button: Button = $VBoxContainer/TutorialButton
-@onready var quit_button: Button = $VBoxContainer/QuitButton
+@onready var play_button: TextureButton = $VBoxContainer/PlayButton
+@onready var tutorial_button: TextureButton = $VBoxContainer/TutorialButton
+@onready var quit_button: TextureButton = $VBoxContainer/QuitButton
 @onready var bg_rect: TextureRect = $BackgroundScroll
 
 var level_select: OptionButton = null

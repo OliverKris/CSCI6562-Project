@@ -46,8 +46,8 @@ const SPEED_LABELS: Array = ["0.5x", "1x", "2x", "4x"]
 @onready var main_menu_btn_go: Button = $GameOverPanel/VBoxContainer/MainMenuButton
 
 @onready var pause_panel = $PausePanel
-@onready var resume_btn: Button = $PausePanel/VBoxContainer/ResumeButton
-@onready var main_menu_btn_pause: Button = $PausePanel/VBoxContainer/MainMenuButton
+@onready var resume_btn: TextureButton = $PausePanel/VBoxContainer/ResumeButton
+@onready var main_menu_btn_pause: TextureButton = $PausePanel/VBoxContainer/MainMenuButton
 
 func _ready() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)

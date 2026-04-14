@@ -6,6 +6,8 @@
 [ext_resource type="FontFile" uid="uid://bcu7ufltrpbt2" path="res://UI/Fonts/CozetteVector.ttf" id="3_hqqrp"]
 [ext_resource type="PackedScene" uid="uid://cgilpowmtbmlt" path="res://UI/Buttons/AnimatedButton.tscn" id="4_dgedd"]
 [ext_resource type="Texture2D" uid="uid://crlwh051giju6" path="res://Sprites/Buttons/pausebutton.png" id="6_1vk3t"]
+[ext_resource type="Texture2D" uid="uid://2dyq0onhkcei" path="res://Sprites/Buttons/resumebtn.png" id="7_h2x3y"]
+[ext_resource type="Texture2D" uid="uid://cg8k2skl0x14i" path="res://Sprites/Buttons/mainmenubtn.png" id="8_flmfk"]
 
 [node name="GameUi" type="Control" unique_id=780121621]
 process_mode = 3
@@ -211,16 +213,15 @@ theme_override_constants/separation = 16
 
 [node name="PauseLabel" type="Label" parent="PausePanel/VBoxContainer" unique_id=1111111132]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_hqqrp")
 theme_override_font_sizes/font_size = 28
 text = "Paused"
 horizontal_alignment = 1
 
-[node name="ResumeButton" type="Button" parent="PausePanel/VBoxContainer" unique_id=1111111133]
+[node name="ResumeButton" parent="PausePanel/VBoxContainer" unique_id=2079654420 instance=ExtResource("4_dgedd")]
 layout_mode = 2
-theme_override_font_sizes/font_size = 18
-text = "Resume"
+sprite_sheet = ExtResource("7_h2x3y")
 
-[node name="MainMenuButton" type="Button" parent="PausePanel/VBoxContainer" unique_id=1111111134]
+[node name="MainMenuButton" parent="PausePanel/VBoxContainer" unique_id=1857689231 instance=ExtResource("4_dgedd")]
 layout_mode = 2
-theme_override_font_sizes/font_size = 18
-text = "Main Menu"
+sprite_sheet = ExtResource("8_flmfk")

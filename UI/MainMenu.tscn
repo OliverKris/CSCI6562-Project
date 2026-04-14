@@ -3,6 +3,10 @@
 [ext_resource type="Script" uid="uid://dgmg4et52jemb" path="res://UI/MainMenu.gd" id="1_menu"]
 [ext_resource type="Texture2D" uid="uid://d1y0hgnoi47n2" path="res://UI/cherry_blossom.jpg" id="2_bg"]
 [ext_resource type="Shader" uid="uid://cwkuceblnxcsb" path="res://UI/bg_scroll.gdshader" id="3_shader"]
+[ext_resource type="PackedScene" uid="uid://cgilpowmtbmlt" path="res://UI/Buttons/AnimatedButton.tscn" id="4_obtq6"]
+[ext_resource type="Texture2D" uid="uid://cgjpm50uvvs0s" path="res://Sprites/Buttons/playbtn.png" id="5_t4ff4"]
+[ext_resource type="Texture2D" uid="uid://bradj8vqf4k6c" path="res://Sprites/Buttons/tutorialbtn.png" id="6_w5vcv"]
+[ext_resource type="Texture2D" uid="uid://dbddjnn00gqud" path="res://Sprites/Buttons/quitbtn.png" id="7_d2d4f"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_scroll"]
 shader = ExtResource("3_shader")
@@ -75,17 +79,20 @@ horizontal_alignment = 1
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=1810625167]
 layout_mode = 2
 
-[node name="PlayButton" type="Button" parent="VBoxContainer" unique_id=876605513]
+[node name="PlayButton" parent="VBoxContainer" unique_id=1789498835 instance=ExtResource("4_obtq6")]
+custom_minimum_size = Vector2(160, 96)
 layout_mode = 2
-theme_override_font_sizes/font_size = 22
-text = "Play"
+sprite_sheet = ExtResource("5_t4ff4")
+press_in_time = 0.02
 
-[node name="TutorialButton" type="Button" parent="VBoxContainer" unique_id=1261244247]
+[node name="TutorialButton" parent="VBoxContainer" unique_id=377233274 instance=ExtResource("4_obtq6")]
+custom_minimum_size = Vector2(160, 96)
 layout_mode = 2
-theme_override_font_sizes/font_size = 22
-text = "Tutorial"
+sprite_sheet = ExtResource("6_w5vcv")
+press_in_time = 0.02
 
-[node name="QuitButton" type="Button" parent="VBoxContainer" unique_id=930389834]
+[node name="QuitButton" parent="VBoxContainer" unique_id=1318041578 instance=ExtResource("4_obtq6")]
+custom_minimum_size = Vector2(160, 96)
 layout_mode = 2
-theme_override_font_sizes/font_size = 22
-text = "Quit"
+sprite_sheet = ExtResource("7_d2d4f")
+press_in_time = 0.02
