@@ -8,6 +8,8 @@ const LEVEL_COUNT: int = 3  # update this as you add levels
 @onready var quit_button: Button = $VBoxContainer/QuitButton
 @onready var bg_rect: TextureRect = $BackgroundScroll
 
+var level_select: OptionButton = null
+
 # Pixels per second the background scrolls rightward
 const SCROLL_SPEED: float = 30.0
 

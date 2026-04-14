@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cee1l7i5l0agi"]
 
-[ext_resource type="Script" uid="uid://cim1wrwgmcogl" path="res://UI/MainMenu.gd" id="1_menu"]
+[ext_resource type="Script" uid="uid://dgmg4et52jemb" path="res://UI/MainMenu.gd" id="1_menu"]
 [ext_resource type="Texture2D" uid="uid://d1y0hgnoi47n2" path="res://UI/cherry_blossom.jpg" id="2_bg"]
 [ext_resource type="Shader" uid="uid://cwkuceblnxcsb" path="res://UI/bg_scroll.gdshader" id="3_shader"]
 

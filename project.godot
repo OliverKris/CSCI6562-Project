@@ -11,13 +11,14 @@ config_version=5
 [application]
 
 config/name="CSCI6562Project"
-run/main_scene="uid://q8pl84yttemw"
+run/main_scene="uid://cee1l7i5l0agi"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
 [autoload]
 
 CycleClock="*uid://c4rt1ghrw3cqm"
 FactionState="*uid://dq00uwal06v7b"
+LevelSelection="*uid://cxfc6i17b7wk6"
 
 [display]
 
@@ -25,6 +26,10 @@ window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/stretch/mode="canvas_items"
 mouse_cursor/custom_image="uid://bdgmakrlksskw"
+
+[editor]
+
+version_control/autoload_on_startup=true
 
 [editor_plugins]
 
