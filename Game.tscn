@@ -1,16 +1,16 @@
 [gd_scene format=3 uid="uid://dft0d5fq0ygy"]
 
-[ext_resource type="PackedScene" uid="uid://dj3o1gq7f0nnb" path="res://HexGroundTest.tscn" id="1_joorw"]
-[ext_resource type="Script" uid="uid://cinv73jthkfa" path="res://Core/GameController.gd" id="5_t88pq"]
+[ext_resource type="PackedScene" uid="uid://dj3o1gq7f0nnb" path="res://UI/HexGround.tscn" id="1_joorw"]
+[ext_resource type="Script" uid="uid://danubl50er8ou" path="res://Core/GameController.gd" id="5_t88pq"]
 [ext_resource type="PackedScene" uid="uid://uyvmyacuhary" path="res://UI/GameUI.tscn" id="7_0f2yp"]
 [ext_resource type="PackedScene" uid="uid://ufj8ovng30v" path="res://LevelData/Level1.tscn" id="7_3mrqo"]
-[ext_resource type="Script" uid="uid://c8bgr2ikgw8m7" path="res://Core/DragOverlay.gd" id="7_ud676"]
-[ext_resource type="Script" uid="uid://c3yum54r5pmg1" path="res://Core/Camera2D.gd" id="7_vm4q1"]
-[ext_resource type="Script" uid="uid://bj4m3k5yvbxf6" path="res://Core/AIController.gd" id="8_ai001"]
+[ext_resource type="Script" uid="uid://ct8tmp1esiwti" path="res://Core/DragOverlay.gd" id="7_ud676"]
+[ext_resource type="Script" uid="uid://byida57fwjenh" path="res://Core/Camera2D.gd" id="7_vm4q1"]
+[ext_resource type="Script" uid="uid://bk6nidayy3s7l" path="res://Core/AIController.gd" id="8_ai001"]
 
 [node name="Game" type="Node" unique_id=1038235609]
 
-[node name="HexGroundTest" parent="." unique_id=439838287 instance=ExtResource("1_joorw")]
+[node name="HexGround" parent="." unique_id=439838287 instance=ExtResource("1_joorw")]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=426326793]
 position = Vector2(15, 7)

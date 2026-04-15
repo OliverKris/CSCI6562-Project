@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://cee1l7i5l0agi"]
 
-[ext_resource type="Script" uid="uid://dgmg4et52jemb" path="res://UI/MainMenu.gd" id="1_menu"]
+[ext_resource type="Script" uid="uid://7wdl4ddbnikn" path="res://UI/MainMenu.gd" id="1_menu"]
 [ext_resource type="Texture2D" uid="uid://d1y0hgnoi47n2" path="res://UI/cherry_blossom.jpg" id="2_bg"]
 [ext_resource type="Shader" uid="uid://cwkuceblnxcsb" path="res://UI/bg_scroll.gdshader" id="3_shader"]
 [ext_resource type="PackedScene" uid="uid://cgilpowmtbmlt" path="res://UI/Buttons/AnimatedButton.tscn" id="4_obtq6"]
+[ext_resource type="FontFile" uid="uid://bcu7ufltrpbt2" path="res://UI/Fonts/CozetteVector.ttf" id="4_t4ff4"]
 [ext_resource type="Texture2D" uid="uid://cgjpm50uvvs0s" path="res://Sprites/Buttons/playbtn.png" id="5_t4ff4"]
 [ext_resource type="Texture2D" uid="uid://bradj8vqf4k6c" path="res://Sprites/Buttons/tutorialbtn.png" id="6_w5vcv"]
 [ext_resource type="Texture2D" uid="uid://dbddjnn00gqud" path="res://Sprites/Buttons/quitbtn.png" id="7_d2d4f"]
@@ -60,8 +61,10 @@ theme_override_constants/separation = 20
 layout_mode = 2
 theme_override_colors/font_color = Color(0.98, 0.92, 0.78, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
-theme_override_constants/shadow_offset_x = 2
-theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/shadow_outline_size = 8
+theme_override_fonts/font = ExtResource("4_t4ff4")
 theme_override_font_sizes/font_size = 52
 text = "Sengoku Jidai"
 horizontal_alignment = 1
@@ -70,8 +73,10 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9, 0.75, 0.5, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
-theme_override_constants/shadow_offset_x = 1
-theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/font = ExtResource("4_t4ff4")
 theme_override_font_sizes/font_size = 26
 text = "The Age of Warring States"
 horizontal_alignment = 1

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://uyvmyacuhary"]
 
-[ext_resource type="Script" uid="uid://dmul66k1c3bo8" path="res://UI/GameUI.gd" id="1_4itvn"]
+[ext_resource type="Script" uid="uid://ova1q1l2c0cl" path="res://UI/GameUI.gd" id="1_4itvn"]
 [ext_resource type="StyleBox" uid="uid://cmbshw3lygs34" path="res://UI/ui_style_box_texture.tres" id="2_lwtm8"]
 [ext_resource type="Texture2D" uid="uid://22ai8w25kqaw" path="res://UI/IconMaps/goldicons2.tres" id="3_7csst"]
 [ext_resource type="FontFile" uid="uid://bcu7ufltrpbt2" path="res://UI/Fonts/CozetteVector.ttf" id="3_hqqrp"]
@@ -116,6 +116,8 @@ theme_override_constants/separation = 8
 
 [node name="Selected_Node" type="Label" parent="SidePanel/VBoxContainer" unique_id=1859170711]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_hqqrp")
 theme_override_font_sizes/font_size = 18
 text = "City Name"
 
@@ -124,10 +126,14 @@ layout_mode = 2
 
 [node name="Troops" type="Label" parent="SidePanel/VBoxContainer" unique_id=757422878]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_hqqrp")
 text = "Troops: 0"
 
 [node name="Owner" type="Label" parent="SidePanel/VBoxContainer" unique_id=1370783286]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_hqqrp")
 text = "Owner: —"
 
 [node name="HSeparator2" type="HSeparator" parent="SidePanel/VBoxContainer" unique_id=1111111102]
@@ -135,6 +141,8 @@ layout_mode = 2
 
 [node name="SendLabel" type="Label" parent="SidePanel/VBoxContainer" unique_id=1111111103]
 layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("3_hqqrp")
 text = "Send: 50%"
 
 [node name="SendSlider" type="HSlider" parent="SidePanel/VBoxContainer" unique_id=1111111104]
@@ -149,14 +157,17 @@ layout_mode = 2
 
 [node name="UpgradeProduction" type="Button" parent="SidePanel/VBoxContainer" unique_id=1111111106]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_hqqrp")
 text = "Production Lv1"
 
 [node name="UpgradeGold" type="Button" parent="SidePanel/VBoxContainer" unique_id=1111111107]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_hqqrp")
 text = "Gold Lv1"
 
 [node name="UpgradeDefense" type="Button" parent="SidePanel/VBoxContainer" unique_id=1111111108]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_hqqrp")
 text = "Defense Lv1"
 
 [node name="GameOverPanel" type="PanelContainer" parent="." unique_id=1111111109]

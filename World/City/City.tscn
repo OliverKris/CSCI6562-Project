@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://c6y25y4mso78f"]
 
-[ext_resource type="Script" uid="uid://c1xo3vo81esu2" path="res://World/City/City.gd" id="1_0d5ds"]
-[ext_resource type="Script" uid="uid://bui3sv4x8nijg" path="res://World/City/CityVisual.gd" id="1_qodpt"]
-[ext_resource type="Texture2D" uid="uid://dqerigpe7ey40" path="res://Sprites/Cities/city.png" id="3_bt0yt"]
+[ext_resource type="Script" uid="uid://cxoyp0t2ujwy6" path="res://World/City/City.gd" id="1_0d5ds"]
+[ext_resource type="Script" uid="uid://b0jslc84ks4s3" path="res://World/City/CityVisual.gd" id="1_qodpt"]
+[ext_resource type="Texture2D" uid="uid://bbmifj71h15es" path="res://Sprites/Cities/hcity.png" id="3_asmxk"]
+[ext_resource type="FontFile" uid="uid://bcu7ufltrpbt2" path="res://UI/Fonts/CozetteVector.ttf" id="4_3nlx4"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0d5ds"]
 radius = 48.0
@@ -19,12 +20,14 @@ script = ExtResource("1_qodpt")
 [node name="Sprite2D" type="Sprite2D" parent="CityVisual" unique_id=368459436]
 position = Vector2(5.9604645e-08, -8)
 scale = Vector2(2, 2)
-texture = ExtResource("3_bt0yt")
+texture = ExtResource("3_asmxk")
 
 [node name="ArmyLabel" type="Label" parent="." unique_id=1635512136]
 offset_left = -20.0
 offset_top = -11.0
 offset_right = 20.0
 offset_bottom = 12.0
+theme_override_fonts/font = ExtResource("4_3nlx4")
+theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 vertical_alignment = 1
