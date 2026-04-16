@@ -1,13 +1,34 @@
 [gd_scene format=3 uid="uid://uyvmyacuhary"]
 
 [ext_resource type="Script" uid="uid://ova1q1l2c0cl" path="res://UI/GameUI.gd" id="1_4itvn"]
-[ext_resource type="StyleBox" uid="uid://cmbshw3lygs34" path="res://UI/ui_style_box_texture.tres" id="2_lwtm8"]
+[ext_resource type="StyleBox" uid="uid://cmbshw3lygs34" path="res://UI/TextureBoxes/ui_style_box_texture.tres" id="2_lwtm8"]
+[ext_resource type="Texture2D" uid="uid://jssx2w6gpi5q" path="res://Sprites/Icons/unitproduction.png" id="3_6daxq"]
 [ext_resource type="Texture2D" uid="uid://22ai8w25kqaw" path="res://UI/IconMaps/goldicons2.tres" id="3_7csst"]
 [ext_resource type="FontFile" uid="uid://bcu7ufltrpbt2" path="res://UI/Fonts/CozetteVector.ttf" id="3_hqqrp"]
 [ext_resource type="PackedScene" uid="uid://cgilpowmtbmlt" path="res://UI/Buttons/AnimatedButton.tscn" id="4_dgedd"]
+[ext_resource type="Texture2D" uid="uid://dnrdkitcixph1" path="res://Sprites/Icons/goldincome.png" id="4_eomcs"]
+[ext_resource type="Texture2D" uid="uid://h65c5pjgguhg" path="res://Sprites/Icons/maru.png" id="4_f3wgw"]
+[ext_resource type="Texture2D" uid="uid://buckc5y4wvglc" path="res://Sprites/Icons/defenseupgrade.png" id="5_caje7"]
+[ext_resource type="Texture2D" uid="uid://cg5rgddwn7y37" path="res://Sprites/Icons/mitsuboshi.png" id="5_r0t6x"]
 [ext_resource type="Texture2D" uid="uid://crlwh051giju6" path="res://Sprites/Buttons/pausebutton.png" id="6_1vk3t"]
+[ext_resource type="Texture2D" uid="uid://c7ur3l1mtt2p6" path="res://Sprites/Icons/troopicon.png" id="6_1xmdv"]
 [ext_resource type="Texture2D" uid="uid://2dyq0onhkcei" path="res://Sprites/Buttons/resumebtn.png" id="7_h2x3y"]
+[ext_resource type="Texture2D" uid="uid://bb5oyscl8k1p2" path="res://Sprites/Icons/mitsudomoe.png" id="7_mn42u"]
+[ext_resource type="Texture2D" uid="uid://caii7c66tg1sl" path="res://Sprites/Icons/productionicon.png" id="7_s13o5"]
+[ext_resource type="Texture2D" uid="uid://cllggbcxbslrv" path="res://Sprites/Icons/goldicon.png" id="8_f3wgw"]
 [ext_resource type="Texture2D" uid="uid://cg8k2skl0x14i" path="res://Sprites/Buttons/mainmenubtn.png" id="8_flmfk"]
+[ext_resource type="Texture2D" uid="uid://c6odj70vbshqd" path="res://Sprites/Icons/defenseicon.png" id="9_r0t6x"]
+[ext_resource type="PackedScene" uid="uid://decesgs53tg35" path="res://UI/CityPopup/UpgradeEntry.tscn" id="9_taf65"]
+[ext_resource type="PackedScene" uid="uid://dualkekg2a52i" path="res://UI/CityPopup/ProductionCard.tscn" id="13_eomcs"]
+[ext_resource type="Texture2D" uid="uid://c42drll8lcvfe" path="res://Sprites/UI/grabber.png" id="18_053ab"]
+[ext_resource type="Texture2D" uid="uid://blvdxfeivahn5" path="res://Sprites/Buttons/25btn.png" id="18_oqpj4"]
+[ext_resource type="Texture2D" uid="uid://bshtj1fjw77ef" path="res://Sprites/UI/grabberselected.png" id="19_34hoh"]
+[ext_resource type="Texture2D" uid="uid://dek3u8kxjmo6i" path="res://Sprites/Buttons/50btn.png" id="19_053ab"]
+[ext_resource type="StyleBox" uid="uid://kjvtabc86745" path="res://UI/TextureBoxes/slider.tres" id="20_01n3j"]
+[ext_resource type="Texture2D" uid="uid://chpbfnmufjb67" path="res://Sprites/Buttons/75btn.png" id="20_34hoh"]
+[ext_resource type="Texture2D" uid="uid://po6u32m0cyp8" path="res://Sprites/Buttons/maxbtn.png" id="21_01n3j"]
+[ext_resource type="StyleBox" uid="uid://csfosh77kb7at" path="res://UI/TextureBoxes/trackarea.tres" id="21_hs3m3"]
+[ext_resource type="StyleBox" uid="uid://l8lqtn15u1dk" path="res://UI/TextureBoxes/trackareahighlight.tres" id="22_qhh4m"]
 
 [node name="GameUi" type="Control" unique_id=780121621]
 process_mode = 3
@@ -20,6 +41,16 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_4itvn")
 gold_icon_sheet = ExtResource("3_7csst")
+friendly_faction = ExtResource("7_mn42u")
+neutral_faction = ExtResource("4_f3wgw")
+enemy_faction = ExtResource("5_r0t6x")
+production_upgrade_icon = ExtResource("3_6daxq")
+gold_upgrade_icon = ExtResource("4_eomcs")
+defense_upgrade_icon = ExtResource("5_caje7")
+current_troops_icon = ExtResource("6_1xmdv")
+troop_production_icon = ExtResource("7_s13o5")
+gold_production_icon = ExtResource("8_f3wgw")
+defense_icon = ExtResource("9_r0t6x")
 
 [node name="TopBar" type="PanelContainer" parent="." unique_id=357829125]
 layout_mode = 1
@@ -45,14 +76,20 @@ stretch_mode = 5
 
 [node name="Gold" type="Label" parent="TopBar/HBoxContainer/GoldContainer" unique_id=792971414]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 8
 theme_override_fonts/font = ExtResource("3_hqqrp")
 theme_override_font_sizes/font_size = 28
 text = "Gold: 0"
 
 [node name="Troops" type="Label" parent="TopBar/HBoxContainer" unique_id=2141042486]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 8
 theme_override_fonts/font = ExtResource("3_hqqrp")
 theme_override_font_sizes/font_size = 28
 text = "Troops: 0"
@@ -74,7 +111,10 @@ flipped = true
 [node name="SpeedLabel" type="Label" parent="TopBar/HBoxContainer/SpeedContainer" unique_id=2141042493]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 8
 theme_override_fonts/font = ExtResource("3_hqqrp")
 theme_override_font_sizes/font_size = 32
 text = "1x"
@@ -96,7 +136,6 @@ sprite_sheet = ExtResource("6_1vk3t")
 is_toggle_button = true
 
 [node name="SidePanel" type="PanelContainer" parent="." unique_id=1799400505]
-visible = false
 layout_mode = 1
 anchors_preset = 6
 anchor_left = 1.0
@@ -114,61 +153,177 @@ theme_override_styles/panel = ExtResource("2_lwtm8")
 layout_mode = 2
 theme_override_constants/separation = 8
 
-[node name="Selected_Node" type="Label" parent="SidePanel/VBoxContainer" unique_id=1859170711]
+[node name="HeaderSection" type="HBoxContainer" parent="SidePanel/VBoxContainer" unique_id=2102662186]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+
+[node name="CityTitle" type="VBoxContainer" parent="SidePanel/VBoxContainer/HeaderSection" unique_id=1541170489]
+layout_mode = 2
+
+[node name="Top" type="HBoxContainer" parent="SidePanel/VBoxContainer/HeaderSection/CityTitle" unique_id=2033749877]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="OwnerIcon" type="TextureRect" parent="SidePanel/VBoxContainer/HeaderSection/CityTitle/Top" unique_id=1767975658]
+layout_mode = 2
+texture = ExtResource("7_mn42u")
+
+[node name="CityNameLabel" type="Label" parent="SidePanel/VBoxContainer/HeaderSection/CityTitle/Top" unique_id=186155601]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8156863)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 4
 theme_override_fonts/font = ExtResource("3_hqqrp")
-theme_override_font_sizes/font_size = 18
+theme_override_font_sizes/font_size = 26
 text = "City Name"
 
-[node name="HSeparator" type="HSeparator" parent="SidePanel/VBoxContainer" unique_id=1012423543]
+[node name="Bottom" type="HBoxContainer" parent="SidePanel/VBoxContainer/HeaderSection/CityTitle" unique_id=471352211]
 layout_mode = 2
+theme_override_constants/separation = 6
 
-[node name="Troops" type="Label" parent="SidePanel/VBoxContainer" unique_id=757422878]
+[node name="Controlled" type="Label" parent="SidePanel/VBoxContainer/HeaderSection/CityTitle/Bottom" unique_id=1034491611]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 4
 theme_override_fonts/font = ExtResource("3_hqqrp")
-text = "Troops: 0"
+text = "Controlled by:"
 
-[node name="Owner" type="Label" parent="SidePanel/VBoxContainer" unique_id=1370783286]
+[node name="OwnerLabel" type="Label" parent="SidePanel/VBoxContainer/HeaderSection/CityTitle/Bottom" unique_id=693247056]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_color = Color(0, 0.6, 0.85882354, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_colors/font_outline_color = Color(0.07058824, 0.30588236, 0.5372549, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 4
+theme_override_constants/shadow_outline_size = 4
 theme_override_fonts/font = ExtResource("3_hqqrp")
-text = "Owner: —"
+text = "Blue (You)"
 
-[node name="HSeparator2" type="HSeparator" parent="SidePanel/VBoxContainer" unique_id=1111111102]
+[node name="ProductionSection" type="VBoxContainer" parent="SidePanel/VBoxContainer" unique_id=602287224]
 layout_mode = 2
 
-[node name="SendLabel" type="Label" parent="SidePanel/VBoxContainer" unique_id=1111111103]
+[node name="MarginContainer" type="MarginContainer" parent="SidePanel/VBoxContainer/ProductionSection" unique_id=120278716]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SidePanel/VBoxContainer/ProductionSection/MarginContainer" unique_id=1557613751]
+layout_mode = 2
+
+[node name="CityProduction" type="Label" parent="SidePanel/VBoxContainer/ProductionSection/MarginContainer/VBoxContainer" unique_id=790974644]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 4
 theme_override_fonts/font = ExtResource("3_hqqrp")
-text = "Send: 50%"
+text = "City Production"
 
-[node name="SendSlider" type="HSlider" parent="SidePanel/VBoxContainer" unique_id=1111111104]
+[node name="GridContainer" type="GridContainer" parent="SidePanel/VBoxContainer/ProductionSection/MarginContainer/VBoxContainer" unique_id=869294053]
 layout_mode = 2
-min_value = 0.1
-max_value = 1.0
-step = 0.1
-value = 0.5
+columns = 2
 
-[node name="HSeparator3" type="HSeparator" parent="SidePanel/VBoxContainer" unique_id=1111111105]
+[node name="CurrentTroops" parent="SidePanel/VBoxContainer/ProductionSection/MarginContainer/VBoxContainer/GridContainer" unique_id=87256683 instance=ExtResource("13_eomcs")]
 layout_mode = 2
 
-[node name="UpgradeProduction" type="Button" parent="SidePanel/VBoxContainer" unique_id=1111111106]
+[node name="TroopProduction" parent="SidePanel/VBoxContainer/ProductionSection/MarginContainer/VBoxContainer/GridContainer" unique_id=833829396 instance=ExtResource("13_eomcs")]
 layout_mode = 2
+
+[node name="GoldProduction" parent="SidePanel/VBoxContainer/ProductionSection/MarginContainer/VBoxContainer/GridContainer" unique_id=1094324214 instance=ExtResource("13_eomcs")]
+layout_mode = 2
+
+[node name="Defense" parent="SidePanel/VBoxContainer/ProductionSection/MarginContainer/VBoxContainer/GridContainer" unique_id=482910003 instance=ExtResource("13_eomcs")]
+layout_mode = 2
+
+[node name="SendSection" type="HBoxContainer" parent="SidePanel/VBoxContainer" unique_id=1841083833]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="SidePanel/VBoxContainer/SendSection" unique_id=268479044]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="SidePanel/VBoxContainer/SendSection/MarginContainer" unique_id=1700509670]
+layout_mode = 2
+
+[node name="SectionTitle" type="Label" parent="SidePanel/VBoxContainer/SendSection/MarginContainer/VBoxContainer" unique_id=212532222]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 4
 theme_override_fonts/font = ExtResource("3_hqqrp")
-text = "Production Lv1"
+text = "Send Troops"
 
-[node name="UpgradeGold" type="Button" parent="SidePanel/VBoxContainer" unique_id=1111111107]
+[node name="SendInfoRow" type="HBoxContainer" parent="SidePanel/VBoxContainer/SendSection/MarginContainer/VBoxContainer" unique_id=36600244]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_hqqrp")
-text = "Gold Lv1"
 
-[node name="UpgradeDefense" type="Button" parent="SidePanel/VBoxContainer" unique_id=1111111108]
+[node name="PercentLabel" type="Label" parent="SidePanel/VBoxContainer/SendSection/MarginContainer/VBoxContainer/SendInfoRow" unique_id=2030756711]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 2
 theme_override_fonts/font = ExtResource("3_hqqrp")
-text = "Defense Lv1"
+text = "50%"
+
+[node name="TroopPreviewLabel" type="Label" parent="SidePanel/VBoxContainer/SendSection/MarginContainer/VBoxContainer/SendInfoRow" unique_id=38475648]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("3_hqqrp")
+text = "(12 troops)"
+
+[node name="SendSlider" type="HSlider" parent="SidePanel/VBoxContainer/SendSection/MarginContainer/VBoxContainer" unique_id=1700571210]
+layout_mode = 2
+theme_override_icons/grabber = ExtResource("18_053ab")
+theme_override_icons/grabber_highlight = ExtResource("19_34hoh")
+theme_override_styles/slider = ExtResource("20_01n3j")
+theme_override_styles/grabber_area = ExtResource("21_hs3m3")
+theme_override_styles/grabber_area_highlight = ExtResource("22_qhh4m")
+
+[node name="PresetRow" type="HBoxContainer" parent="SidePanel/VBoxContainer/SendSection/MarginContainer/VBoxContainer" unique_id=1827031442]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Quarter" parent="SidePanel/VBoxContainer/SendSection/MarginContainer/VBoxContainer/PresetRow" unique_id=556932398 instance=ExtResource("4_dgedd")]
+layout_mode = 2
+sprite_sheet = ExtResource("18_oqpj4")
+
+[node name="Half" parent="SidePanel/VBoxContainer/SendSection/MarginContainer/VBoxContainer/PresetRow" unique_id=1387046022 instance=ExtResource("4_dgedd")]
+layout_mode = 2
+sprite_sheet = ExtResource("19_053ab")
+
+[node name="ThreeQuarters" parent="SidePanel/VBoxContainer/SendSection/MarginContainer/VBoxContainer/PresetRow" unique_id=1259132750 instance=ExtResource("4_dgedd")]
+layout_mode = 2
+sprite_sheet = ExtResource("20_34hoh")
+
+[node name="Max" parent="SidePanel/VBoxContainer/SendSection/MarginContainer/VBoxContainer/PresetRow" unique_id=2094992495 instance=ExtResource("4_dgedd")]
+layout_mode = 2
+sprite_sheet = ExtResource("21_01n3j")
+
+[node name="UpgradeSection" type="VBoxContainer" parent="SidePanel/VBoxContainer" unique_id=1190902186]
+layout_mode = 2
+
+[node name="CityUpgrades" type="Label" parent="SidePanel/VBoxContainer/UpgradeSection" unique_id=1601582694]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/font = ExtResource("3_hqqrp")
+text = "City Upgrades"
+
+[node name="ProductionUpgrade" parent="SidePanel/VBoxContainer/UpgradeSection" unique_id=1685063693 instance=ExtResource("9_taf65")]
+layout_mode = 2
+
+[node name="GoldUpgrade" parent="SidePanel/VBoxContainer/UpgradeSection" unique_id=2042700097 instance=ExtResource("9_taf65")]
+layout_mode = 2
+
+[node name="DefenseUpgrade" parent="SidePanel/VBoxContainer/UpgradeSection" unique_id=1448360288 instance=ExtResource("9_taf65")]
+layout_mode = 2
 
 [node name="GameOverPanel" type="PanelContainer" parent="." unique_id=1111111109]
 visible = false
@@ -192,14 +347,14 @@ theme_override_constants/separation = 16
 
 [node name="Label" type="Label" parent="GameOverPanel/VBoxContainer" unique_id=1111111110]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_hqqrp")
 theme_override_font_sizes/font_size = 36
 text = "Victory!"
 horizontal_alignment = 1
 
-[node name="MainMenuButton" type="Button" parent="GameOverPanel/VBoxContainer" unique_id=1111111111]
+[node name="MainMenuButton" parent="GameOverPanel/VBoxContainer" unique_id=1542912645 instance=ExtResource("4_dgedd")]
 layout_mode = 2
-theme_override_font_sizes/font_size = 18
-text = "Main Menu"
+sprite_sheet = ExtResource("8_flmfk")
 
 [node name="PausePanel" type="PanelContainer" parent="." unique_id=1111111130]
 process_mode = 3

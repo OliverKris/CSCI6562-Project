@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcodyyp03mw3d"
-path="res://.godot/imported/UIBoarder.png-e4f390324b724b63c34d803b914f8d51.ctex"
+uid="uid://h65c5pjgguhg"
+path="res://.godot/imported/maru.png-9765434bfcd1377770388dbb5d83323b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/UI/UIBoarder.png"
-dest_files=["res://.godot/imported/UIBoarder.png-e4f390324b724b63c34d803b914f8d51.ctex"]
+source_file="res://Sprites/Icons/maru.png"
+dest_files=["res://.godot/imported/maru.png-9765434bfcd1377770388dbb5d83323b.ctex"]
 
 [params]
 

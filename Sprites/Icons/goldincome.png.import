@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dcodyyp03mw3d"
-path="res://.godot/imported/UIBoarder.png-e4f390324b724b63c34d803b914f8d51.ctex"
+uid="uid://dnrdkitcixph1"
+path="res://.godot/imported/goldincome.png-22705ac7bac84da932036370f64a9133.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/UI/UIBoarder.png"
-dest_files=["res://.godot/imported/UIBoarder.png-e4f390324b724b63c34d803b914f8d51.ctex"]
+source_file="res://Sprites/Icons/goldincome.png"
+dest_files=["res://.godot/imported/goldincome.png-22705ac7bac84da932036370f64a9133.ctex"]
 
 [params]
 
