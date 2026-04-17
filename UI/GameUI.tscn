@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://uyvmyacuhary"]
 
 [ext_resource type="Script" uid="uid://ova1q1l2c0cl" path="res://UI/GameUI.gd" id="1_4itvn"]
-[ext_resource type="StyleBox" uid="uid://cmbshw3lygs34" path="res://UI/TextureBoxes/ui_style_box_texture.tres" id="2_lwtm8"]
+[ext_resource type="StyleBox" uid="uid://cmbshw3lygs34" path="res://UI/TextureBoxes/uiboarder.tres" id="2_lwtm8"]
 [ext_resource type="Texture2D" uid="uid://jssx2w6gpi5q" path="res://Sprites/Icons/unitproduction.png" id="3_6daxq"]
 [ext_resource type="Texture2D" uid="uid://22ai8w25kqaw" path="res://UI/IconMaps/goldicons2.tres" id="3_7csst"]
 [ext_resource type="FontFile" uid="uid://bcu7ufltrpbt2" path="res://UI/Fonts/CozetteVector.ttf" id="3_hqqrp"]
@@ -20,6 +20,10 @@
 [ext_resource type="Texture2D" uid="uid://c6odj70vbshqd" path="res://Sprites/Icons/defenseicon.png" id="9_r0t6x"]
 [ext_resource type="PackedScene" uid="uid://decesgs53tg35" path="res://UI/CityPopup/UpgradeEntry.tscn" id="9_taf65"]
 [ext_resource type="PackedScene" uid="uid://dualkekg2a52i" path="res://UI/CityPopup/ProductionCard.tscn" id="13_eomcs"]
+[ext_resource type="StyleBox" uid="uid://cgeesuybl3g3v" path="res://UI/TextureBoxes/uiboarder2.tres" id="13_grobk"]
+[ext_resource type="StyleBox" uid="uid://dfr103i1er7gy" path="res://UI/TextureBoxes/box3.tres" id="15_1g8ct"]
+[ext_resource type="Texture2D" uid="uid://bhu662n0imcgj" path="res://Sprites/UI/clock.png" id="15_6lu0k"]
+[ext_resource type="Script" uid="uid://bv5r4s73xo7w3" path="res://UI/Clock.gd" id="16_r58d0"]
 [ext_resource type="Texture2D" uid="uid://c42drll8lcvfe" path="res://Sprites/UI/grabber.png" id="18_053ab"]
 [ext_resource type="Texture2D" uid="uid://blvdxfeivahn5" path="res://Sprites/Buttons/25btn.png" id="18_oqpj4"]
 [ext_resource type="Texture2D" uid="uid://bshtj1fjw77ef" path="res://Sprites/UI/grabberselected.png" id="19_34hoh"]
@@ -52,63 +56,153 @@ troop_production_icon = ExtResource("7_s13o5")
 gold_production_icon = ExtResource("8_f3wgw")
 defense_icon = ExtResource("9_r0t6x")
 
-[node name="TopBar" type="PanelContainer" parent="." unique_id=357829125]
+[node name="TopLeftGroup" type="HBoxContainer" parent="." unique_id=529516703]
 layout_mode = 1
-anchors_preset = 10
-anchor_right = 1.0
-offset_bottom = 48.0
-grow_horizontal = 2
+offset_right = 40.0
+offset_bottom = 40.0
+theme_override_constants/separation = 0
+
+[node name="FactionPanel" type="PanelContainer" parent="TopLeftGroup" unique_id=697985684]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+theme_override_styles/panel = ExtResource("13_grobk")
+
+[node name="MarginContainer" type="MarginContainer" parent="TopLeftGroup/FactionPanel" unique_id=2121738957]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TopLeftGroup/FactionPanel/MarginContainer" unique_id=198535170]
+layout_mode = 2
+theme_override_constants/separation = 6
+
+[node name="FactionIcon" type="TextureRect" parent="TopLeftGroup/FactionPanel/MarginContainer/VBoxContainer" unique_id=941802554]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+texture = ExtResource("7_mn42u")
+stretch_mode = 5
+
+[node name="FactionName" type="Label" parent="TopLeftGroup/FactionPanel/MarginContainer/VBoxContainer" unique_id=17317649]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/outline_size = 4
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/font = ExtResource("3_hqqrp")
+text = "Clan
+Mitsudomoe"
+horizontal_alignment = 1
+
+[node name="Control" type="VBoxContainer" parent="TopLeftGroup" unique_id=2051878627]
+layout_mode = 2
+size_flags_vertical = 0
+
+[node name="TopBar" type="PanelContainer" parent="TopLeftGroup/Control" unique_id=357829125]
+layout_mode = 2
 theme_override_styles/panel = ExtResource("2_lwtm8")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="TopBar" unique_id=476965668]
+[node name="HBoxContainer" type="HBoxContainer" parent="TopLeftGroup/Control/TopBar" unique_id=476965668]
 layout_mode = 2
 size_flags_vertical = 0
 theme_override_constants/separation = 12
 
-[node name="GoldContainer" type="HBoxContainer" parent="TopBar/HBoxContainer" unique_id=945226827]
+[node name="GoldContainer" type="HBoxContainer" parent="TopLeftGroup/Control/TopBar/HBoxContainer" unique_id=945226827]
 layout_mode = 2
 
-[node name="GoldIcon" type="TextureRect" parent="TopBar/HBoxContainer/GoldContainer" unique_id=831408943]
+[node name="IconPanel" type="PanelContainer" parent="TopLeftGroup/Control/TopBar/HBoxContainer/GoldContainer" unique_id=366046000]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("15_1g8ct")
+
+[node name="GoldIcon" type="TextureRect" parent="TopLeftGroup/Control/TopBar/HBoxContainer/GoldContainer/IconPanel" unique_id=831408943]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 texture = ExtResource("3_7csst")
 stretch_mode = 5
 
-[node name="Gold" type="Label" parent="TopBar/HBoxContainer/GoldContainer" unique_id=792971414]
+[node name="Gold" type="Label" parent="TopLeftGroup/Control/TopBar/HBoxContainer/GoldContainer" unique_id=792971414]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
 theme_override_constants/shadow_outline_size = 8
 theme_override_fonts/font = ExtResource("3_hqqrp")
-theme_override_font_sizes/font_size = 28
-text = "Gold: 0"
+theme_override_font_sizes/font_size = 22
+text = "Gold: 0 (+1)"
 
-[node name="Troops" type="Label" parent="TopBar/HBoxContainer" unique_id=2141042486]
+[node name="TroopContainer" type="HBoxContainer" parent="TopLeftGroup/Control/TopBar/HBoxContainer" unique_id=1409530900]
+layout_mode = 2
+
+[node name="IconPanel" type="PanelContainer" parent="TopLeftGroup/Control/TopBar/HBoxContainer/TroopContainer" unique_id=1876371157]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("15_1g8ct")
+
+[node name="TextureRect" type="TextureRect" parent="TopLeftGroup/Control/TopBar/HBoxContainer/TroopContainer/IconPanel" unique_id=212985431]
+layout_mode = 2
+
+[node name="Troops" type="Label" parent="TopLeftGroup/Control/TopBar/HBoxContainer/TroopContainer" unique_id=2141042486]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
 theme_override_constants/shadow_outline_size = 8
 theme_override_fonts/font = ExtResource("3_hqqrp")
-theme_override_font_sizes/font_size = 28
-text = "Troops: 0"
+theme_override_font_sizes/font_size = 22
+text = "Troops: 0 (+1)"
 
-[node name="Spacer" type="Control" parent="TopBar/HBoxContainer" unique_id=2141042491]
+[node name="TimerBox" type="PanelContainer" parent="." unique_id=1840410696]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
+offset_bottom = 40.0
+grow_horizontal = 0
+theme_override_styles/panel = ExtResource("2_lwtm8")
+
+[node name="MarginContainer" type="MarginContainer" parent="TimerBox" unique_id=269920850]
 layout_mode = 2
-size_flags_horizontal = 3
 
-[node name="SpeedContainer" type="HBoxContainer" parent="TopBar/HBoxContainer" unique_id=813178326]
+[node name="VBoxContainer" type="VBoxContainer" parent="TimerBox/MarginContainer" unique_id=1889750632]
 layout_mode = 2
 
-[node name="SlowCenterContainer" type="CenterContainer" parent="TopBar/HBoxContainer/SpeedContainer" unique_id=1641801558]
+[node name="ClockSection" type="VBoxContainer" parent="TimerBox/MarginContainer/VBoxContainer" unique_id=197024280]
 layout_mode = 2
 
-[node name="SlowDown" parent="TopBar/HBoxContainer/SpeedContainer/SlowCenterContainer" unique_id=934925372 instance=ExtResource("4_dgedd")]
+[node name="CenterContainer" type="CenterContainer" parent="TimerBox/MarginContainer/VBoxContainer/ClockSection" unique_id=1871520674]
+custom_minimum_size = Vector2(96, 96)
+layout_mode = 2
+
+[node name="Clock" type="Control" parent="TimerBox/MarginContainer/VBoxContainer/ClockSection/CenterContainer" unique_id=607264168]
+layout_mode = 2
+script = ExtResource("16_r58d0")
+
+[node name="ClockSprite" type="Sprite2D" parent="TimerBox/MarginContainer/VBoxContainer/ClockSection/CenterContainer/Clock" unique_id=814717741]
+scale = Vector2(3, 3)
+texture = ExtResource("15_6lu0k")
+hframes = 8
+
+[node name="TickLabel" type="Label" parent="TimerBox/MarginContainer/VBoxContainer/ClockSection" unique_id=538566771]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/font = ExtResource("3_hqqrp")
+theme_override_font_sizes/font_size = 20
+text = "Tick 1"
+horizontal_alignment = 1
+
+[node name="SpeedRow" type="HBoxContainer" parent="TimerBox/MarginContainer/VBoxContainer" unique_id=813178326]
+layout_mode = 2
+
+[node name="SlowCenterContainer" type="CenterContainer" parent="TimerBox/MarginContainer/VBoxContainer/SpeedRow" unique_id=1641801558]
+layout_mode = 2
+
+[node name="SlowDown" parent="TimerBox/MarginContainer/VBoxContainer/SpeedRow/SlowCenterContainer" unique_id=934925372 instance=ExtResource("4_dgedd")]
 layout_mode = 2
 flipped = true
 
-[node name="SpeedLabel" type="Label" parent="TopBar/HBoxContainer/SpeedContainer" unique_id=2141042493]
+[node name="SpeedLabel" type="Label" parent="TimerBox/MarginContainer/VBoxContainer/SpeedRow" unique_id=2141042493]
 custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
@@ -120,17 +214,17 @@ theme_override_font_sizes/font_size = 32
 text = "1x"
 horizontal_alignment = 1
 
-[node name="SpeedCenterContainer" type="CenterContainer" parent="TopBar/HBoxContainer/SpeedContainer" unique_id=673454104]
+[node name="SpeedCenterContainer" type="CenterContainer" parent="TimerBox/MarginContainer/VBoxContainer/SpeedRow" unique_id=673454104]
 layout_mode = 2
 
-[node name="SpeedUp" parent="TopBar/HBoxContainer/SpeedContainer/SpeedCenterContainer" unique_id=1289328742 instance=ExtResource("4_dgedd")]
+[node name="SpeedUp" parent="TimerBox/MarginContainer/VBoxContainer/SpeedRow/SpeedCenterContainer" unique_id=1289328742 instance=ExtResource("4_dgedd")]
 layout_mode = 2
 flip_h = true
 
-[node name="PauseContainer" type="CenterContainer" parent="TopBar/HBoxContainer" unique_id=2055718415]
+[node name="PauseContainer" type="CenterContainer" parent="TimerBox/MarginContainer/VBoxContainer" unique_id=2055718415]
 layout_mode = 2
 
-[node name="Pause" parent="TopBar/HBoxContainer/PauseContainer" unique_id=1789498835 instance=ExtResource("4_dgedd")]
+[node name="Pause" parent="TimerBox/MarginContainer/VBoxContainer/PauseContainer" unique_id=1789498835 instance=ExtResource("4_dgedd")]
 layout_mode = 2
 sprite_sheet = ExtResource("6_1vk3t")
 is_toggle_button = true
@@ -326,7 +420,6 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="GameOverPanel" type="PanelContainer" parent="." unique_id=1111111109]
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -347,12 +440,18 @@ theme_override_constants/separation = 16
 
 [node name="Label" type="Label" parent="GameOverPanel/VBoxContainer" unique_id=1111111110]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 4
 theme_override_fonts/font = ExtResource("3_hqqrp")
 theme_override_font_sizes/font_size = 36
 text = "Victory!"
 horizontal_alignment = 1
 
 [node name="MainMenuButton" parent="GameOverPanel/VBoxContainer" unique_id=1542912645 instance=ExtResource("4_dgedd")]
+custom_minimum_size = Vector2(108, 64)
 layout_mode = 2
 sprite_sheet = ExtResource("8_flmfk")
 
@@ -374,20 +473,27 @@ grow_vertical = 2
 theme_override_styles/panel = ExtResource("2_lwtm8")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PausePanel" unique_id=1111111131]
+custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
 theme_override_constants/separation = 16
 
 [node name="PauseLabel" type="Label" parent="PausePanel/VBoxContainer" unique_id=1111111132]
 layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/shadow_outline_size = 4
 theme_override_fonts/font = ExtResource("3_hqqrp")
-theme_override_font_sizes/font_size = 28
+theme_override_font_sizes/font_size = 48
 text = "Paused"
 horizontal_alignment = 1
 
 [node name="ResumeButton" parent="PausePanel/VBoxContainer" unique_id=2079654420 instance=ExtResource("4_dgedd")]
+custom_minimum_size = Vector2(108, 64)
 layout_mode = 2
 sprite_sheet = ExtResource("7_h2x3y")
 
 [node name="MainMenuButton" parent="PausePanel/VBoxContainer" unique_id=1857689231 instance=ExtResource("4_dgedd")]
+custom_minimum_size = Vector2(108, 64)
 layout_mode = 2
 sprite_sheet = ExtResource("8_flmfk")

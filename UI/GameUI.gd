@@ -9,26 +9,29 @@ var _paused: bool = false
 # ====================
 
 # Gold Counter
-@onready var gold_label: Label = $TopBar/HBoxContainer/GoldContainer/Gold
-@onready var gold_icon: TextureRect = $TopBar/HBoxContainer/GoldContainer/GoldIcon
+@onready var gold_label: Label = $TopLeftGroup/Control/TopBar/HBoxContainer/GoldContainer/Gold
+@onready var gold_icon: TextureRect = $TopLeftGroup/Control/TopBar/HBoxContainer/GoldContainer/IconPanel/GoldIcon
 @export var gold_icon_sheet: Texture2D
 var _gold_icon_frames: Array[AtlasTexture] = []
 const GOLD_ICON_COUNT := 8
 const GOLD_ICON_SIZE := Vector2i(32, 32)
 
 # Troop Counter
-@onready var troops_label: Label = $TopBar/HBoxContainer/Troops
+@onready var troops_label: Label = $TopLeftGroup/Control/TopBar/HBoxContainer/TroopContainer/Troops
 
 # Speed Controls
-@onready var speed_label: Label = $TopBar/HBoxContainer/SpeedContainer/SpeedLabel
-@onready var speed_slower_btn: TextureButton = $TopBar/HBoxContainer/SpeedContainer/SlowCenterContainer/SlowDown
-@onready var speed_faster_btn: TextureButton = $TopBar/HBoxContainer/SpeedContainer/SpeedCenterContainer/SpeedUp
+@onready var speed_label: Label = $TimerBox/MarginContainer/VBoxContainer/SpeedRow/SpeedLabel
+@onready var speed_slower_btn: TextureButton = $TimerBox/MarginContainer/VBoxContainer/SpeedRow/SlowCenterContainer/SlowDown
+@onready var speed_faster_btn: TextureButton = $TimerBox/MarginContainer/VBoxContainer/SpeedRow/SpeedCenterContainer/SpeedUp
 var _speed_index: int = 1  # default 1x
 const SPEEDS: Array = [0.5, 1.0, 2.0, 4.0]
 const SPEED_LABELS: Array = ["0.5x", "1x", "2x", "4x"]
 
+@onready var tick_number: Label = $TimerBox/MarginContainer/VBoxContainer/ClockSection/TickLabel
+var current_tick = 1
+
 # Pause Controls
-@onready var pause_btn: TextureButton = $TopBar/HBoxContainer/PauseContainer/Pause
+@onready var pause_btn: TextureButton = $TimerBox/MarginContainer/VBoxContainer/PauseContainer/Pause
 
 
 @onready var side_panel = $SidePanel
@@ -169,6 +172,8 @@ func _ready() -> void:
 	if pause_btn != null:
 		pause_btn.button_down.connect(_toggle_pause)
 
+	CycleClock.cycle_ticked.connect(_increment_tick)
+
 	if FactionState != null:
 		FactionState.gold_changed.connect(_on_gold_changed)
 	
@@ -177,6 +182,10 @@ func _ready() -> void:
 	_refresh_top_bar()
 	
 	_apply_speed_index()
+
+func _increment_tick() -> void:
+	current_tick += 1
+	tick_number.text = "Tick %d" % current_tick
 
 func _on_send_25_pressed() -> void:
 	if send_slider != null:
