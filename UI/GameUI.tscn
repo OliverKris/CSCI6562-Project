@@ -34,6 +34,74 @@
 [ext_resource type="StyleBox" uid="uid://csfosh77kb7at" path="res://UI/TextureBoxes/trackarea.tres" id="21_hs3m3"]
 [ext_resource type="StyleBox" uid="uid://l8lqtn15u1dk" path="res://UI/TextureBoxes/trackareahighlight.tres" id="22_qhh4m"]
 
+[sub_resource type="GDScript" id="GDScript_grobk"]
+script/source = "extends PanelContainer
+
+@export var slide_duration: float = 0.22
+
+var _is_open: bool = false
+var _current_city = null
+
+func _ready() -> void:
+	hide_instant()
+
+func show_for_city(city) -> void:
+	if city == null:
+		hide_panel()
+		return
+
+	if not _is_open:
+		_current_city = city
+		update_city_content(city)
+		slide_in()
+		return
+
+	if city == _current_city:
+		return
+
+	_current_city = city
+	update_city_content(city)
+	animate_content_swap()
+
+func hide_panel() -> void:
+	if not _is_open:
+		return
+	slide_out()
+	_current_city = null
+
+func slide_in() -> void:
+	_is_open = true
+	var shown_x := get_viewport_rect().size.x - size.x
+	var tween := create_tween()
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, \"position:x\", shown_x, slide_duration)
+
+func slide_out() -> void:
+	_is_open = false
+	var hidden_x := get_viewport_rect().size.x
+	var tween := create_tween()
+	tween.set_trans(Tween.TRANS_CUBIC)
+	tween.set_ease(Tween.EASE_IN)
+	tween.tween_property(self, \"position:x\", hidden_x, slide_duration)
+
+func hide_instant() -> void:
+	position.x = get_viewport_rect().size.x
+	_is_open = false
+
+func update_city_content(city) -> void:
+	# Update labels, icons, ownership, production, etc.
+	pass
+
+func animate_content_swap() -> void:
+	# Optional lightweight feedback when switching cities
+	var tween := create_tween()
+	tween.set_trans(Tween.TRANS_QUAD)
+	tween.set_ease(Tween.EASE_OUT)
+	tween.tween_property(self, \"modulate:a\", 0.85, 0.05)
+	tween.tween_callback(func(): modulate.a = 1.0)
+"
+
 [node name="GameUi" type="Control" unique_id=780121621]
 process_mode = 3
 layout_mode = 3
@@ -242,6 +310,7 @@ offset_bottom = 280.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("2_lwtm8")
+script = SubResource("GDScript_grobk")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SidePanel" unique_id=274980786]
 layout_mode = 2

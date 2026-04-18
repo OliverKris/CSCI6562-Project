@@ -2,6 +2,7 @@ extends Area2D
 class_name City
 
 signal captured(city: City, new_owner: int)
+signal selected(city: City)
 
 var data: CityData = null
 
@@ -14,6 +15,12 @@ var data: CityData = null
 @export var hitbox_padding: float = 6.0
 
 var _production_timer: float = 0.0
+
+func _input_event(_viewport, event, _shape_idx) -> void:
+	if event is InputEventMouseButton \
+	and event.pressed \
+	and event.button_index == MOUSE_BUTTON_LEFT:
+		selected.emit(self)
 
 func setup_from_spawn_data(spawn: CitySpawnData) -> void:
 	if data == null:

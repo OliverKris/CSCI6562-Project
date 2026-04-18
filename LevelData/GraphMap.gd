@@ -216,12 +216,14 @@ func get_adjacent_cities(city: City) -> Array:
 	return result
 
 func _set_selected_city(city: City) -> void:
+	print("GraphMap selected city:", city)
 	if selected_city != null:
 		selected_city.set_selected(false)
 	selected_city = city
 	if selected_city != null:
 		selected_city.set_selected(true)
 	if game_ui != null and game_ui.has_method("on_city_selected"):
+		print("Calling GameUi.on_city_selected")
 		game_ui.on_city_selected(selected_city)
 
 # --- Input ---

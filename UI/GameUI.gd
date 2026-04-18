@@ -35,6 +35,12 @@ var current_tick = 1
 
 
 @onready var side_panel = $SidePanel
+@onready var side_panel_content: Control = $SidePanel/VBoxContainer
+@export var side_panel_slide_duration: float = 0.28
+@export var side_panel_hidden_margin: float = 24.0
+
+var _side_panel_visible: bool = false
+var _side_panel_tween: Tween = null
 
 # Slider Controls
 
@@ -127,11 +133,21 @@ var current_tick = 1
 @onready var main_menu_btn_pause: TextureButton = $PausePanel/VBoxContainer/MainMenuButton
 
 func _ready() -> void:
+	side_panel.visible = true
+	side_panel.modulate = Color(1, 1, 1, 1)
+	print("SidePanel parent:", side_panel.get_parent())
+	print("SidePanel position:", side_panel.position)
+	print("SidePanel size:", side_panel.size)
+	
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 	get_tree().root.size_changed.connect(_on_window_resized)
 
 	if side_panel != null:
-		side_panel.visible = false
+		_setup_side_panel_position()
+		print("Initial hidden x:", _get_side_panel_hidden_x())
+		print("Initial shown x:", _get_side_panel_shown_x())
+	if side_panel_content != null:
+		side_panel_content.modulate.a = 1.0
 	if game_over_panel != null:
 		game_over_panel.visible = false
 	if pause_panel != null:
@@ -182,6 +198,85 @@ func _ready() -> void:
 	_refresh_top_bar()
 	
 	_apply_speed_index()
+
+func _setup_side_panel_position() -> void:
+	if side_panel == null:
+		return
+
+	side_panel.visible = false
+	side_panel.position.x = _get_side_panel_hidden_x()
+	_side_panel_visible = false
+
+func _show_side_panel() -> void:
+	print("showing panel from", _get_side_panel_hidden_x(), "to", _get_side_panel_shown_x())
+	if side_panel == null:
+		return
+
+	_kill_side_panel_tween()
+
+	side_panel.visible = true
+	side_panel.position.x = _get_side_panel_hidden_x()
+
+	_side_panel_tween = create_tween()
+	_side_panel_tween.set_trans(Tween.TRANS_CUBIC)
+	_side_panel_tween.set_ease(Tween.EASE_OUT)
+	_side_panel_tween.tween_property(
+		side_panel,
+		"position:x",
+		_get_side_panel_shown_x(),
+		side_panel_slide_duration
+	)
+
+	_side_panel_visible = true
+	
+func _hide_side_panel() -> void:
+	if side_panel == null:
+		return
+
+	_kill_side_panel_tween()
+
+	_side_panel_tween = create_tween()
+	_side_panel_tween.set_trans(Tween.TRANS_CUBIC)
+	_side_panel_tween.set_ease(Tween.EASE_IN)
+	_side_panel_tween.tween_property(
+		side_panel,
+		"position:x",
+		_get_side_panel_hidden_x(),
+		side_panel_slide_duration
+	)
+	_side_panel_tween.tween_callback(func():
+		side_panel.visible = false
+	)
+
+	_side_panel_visible = false
+	
+func _animate_side_panel_content_refresh() -> void:
+	if side_panel_content == null:
+		_refresh_side_panel()
+		return
+
+	_kill_side_panel_tween()
+
+	_side_panel_tween = create_tween()
+	_side_panel_tween.set_trans(Tween.TRANS_QUAD)
+	_side_panel_tween.set_ease(Tween.EASE_OUT)
+
+	_side_panel_tween.tween_property(side_panel_content, "modulate:a", 0.0, 0.07)
+	_side_panel_tween.tween_callback(func():
+		_refresh_side_panel()
+	)
+	_side_panel_tween.tween_property(side_panel_content, "modulate:a", 1.0, 0.09)
+
+func _get_side_panel_shown_x() -> float:
+	return get_viewport_rect().size.x - side_panel.size.x
+
+func _get_side_panel_hidden_x() -> float:
+	return get_viewport_rect().size.x
+
+func _kill_side_panel_tween() -> void:
+	if _side_panel_tween != null and is_instance_valid(_side_panel_tween):
+		_side_panel_tween.kill()
+	_side_panel_tween = null
 
 func _increment_tick() -> void:
 	current_tick += 1
@@ -310,6 +405,14 @@ func set_graph_map(gm: GraphMap) -> void:
 func _on_window_resized() -> void:
 	set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
 
+	if side_panel == null:
+		return
+
+	if _side_panel_visible:
+		side_panel.position.x = _get_side_panel_shown_x()
+	else:
+		side_panel.position.x = _get_side_panel_hidden_x()
+
 func _process(_delta: float) -> void:
 	_refresh_top_bar()
 	if _selected_city != null and is_instance_valid(_selected_city):
@@ -412,13 +515,24 @@ func _update_gold_display(amount: float) -> void:
 
 
 func on_city_selected(city: City) -> void:
+	var previous_city := _selected_city
 	_selected_city = city
+
+	print("GameUi received city:", city)
+
 	if city == null:
-		if side_panel != null:
-			side_panel.visible = false
+		_hide_side_panel()
 		return
-	if side_panel != null:
-		side_panel.visible = true
+
+	if previous_city == null or not _side_panel_visible:
+		_refresh_side_panel()
+		_show_side_panel()
+		return
+
+	if previous_city == city:
+		_refresh_side_panel()
+		return
+
 	_refresh_side_panel()
 
 func refresh_selected_city() -> void:
