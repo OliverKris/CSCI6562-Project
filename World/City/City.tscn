@@ -17,7 +17,7 @@ shape = SubResource("CircleShape2D_0d5ds")
 
 [node name="SelectionRing" type="Sprite2D" parent="." unique_id=1131972759]
 visible = false
-position = Vector2(0, -4)
+position = Vector2(0, -5)
 scale = Vector2(2, 2)
 texture = ExtResource("2_wccrj")
 

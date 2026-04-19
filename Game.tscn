@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://dft0d5fq0ygy"]
 
 [ext_resource type="PackedScene" uid="uid://dj3o1gq7f0nnb" path="res://UI/HexGround.tscn" id="1_joorw"]
+[ext_resource type="Texture2D" uid="uid://6xaivhk5bd30" path="res://Sprites/UI/dragline.png" id="5_joorw"]
 [ext_resource type="Script" uid="uid://danubl50er8ou" path="res://Core/GameController.gd" id="5_t88pq"]
+[ext_resource type="Texture2D" uid="uid://dptcwevxb2dbw" path="res://Sprites/UI/hexagonhighlighttarget.png" id="6_2vekm"]
 [ext_resource type="PackedScene" uid="uid://uyvmyacuhary" path="res://UI/GameUI.tscn" id="7_0f2yp"]
 [ext_resource type="PackedScene" uid="uid://ufj8ovng30v" path="res://LevelData/Level1.tscn" id="7_3mrqo"]
 [ext_resource type="Script" uid="uid://ct8tmp1esiwti" path="res://Core/DragOverlay.gd" id="7_ud676"]
@@ -30,6 +32,14 @@ script = ExtResource("7_vm4q1")
 
 [node name="DragOverlay" type="Node2D" parent="World" unique_id=1540511203]
 script = ExtResource("7_ud676")
+
+[node name="DragLine" type="Line2D" parent="World/DragOverlay" unique_id=1488297943]
+texture = ExtResource("5_joorw")
+texture_mode = 1
+
+[node name="TargetMarker" type="Sprite2D" parent="World/DragOverlay" unique_id=664510325]
+scale = Vector2(2, 2)
+texture = ExtResource("6_2vekm")
 
 [node name="AIController" type="Node" parent="." unique_id=1111111201]
 script = ExtResource("8_ai001")
