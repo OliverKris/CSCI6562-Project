@@ -28,9 +28,23 @@ func _ready() -> void:
 	if level_scenes.is_empty():
 		push_error("GameController: no level_scenes assigned.")
 		return
-	# LevelSelection autoload carries the index chosen on the Main Menu.
-	# Falls back to starting_level_index if LevelSelection wasn't set.
-	load_level_by_index(GameController.selected_level)
+	
+	# --- Determine which level was selected ---
+	var level_index: int = GameController.selected_level
+
+	if Engine.has_singleton("LevelSelection"):
+		level_index = Engine.get_singleton("LevelSelection").selected_level
+	elif Engine.has_meta("selected_level"):
+		level_index = Engine.get_meta("selected_level")
+	else:
+		# Fall back to starting_level_index if LevelSelection wasn't set.
+		level_index = starting_level_index
+
+	# Clamp so an out-of-range value never crashes
+	level_index = clamp(level_index, 0, level_scenes.size() - 1)
+	
+	# Load the level using the existing function to ensure proper setup
+	load_level_by_index(level_index)
 
 ## Load a level by its index in level_scenes[].
 func load_level_by_index(index: int) -> void:

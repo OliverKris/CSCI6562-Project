@@ -17,6 +17,23 @@ var _mode_option: OptionButton = null
 var _hovered_hex: Vector2i = Vector2i(9999, 9999)
 var _road_first_id: int = -1
 
+# Terrain layer
+enum TerrainTile { NONE = 0, GRASS1 = 1, GRASS1_LONG = 2, GRASS2_LONG = 3, FOLIAGE1 = 4, FOLIAGE2 = 5 }
+
+const TERRAIN_TILE_NAMES := {
+	TerrainTile.NONE:       "None",
+	TerrainTile.GRASS1:     "Grass",
+	TerrainTile.GRASS1_LONG:"Grass (Long)",
+	TerrainTile.GRASS2_LONG:"Grass 2 (Long)",
+	TerrainTile.FOLIAGE1:   "Foliage 1",
+	TerrainTile.FOLIAGE2:   "Foliage 2",
+}
+
+# hex_coord (Vector2i) -> TerrainTile int
+var _terrain_map: Dictionary = {}
+var _terrain_option: OptionButton = null
+var _terrain_mode_active: bool = false
+
 # Cached overlay control — set each draw call so input can reuse same transform
 var _last_overlay: Control = null
 
@@ -122,6 +139,31 @@ func handle_input(event: InputEvent) -> bool:
 		_request_redraw()
 		return false
 
+	# Terrain mode toggle (T key)
+	if event is InputEventKey:
+		if event.keycode == KEY_T:
+			_terrain_mode_active = event.pressed
+			return false
+
+	# Terrain painting (hold T + click)
+	if _terrain_mode_active and event is InputEventMouseButton and event.pressed:
+		var local_pos := _screen_to_local(event.position)
+		var hex := _local_to_hex(local_pos)
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			var tile_id: int = _terrain_option.get_selected_id() if _terrain_option != null else 0
+			if tile_id == TerrainTile.NONE:
+				_terrain_map.erase(hex)
+			else:
+				_terrain_map[hex] = tile_id
+			_mark_dirty()
+			_request_redraw()
+			return true
+		elif event.button_index == MOUSE_BUTTON_RIGHT:
+			_terrain_map.erase(hex)
+			_mark_dirty()
+			_request_redraw()
+			return true
+
 	if event is InputEventMouseButton and event.pressed:
 		var local_pos := _screen_to_local(event.position)
 		var hex := _local_to_hex(local_pos)
@@ -173,6 +215,33 @@ func draw_over_viewport(overlay: Control) -> void:
 		for gr in range(min_r, max_r + 1):
 			var center_screen := _local_to_screen(_hex_to_local(Vector2i(gq, gr)))
 			_draw_hex_outline_screen(overlay, center_screen, HEX_SIZE * zoom - 1.0, COLORS["grid"])
+
+	# Draw terrain tiles as tinted hex fills with short labels
+	var terrain_colors := {
+		TerrainTile.GRASS1:      Color(0.35, 0.65, 0.25, 0.45),
+		TerrainTile.GRASS1_LONG: Color(0.25, 0.55, 0.20, 0.45),
+		TerrainTile.GRASS2_LONG: Color(0.30, 0.60, 0.15, 0.45),
+		TerrainTile.FOLIAGE1:    Color(0.15, 0.50, 0.20, 0.50),
+		TerrainTile.FOLIAGE2:    Color(0.10, 0.40, 0.15, 0.50),
+	}
+	var terrain_labels := {
+		TerrainTile.GRASS1:      "Grs",
+		TerrainTile.GRASS1_LONG: "GLg",
+		TerrainTile.GRASS2_LONG: "G2L",
+		TerrainTile.FOLIAGE1:    "Fol",
+		TerrainTile.FOLIAGE2:    "Fo2",
+	}
+	var tfont := ThemeDB.fallback_font
+	for hex_coord in _terrain_map.keys():
+		var tile: int = _terrain_map[hex_coord]
+		if tile == TerrainTile.NONE:
+			continue
+		var center_screen := _local_to_screen(_hex_to_local(hex_coord))
+		var col: Color = terrain_colors.get(tile, Color(0.3, 0.6, 0.2, 0.4))
+		_draw_hex_fill_screen(overlay, center_screen, HEX_SIZE * zoom - 2.0, col)
+		var lbl: String = terrain_labels.get(tile, "?")
+		overlay.draw_string(tfont, center_screen + Vector2(-10, 5), lbl,
+			HORIZONTAL_ALIGNMENT_LEFT, -1, 10, Color(1, 1, 1, 0.85))
 
 	# Hover fill
 	var hover_screen := _local_to_screen(_hex_to_local(_hovered_hex))
@@ -439,6 +508,27 @@ func _build_panel() -> void:
 	hint.text = "Place mode:\n  L-click: place city\n  R-click: remove city\n\nRoad mode:\n  L-click city A then B\n  to add/remove road\n  R-click: cancel"
 	hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
 	vbox.add_child(hint)
+
+	vbox.add_child(HSeparator.new())
+
+	var terrain_title := Label.new()
+	terrain_title.text = "Terrain Layer"
+	terrain_title.add_theme_font_size_override("font_size", 13)
+	vbox.add_child(terrain_title)
+
+	var terrain_mode_label := Label.new()
+	terrain_mode_label.text = "Terrain tile:"
+	vbox.add_child(terrain_mode_label)
+
+	_terrain_option = OptionButton.new()
+	for k in TERRAIN_TILE_NAMES.keys():
+		_terrain_option.add_item(TERRAIN_TILE_NAMES[k], k)
+	vbox.add_child(_terrain_option)
+
+	var terrain_hint := Label.new()
+	terrain_hint.text = "Hold T + L-click: paint\nHold T + R-click: erase"
+	terrain_hint.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	vbox.add_child(terrain_hint)
 
 func _on_mode_changed(_idx: int) -> void:
 	_road_first_id = -1

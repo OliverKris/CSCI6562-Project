@@ -113,20 +113,28 @@ func apply_capture(remaining_army: int, new_owner: int) -> void:
 	if data.owner != old_owner:
 		captured.emit(self, data.owner)
 
-func try_upgrade_production() -> void:
+# Update these in City.gd
+
+func try_upgrade_production() -> bool:
 	if data != null:
 		if data.apply_production_upgrade():
 			refresh_from_data()
+			return true # Signal to UI that upgrade happened
+	return false
 
-func try_upgrade_gold() -> void:
+func try_upgrade_gold() -> bool:
 	if data != null:
 		if data.apply_gold_upgrade():
 			refresh_from_data()
+			return true
+	return false
 
-func try_upgrade_defense() -> void:
+func try_upgrade_defense() -> bool:
 	if data != null:
 		if data.apply_defense_upgrade():
 			refresh_from_data()
+			return true
+	return false
 
 func can_send_units() -> bool:
 	return data != null and data.owner == 1 and data.army > 0

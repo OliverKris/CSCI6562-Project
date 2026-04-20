@@ -122,6 +122,7 @@ func _process(_delta: float) -> void:
 func _check_win_loss() -> void:
 	var player_cities := 0
 	var enemy_cities := 0
+	var neutral_cities := 0
 	var total := 0
 	for c in cities_node.get_children():
 		if c is City and c.data != null:
@@ -130,14 +131,38 @@ func _check_win_loss() -> void:
 				player_cities += 1
 			elif c.data.owner == 2:
 				enemy_cities += 1
+			else:
+				neutral_cities += 1
 	if total == 0:
 		return
 	if player_cities == 0:
 		_game_over = true
 		emit_signal("game_over", false)
-	elif enemy_cities == 0:
-		_game_over = true
-		emit_signal("game_over", true)
+		return
+	# Tutorial check: if no enemy cities exist at all (tutorial has no enemy agent),
+	# win when player controls ALL cities (including formerly neutral ones).
+	var _has_any_enemy := false
+	for c in cities_node.get_children():
+		if c is City and c.data != null and c.data.owner == 2:
+			_has_any_enemy = true
+			break
+	# At game start we check if there were ever enemy cities. Use level_data.
+	var level_has_enemy_cities := false
+	if level_data != null:
+		for city_def in level_data.cities:
+			if city_def.owner == 2:
+				level_has_enemy_cities = true
+				break
+	if level_has_enemy_cities:
+		# Normal win: eliminate all enemy cities
+		if enemy_cities == 0:
+			_game_over = true
+			emit_signal("game_over", true)
+	else:
+		# Tutorial win: conquer ALL cities (no enemy agent exists)
+		if neutral_cities == 0 and enemy_cities == 0:
+			_game_over = true
+			emit_signal("game_over", true)
 
 func get_graph_center() -> Vector2:
 	if cities_by_id.is_empty():

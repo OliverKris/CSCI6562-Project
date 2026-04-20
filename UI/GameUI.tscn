@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://uyvmyacuhary"]
 
-[ext_resource type="Script" uid="uid://ova1q1l2c0cl" path="res://UI/GameUI.gd" id="1_4itvn"]
+[ext_resource type="Script" uid="uid://3q4i6y64d37r" path="res://UI/GameUI.gd" id="1_4itvn"]
 [ext_resource type="StyleBox" uid="uid://cmbshw3lygs34" path="res://UI/TextureBoxes/uiboarder.tres" id="2_lwtm8"]
 [ext_resource type="Texture2D" uid="uid://jssx2w6gpi5q" path="res://Sprites/Icons/unitproduction.png" id="3_6daxq"]
 [ext_resource type="Texture2D" uid="uid://22ai8w25kqaw" path="res://UI/IconMaps/goldicons2.tres" id="3_7csst"]

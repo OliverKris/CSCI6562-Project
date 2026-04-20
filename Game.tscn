@@ -4,8 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://6xaivhk5bd30" path="res://Sprites/UI/dragline.png" id="5_joorw"]
 [ext_resource type="Script" uid="uid://danubl50er8ou" path="res://Core/GameController.gd" id="5_t88pq"]
 [ext_resource type="Texture2D" uid="uid://dptcwevxb2dbw" path="res://Sprites/UI/hexagonhighlighttarget.png" id="6_2vekm"]
-[ext_resource type="PackedScene" uid="uid://uyvmyacuhary" path="res://UI/GameUI.tscn" id="7_0f2yp"]
+[ext_resource type="PackedScene" uid="uid://7_0f2yp" path="res://UI/GameUI.tscn" id="7_0f2yp"]
+[ext_resource type="PackedScene" uid="uid://fjocmlsendv0" path="res://LevelData/LevelTutorial/LevelTutorial.tscn" id="7_tut0"]
 [ext_resource type="PackedScene" uid="uid://ufj8ovng30v" path="res://LevelData/Level1.tscn" id="7_3mrqo"]
+[ext_resource type="PackedScene" uid="uid://dvi3ydmr28y8j" path="res://LevelData/Level2/Level2.tscn" id="7_lv2o"]
 [ext_resource type="Script" uid="uid://ct8tmp1esiwti" path="res://Core/DragOverlay.gd" id="7_ud676"]
 [ext_resource type="Script" uid="uid://byida57fwjenh" path="res://Core/Camera2D.gd" id="7_vm4q1"]
 [ext_resource type="Script" uid="uid://bk6nidayy3s7l" path="res://Core/AIController.gd" id="8_ai001"]
@@ -46,5 +48,5 @@ script = ExtResource("8_ai001")
 
 [node name="GameController" type="Node" parent="." unique_id=383778992 node_paths=PackedStringArray("game_camera")]
 script = ExtResource("5_t88pq")
-level_scenes = Array[PackedScene]([ExtResource("7_3mrqo")])
+level_scenes = Array[PackedScene]([ExtResource("7_tut0"), ExtResource("7_3mrqo"), ExtResource("7_lv2o")])
 game_camera = NodePath("../Camera2D")
