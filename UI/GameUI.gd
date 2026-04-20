@@ -800,7 +800,7 @@ func _on_resume() -> void:
 func _on_main_menu() -> void:
 	CycleClock.resume_clock()
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://UI/MainMenu.tscn")
+	get_tree().change_scene_to_file("res://UI/MainMenu/MainMenu.tscn")
 
 func show_game_over(player_won: bool) -> void:
 	if game_over_panel != null:

@@ -23,7 +23,7 @@
 [ext_resource type="StyleBox" uid="uid://cgeesuybl3g3v" path="res://UI/TextureBoxes/uiboarder2.tres" id="13_grobk"]
 [ext_resource type="StyleBox" uid="uid://dfr103i1er7gy" path="res://UI/TextureBoxes/box3.tres" id="15_1g8ct"]
 [ext_resource type="Texture2D" uid="uid://bhu662n0imcgj" path="res://Sprites/UI/clock.png" id="15_6lu0k"]
-[ext_resource type="Script" uid="uid://bv5r4s73xo7w3" path="res://UI/Clock.gd" id="16_r58d0"]
+[ext_resource type="Script" uid="uid://cx8h7n2g6or6t" path="res://UI/Clock.gd" id="16_r58d0"]
 [ext_resource type="Texture2D" uid="uid://c42drll8lcvfe" path="res://Sprites/UI/grabber.png" id="18_053ab"]
 [ext_resource type="Texture2D" uid="uid://blvdxfeivahn5" path="res://Sprites/Buttons/25btn.png" id="18_oqpj4"]
 [ext_resource type="Texture2D" uid="uid://bshtj1fjw77ef" path="res://Sprites/UI/grabberselected.png" id="19_34hoh"]
