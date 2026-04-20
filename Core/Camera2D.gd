@@ -11,7 +11,7 @@ var pan_button: int = -1
 @export var gesture_zoom_strength: float = 0.25
 
 func _ready() -> void:
-	position = get_viewport_rect().size / 2.0
+	pass  # Position is set by GameController after the level is built.
 
 func _unhandled_input(event: InputEvent) -> void:
 	_handle_pan(event)
@@ -40,7 +40,7 @@ func _handle_pan(event: InputEvent) -> void:
 			_end_pan()
 
 	if event is InputEventMouseMotion and is_panning:
-		var delta: Vector2 = (event.position - pan_origin_mouse) / zoom
+		var delta: Vector2 = (event.position - pan_origin_mouse) / zoom.x
 		position = pan_origin_camera - delta
 
 func _handle_zoom(event: InputEvent) -> void:
