@@ -85,21 +85,33 @@ horizontal_alignment = 1
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=1810625167]
 layout_mode = 2
 
-[node name="PlayButton" parent="VBoxContainer" unique_id=1789498835 instance=ExtResource("4_obtq6")]
-custom_minimum_size = Vector2(160, 96)
+[node name="PlayCenter" type="CenterContainer" parent="VBoxContainer" unique_id=1119267035]
 layout_mode = 2
+
+[node name="PlayButton" parent="VBoxContainer/PlayCenter" unique_id=1789498835 instance=ExtResource("4_obtq6")]
+custom_minimum_size = Vector2(320, 96)
+layout_mode = 2
+size_flags_stretch_ratio = 2.0
 sprite_sheet = ExtResource("5_t4ff4")
 press_in_time = 0.02
 
-[node name="TutorialButton" parent="VBoxContainer" unique_id=377233274 instance=ExtResource("4_obtq6")]
-custom_minimum_size = Vector2(160, 96)
+[node name="TutorialCenter" type="CenterContainer" parent="VBoxContainer" unique_id=1772015919]
 layout_mode = 2
+
+[node name="TutorialButton" parent="VBoxContainer/TutorialCenter" unique_id=377233274 instance=ExtResource("4_obtq6")]
+custom_minimum_size = Vector2(320, 96)
+layout_mode = 2
+size_flags_horizontal = 4
 sprite_sheet = ExtResource("6_w5vcv")
 press_in_time = 0.02
 
-[node name="QuitButton" parent="VBoxContainer" unique_id=1318041578 instance=ExtResource("4_obtq6")]
-custom_minimum_size = Vector2(160, 96)
+[node name="QuitCenter" type="CenterContainer" parent="VBoxContainer" unique_id=1846560939]
 layout_mode = 2
+
+[node name="QuitButton" parent="VBoxContainer/QuitCenter" unique_id=1318041578 instance=ExtResource("4_obtq6")]
+custom_minimum_size = Vector2(320, 96)
+layout_mode = 2
+size_flags_horizontal = 4
 sprite_sheet = ExtResource("7_d2d4f")
 press_in_time = 0.02
 

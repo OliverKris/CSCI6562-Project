@@ -37,7 +37,20 @@ func _ready() -> void:
 	_toggled_on = start_toggled_on
 
 	_build_frames()
+
+	if icon != null:
+		icon.set_anchors_preset(Control.PRESET_FULL_RECT)
+		icon.offset_left = 0
+		icon.offset_top = 0
+		icon.offset_right = 0
+		icon.offset_bottom = 0
+		icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+
 	_apply_current_visual()
+
+	print(name, " button size: ", size)
+	print(name, " icon size: ", icon.size if icon else Vector2.ZERO)
 
 	button_down.connect(_on_button_down_visual)
 	if not is_toggle_button:
