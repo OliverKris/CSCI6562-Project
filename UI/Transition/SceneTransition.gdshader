@@ -1,9 +1,9 @@
 shader_type canvas_item;
 
 uniform float progress : hint_range(0.0, 1.0) = 0.0;
-uniform float grid_size = 48.0;
-uniform float cell_fill_portion : hint_range(0.01, 1.0) = 0.22;
-uniform float random_delay_strength : hint_range(0.0, 0.2) = 0.035;
+uniform float grid_cols = 40.0;
+uniform float cell_grow_portion : hint_range(0.01, 1.0) = 0.18;
+uniform float random_delay_strength : hint_range(0.0, 0.2) = 0.03;
 uniform vec4 wipe_color : source_color = vec4(0.0, 0.0, 0.0, 1.0);
 
 float hash(vec2 p) {
@@ -15,27 +15,25 @@ float hash(vec2 p) {
 void fragment() {
 	vec2 uv = UV;
 
-	vec2 cell = floor(uv * grid_size);
-	vec2 local_uv = fract(uv * grid_size);
+	float aspect = SCREEN_PIXEL_SIZE.y / SCREEN_PIXEL_SIZE.x;
+	vec2 grid = vec2(grid_cols, grid_cols / aspect);
 
-	// 0 at top-left, 1 at bottom-right
-	float diag = (cell.x + cell.y) / max((grid_size - 1.0) * 2.0, 0.0001);
+	vec2 cell = floor(uv * grid);
+	vec2 local_uv = fract(uv * grid);
 
-	// slight per-cell randomness
+	float diag = (cell.x + cell.y) / max((grid.x - 1.0) + (grid.y - 1.0), 0.0001);
 	float jitter = (hash(cell) - 0.5) * 2.0 * random_delay_strength;
 
-	// Important:
-	// reserve the last part of the timeline for the cell to finish filling.
-	float max_start = max(1.0 - cell_fill_portion, 0.0001);
+	float max_start = max(1.0 - cell_grow_portion, 0.0001);
 	float start_time = clamp(diag * max_start + jitter, 0.0, max_start);
 
-	float fill_t = (progress - start_time) / max(cell_fill_portion, 0.0001);
-	fill_t = clamp(fill_t, 0.0, 1.0);
+	float t = clamp((progress - start_time) / max(cell_grow_portion, 0.0001), 0.0, 1.0);
 
-	// grow downward inside each cell
-	float covered = step(local_uv.y, fill_t);
+	// Square growth from top-left corner.
+	float covered_x = step(local_uv.x, t);
+	float covered_y = step(local_uv.y, t);
+	float covered = covered_x * covered_y;
 
-	// hard guarantee: once progress reaches 1, the screen is fully black
 	if (progress >= 0.999) {
 		covered = 1.0;
 	}

@@ -6,8 +6,8 @@
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_po053"]
 shader = ExtResource("1_7dtq0")
 shader_parameter/progress = 0.0
-shader_parameter/grid_size = 56.0
-shader_parameter/cell_fill_portion = 0.22
+shader_parameter/grid_cols = 40.0
+shader_parameter/cell_grow_portion = 0.18
 shader_parameter/random_delay_strength = 0.035
 shader_parameter/wipe_color = Color(0, 0, 0, 1)
 
