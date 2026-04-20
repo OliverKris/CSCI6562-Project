@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dxlka5t413n17" path="res://World/Unit/Unit.tscn" id="3_ls88i"]
 [ext_resource type="PackedScene" path="res://World/Battle/Battle.tscn" id="4_s7v0q"]
 [ext_resource type="Script" uid="uid://wgxhpu50vd70" path="res://World/Road/RoadLayer.gd" id="5_o2stx"]
+[ext_resource type="Script" uid="uid://wgxhpu50vd70" path="res://World/Road/RoadLayer.gd" id="5_o2stx"]
 [ext_resource type="Texture2D" uid="uid://b66pgqhyh15q8" path="res://Sprites/Tiles/road1.png" id="7_hsqm6"]
 
 [node name="LevelRoot" type="Node" unique_id=290238562]

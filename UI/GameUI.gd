@@ -173,7 +173,7 @@ func _on_resume() -> void:
 func _on_main_menu() -> void:
 	CycleClock.resume_clock()
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://UI/MainMenu.tscn")
+	get_tree().change_scene_to_file("res://UI/MainMenu/MainMenu.tscn")
 
 func _on_gold_changed(owner: int, new_amount: float) -> void:
 	if owner == 1 and gold_label != null:

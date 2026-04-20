@@ -1,8 +1,12 @@
 @tool
 extends EditorPlugin
 
+# Preload explicitly so the class is resolved before _enter_tree runs,
+# preventing the autoload/class-resolution error on plugin startup.
+const HexEditorOverlayClass = preload("res://addons/HexLevelEditor/HexEditorOverlay.gd")
+
 var _panel: Control = null
-var _overlay: HexEditorOverlay = null
+var _overlay: RefCounted = null
 
 func _enter_tree() -> void:
 	# Clean up any leftover panel from a previous load (e.g. hot-reload)
@@ -11,7 +15,7 @@ func _enter_tree() -> void:
 		_panel.queue_free()
 		_panel = null
 
-	_overlay = HexEditorOverlay.new()
+	_overlay = HexEditorOverlayClass.new()
 	_overlay.plugin = self
 
 	# Build the panel once and keep the reference

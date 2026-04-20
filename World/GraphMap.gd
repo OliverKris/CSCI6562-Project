@@ -36,14 +36,19 @@ var player_send_ratio: float = 0.5
 var _game_over: bool = false
 
 # --- Hex math (flat-top) ---
+# Hex (12, 0) maps to world (0, 0). Offset applied in pixel space.
+# Y-axis: negative r = up (negative screen Y), positive r = down (positive screen Y).
+
 func hex_to_world(hex: Vector2i) -> Vector2:
 	var x: float = hex_size * 1.5 * float(hex.x)
-	var y: float = hex_size * sqrt(3.0) * (float(hex.y) + 0.5 * float(hex.x))
+	var y: float = hex_size * (sqrt(3.0) / 2.0 * float(hex.x) + sqrt(3.0) * float(hex.y))
 	return Vector2(x, y)
 
 func world_to_hex(world: Vector2) -> Vector2i:
-	var q: float = world.x * (2.0 / 3.0) / hex_size
-	var r: float = (-world.x / 3.0 + (sqrt(3.0) / 3.0) * world.y) / hex_size
+	var px: float = world.x
+	var py: float = world.y
+	var q: float = (2.0 / 3.0) * px / hex_size
+	var r: float = (-1.0 / 3.0 * px + sqrt(3.0) / 3.0 * py) / hex_size
 	return _hex_round(q, r)
 
 func _hex_round(q: float, r: float) -> Vector2i:

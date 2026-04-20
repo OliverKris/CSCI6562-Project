@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cgilpowmtbmlt"]
 
-[ext_resource type="Script" uid="uid://tm3j6yjsfi1m" path="res://UI/Buttons/AnimatedButton.gd" id="1_tnan5"]
+[ext_resource type="Script" uid="uid://bk0r001ho06gk" path="res://UI/Buttons/AnimatedButton.gd" id="1_tnan5"]
 [ext_resource type="Texture2D" uid="uid://cxbyrgv8fkmx8" path="res://Sprites/Buttons/fastforwardbutton.png" id="2_qao33"]
 
 [node name="AnimatedButton" type="TextureButton" unique_id=1789498835]

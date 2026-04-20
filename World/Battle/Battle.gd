@@ -84,6 +84,19 @@ func _on_cycle() -> void:
 	var attacker_damage: int = maxi(1, int(sqrt(float(garrison))))
 	var garrison_damage: int = maxi(1, int(sqrt(float(attacker_count))))
 
+	# Apply city defense bonus — reduces damage the garrison takes each cycle.
+	# Level 0: 5% less damage taken
+	# Level 1: 10% less damage taken
+	# Level 2: 15% less damage taken
+	# Level 3: 20% less damage taken
+	var defense_reduction: float = 0.0
+	match target_city.data.defense_level:
+		0: defense_reduction = 0.05
+		1: defense_reduction = 0.10
+		2: defense_reduction = 0.15
+		3: defense_reduction = 0.20
+	garrison_damage = maxi(1, int(float(garrison_damage) * (1.0 - defense_reduction)))
+
 	attacker_count -= attacker_damage
 	target_city.data.army -= garrison_damage
 	target_city.refresh_from_data()

@@ -10,11 +10,15 @@ var _panel: PanelContainer = null
 var _status_label: Label = null
 var _owner_option: OptionButton = null
 var _army_spin: SpinBox = null
+var _defense_spin: SpinBox = null
 var _name_edit: LineEdit = null
 var _mode_option: OptionButton = null
 
 var _hovered_hex: Vector2i = Vector2i(9999, 9999)
 var _road_first_id: int = -1
+
+# Cached overlay control — set each draw call so input can reuse same transform
+var _last_overlay: Control = null
 
 const HEX_SIZE: float = 64.0
 
@@ -44,18 +48,22 @@ func set_graph_map(gm: GraphMap) -> void:
 
 # ── Transform helpers ─────────────────────────────────────────────────────────
 # In Godot 4 EditorPlugin:
-#   _forward_canvas_gui_input  → event.position is in SCREEN pixels
-#   _forward_canvas_draw_over_viewport → overlay draws in SCREEN pixels
+#   _forward_canvas_gui_input  → event.position is in VIEWPORT pixels
+#   _forward_canvas_draw_over_viewport(overlay) → draws in overlay's local coords
 #
-# Full chain:  local ──[global_transform]──> world ──[canvas_transform]──> screen
-# canvas_transform accounts for editor camera zoom & pan.
+# The overlay Control is a direct child of the editor's SubViewport for the 2D view.
+# overlay.get_canvas_transform() gives the correct viewport→screen pixel transform
+# that already accounts for editor camera zoom & pan.
+#
+# Full chain:
+#   node_local → [global_transform] → world → [overlay.get_canvas_transform()] → overlay pixels
+#
+# We cache the overlay each draw call and use it for input too.
 
 func _get_transform() -> Transform2D:
-	if _graph_map == null:
+	if _last_overlay == null:
 		return Transform2D.IDENTITY
-	# canvas_transform: world → screen
-	# global_transform: local → world
-	return _graph_map.get_canvas_transform() * _graph_map.get_global_transform()
+	return _last_overlay.get_transform()
 
 func _local_to_screen(local_pos: Vector2) -> Vector2:
 	return _get_transform() * local_pos
@@ -67,13 +75,22 @@ func _screen_to_local(screen_pos: Vector2) -> Vector2:
 
 func _hex_to_local(hex: Vector2i) -> Vector2:
 	var x: float = HEX_SIZE * 1.5 * float(hex.x)
-	var y: float = HEX_SIZE * sqrt(3.0) * (float(hex.y) + 0.5 * float(hex.x))
-	return Vector2(x, y)
+	var y: float = HEX_SIZE * (sqrt(3.0) / 2.0 * float(hex.x) + sqrt(3.0) * float(hex.y))
+	var offset: Vector2 = _get_view_center_offset()
+	return Vector2(x + offset.x, y + offset.y)
 
 func _local_to_hex(local_pos: Vector2) -> Vector2i:
-	var q: float = local_pos.x * (2.0 / 3.0) / HEX_SIZE
-	var r: float = (-local_pos.x / 3.0 + (sqrt(3.0) / 3.0) * local_pos.y) / HEX_SIZE
+	var offset: Vector2 = _get_view_center_offset()
+	var px: float = local_pos.x - offset.x
+	var py: float = local_pos.y - offset.y
+	var q: float = (2.0 / 3.0) * px / HEX_SIZE
+	var r: float = (-1.0 / 3.0 * px + sqrt(3.0) / 3.0 * py) / HEX_SIZE
 	return _hex_round(q, r)
+
+func _get_view_center_offset() -> Vector2:
+	if _last_overlay == null:
+		return Vector2.ZERO
+	return _last_overlay.size / 2.0
 
 func _hex_round(q: float, r: float) -> Vector2i:
 	var s: float = -q - r
@@ -135,11 +152,11 @@ func draw_over_viewport(overlay: Control) -> void:
 	if _graph_map == null or _graph_map.level_data == null:
 		return
 
-	# We need the canvas zoom scale so we can draw hex outlines at correct screen size.
-	# get_canvas_transform().get_scale() gives us pixels-per-world-unit in screen space.
-	var canvas_xform := _get_transform()
-	# Scale of one world unit in screen pixels (for line widths / radii).
-	var zoom: float = canvas_xform.get_scale().x
+	# Cache overlay so _get_transform() works correctly for input events too
+	_last_overlay = overlay
+
+	# Zoom scale from the overlay's canvas transform (editor camera zoom only)
+	var zoom: float = overlay.get_canvas_transform().get_scale().x
 
 	# Compute hex grid bounds from placed cities + margin
 	var min_q := -2; var max_q := 2
@@ -151,15 +168,15 @@ func draw_over_viewport(overlay: Control) -> void:
 			min_r = mini(min_r, cd.hex_coord.y); max_r = maxi(max_r, cd.hex_coord.y)
 		min_q -= 2; max_q += 2; min_r -= 2; max_r += 2
 
-	# Draw hex grid — each hex is drawn in world space then transformed to screen
+	# Draw hex grid
 	for gq in range(min_q, max_q + 1):
 		for gr in range(min_r, max_r + 1):
 			var center_screen := _local_to_screen(_hex_to_local(Vector2i(gq, gr)))
-			_draw_hex_outline_screen(overlay, center_screen, HEX_SIZE * zoom * 0.5 - 1.0, COLORS["grid"])
+			_draw_hex_outline_screen(overlay, center_screen, HEX_SIZE * zoom - 1.0, COLORS["grid"])
 
 	# Hover fill
 	var hover_screen := _local_to_screen(_hex_to_local(_hovered_hex))
-	_draw_hex_fill_screen(overlay, hover_screen, HEX_SIZE * zoom * 0.5 - 1.0, COLORS["hover"])
+	_draw_hex_fill_screen(overlay, hover_screen, HEX_SIZE * zoom - 1.0, COLORS["hover"])
 
 	# Roads
 	for road: RoadData in _graph_map.level_data.roads:
@@ -169,8 +186,8 @@ func draw_over_viewport(overlay: Control) -> void:
 		var sb := _find_city_spawn(road.b_id)
 		if sa == null or sb == null:
 			continue
-		var a_screen := _local_to_screen(_hex_to_local(sa.hex_coord))
-		var b_screen := _local_to_screen(_hex_to_local(sb.hex_coord))
+		var a_screen := _local_to_screen(_hex_to_local(Vector2i(sa.hex_coord)))
+		var b_screen := _local_to_screen(_hex_to_local(Vector2i(sb.hex_coord)))
 		var highlight := _road_first_id != -1 and (road.a_id == _road_first_id or road.b_id == _road_first_id)
 		overlay.draw_line(a_screen, b_screen,
 			COLORS["road_pending"] if highlight else COLORS["road"], 3.0, true)
@@ -179,7 +196,7 @@ func draw_over_viewport(overlay: Control) -> void:
 	for city_def: CitySpawnData in _graph_map.level_data.cities:
 		if city_def == null:
 			continue
-		var sp := _local_to_screen(_hex_to_local(city_def.hex_coord))
+		var sp := _local_to_screen(_hex_to_local(Vector2i(city_def.hex_coord)))
 		var r: float = HEX_SIZE * zoom * 0.30
 
 		var col: Color
@@ -199,6 +216,11 @@ func draw_over_viewport(overlay: Control) -> void:
 			city_def.city_name, HORIZONTAL_ALIGNMENT_LEFT, -1, 11, Color(1, 1, 1))
 		overlay.draw_string(font, sp + Vector2(-5, 5),
 			str(city_def.army), HORIZONTAL_ALIGNMENT_LEFT, -1, 11, Color(1, 1, 1))
+
+		# Show defense level badge if > 0
+		if city_def.get("defense_level") != null and city_def.defense_level > 0:
+			overlay.draw_string(font, sp + Vector2(-5, -5),
+				"D%d" % city_def.defense_level, HORIZONTAL_ALIGNMENT_LEFT, -1, 10, Color(0.3, 1.0, 0.4, 1.0))
 
 # ── Draw primitives (screen-space) ────────────────────────────────────────────
 
@@ -223,15 +245,16 @@ func _place_city(hex: Vector2i) -> void:
 	if _graph_map == null or _graph_map.level_data == null:
 		return
 	for city_def in _graph_map.level_data.cities:
-		if city_def.hex_coord == hex:
+		if Vector2i(city_def.hex_coord) == hex:
 			_update_status("'%s' already here. Right-click to remove." % city_def.city_name)
 			return
 	var spawn := CitySpawnData.new()
 	spawn.id = _next_id()
-	spawn.hex_coord = hex
+	spawn.hex_coord = Vector2(hex)
 	spawn.city_name = _name_edit.text if _name_edit != null and _name_edit.text != "" else ("City %d" % spawn.id)
 	spawn.owner = _owner_option.selected if _owner_option != null else 0
 	spawn.army = int(_army_spin.value) if _army_spin != null else 10
+	spawn.defense_level = int(_defense_spin.value) if _defense_spin != null else 0
 	var cities := _graph_map.level_data.cities.duplicate()
 	cities.append(spawn)
 	_graph_map.level_data.cities = cities
@@ -244,7 +267,7 @@ func _remove_city_at(hex: Vector2i) -> void:
 		return
 	var ld := _graph_map.level_data
 	for i in range(ld.cities.size()):
-		if ld.cities[i].hex_coord == hex:
+		if Vector2i(ld.cities[i].hex_coord) == hex:
 			var removed_id: int = ld.cities[i].id
 			var cities := ld.cities.duplicate()
 			cities.remove_at(i)
@@ -298,7 +321,7 @@ func _handle_road_click(hex: Vector2i) -> void:
 	var road := RoadData.new()
 	road.a_id = a; road.b_id = b
 	var sa := _find_city_spawn(a); var sb := _find_city_spawn(b)
-	road.length = _hex_distance(sa.hex_coord, sb.hex_coord) if sa and sb else 1.0
+	road.length = _hex_distance(Vector2i(sa.hex_coord), Vector2i(sb.hex_coord)) if sa and sb else 1.0
 	var roads := ld.roads.duplicate()
 	roads.append(road)
 	ld.roads = roads
@@ -317,7 +340,7 @@ func _find_city_spawn_at_hex(hex: Vector2i) -> CitySpawnData:
 	if _graph_map == null or _graph_map.level_data == null:
 		return null
 	for cd in _graph_map.level_data.cities:
-		if cd.hex_coord == hex:
+		if Vector2i(cd.hex_coord) == hex:
 			return cd
 	return null
 
@@ -400,6 +423,16 @@ func _build_panel() -> void:
 	_army_spin.max_value = 999
 	_army_spin.value = 10
 	vbox.add_child(_army_spin)
+
+	var defense_label := Label.new()
+	defense_label.text = "Defense level (0–3):"
+	vbox.add_child(defense_label)
+	_defense_spin = SpinBox.new()
+	_defense_spin.min_value = 0
+	_defense_spin.max_value = 3
+	_defense_spin.value = 0
+	vbox.add_child(_defense_spin)
+
 	vbox.add_child(HSeparator.new())
 
 	var hint := Label.new()

@@ -1,33 +1,33 @@
 extends Node
 
 # Separate gold pool per faction.
-# owner 1 = player, owner 2 = AI enemy.
-# Indexed by owner int.
+# faction 1 = player, faction 2 = AI enemy.
+# Indexed by faction int.
 
-signal gold_changed(owner: int, new_amount: float)
+signal gold_changed(faction: int, new_amount: float)
 
 var _gold: Dictionary = { 1: 0.0, 2: 0.0 }
 
-func get_gold(owner: int) -> float:
-	return _gold.get(owner, 0.0)
+func get_gold(faction: int) -> float:
+	return _gold.get(faction, 0.0)
 
-func add_gold(owner: int, amount: float) -> void:
-	if not _gold.has(owner):
-		_gold[owner] = 0.0
-	_gold[owner] += amount
-	emit_signal("gold_changed", owner, _gold[owner])
+func add_gold(faction: int, amount: float) -> void:
+	if not _gold.has(faction):
+		_gold[faction] = 0.0
+	_gold[faction] += amount
+	emit_signal("gold_changed", faction, _gold[faction])
 
-func spend_gold(owner: int, amount: float) -> bool:
-	if not _gold.has(owner):
+func spend_gold(faction: int, amount: float) -> bool:
+	if not _gold.has(faction):
 		return false
-	if _gold[owner] < amount:
+	if _gold[faction] < amount:
 		return false
-	_gold[owner] -= amount
-	emit_signal("gold_changed", owner, _gold[owner])
+	_gold[faction] -= amount
+	emit_signal("gold_changed", faction, _gold[faction])
 	return true
 
-func can_afford(owner: int, amount: float) -> bool:
-	return _gold.get(owner, 0.0) >= amount
+func can_afford(faction: int, amount: float) -> bool:
+	return _gold.get(faction, 0.0) >= amount
 
 func reset() -> void:
 	_gold = { 1: 0.0, 2: 0.0 }
