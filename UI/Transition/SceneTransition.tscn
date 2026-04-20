@@ -12,6 +12,7 @@ shader_parameter/random_delay_strength = 0.035
 shader_parameter/wipe_color = Color(0, 0, 0, 1)
 
 [node name="SceneTransition" type="CanvasLayer" unique_id=572253420]
+layer = 10
 script = ExtResource("1_po053")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=1402231871]

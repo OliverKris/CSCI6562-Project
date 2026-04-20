@@ -219,15 +219,11 @@ func _setup_troop_icons() -> void:
 		push_error("No troop_icon_sheet assigned.")
 		return
 
-	print("troop_icon_sheet size: ", troop_icon_sheet.get_size())
-
 	for i in range(TROOP_ICON_COUNT):
 		var atlas := AtlasTexture.new()
 		atlas.atlas = troop_icon_sheet
 		atlas.region = Rect2(i * TROOP_ICON_SIZE.x, 0, TROOP_ICON_SIZE.x, TROOP_ICON_SIZE.y)
 		_troop_icon_frames.append(atlas)
-
-		print("troop frame ", i, " region = ", atlas.region)
 
 func _setup_slider() -> void:
 	if send_slider == null:
