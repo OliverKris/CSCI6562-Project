@@ -32,6 +32,9 @@ const SPEED_LABELS: Array = ["0.5x", "1x", "2x", "4x"]
 const GOLD_ICON_COUNT := 8
 const GOLD_ICON_SIZE := Vector2i(32, 32)
 
+const TROOP_ICON_COUNT := 4
+const TROOP_ICON_SIZE := Vector2i(32, 32)
+
 # ---------------------------------------------------------
 # Top Bar
 # ---------------------------------------------------------
@@ -39,9 +42,13 @@ const GOLD_ICON_SIZE := Vector2i(32, 32)
 @onready var gold_label: Label = $TopLeftGroup/Control/TopBar/HBoxContainer/GoldContainer/Gold
 @onready var gold_icon: TextureRect = $TopLeftGroup/Control/TopBar/HBoxContainer/GoldContainer/IconPanel/GoldIcon
 @onready var troops_label: Label = $TopLeftGroup/Control/TopBar/HBoxContainer/TroopContainer/Troops
+@onready var troop_icon: TextureRect = $TopLeftGroup/Control/TopBar/HBoxContainer/TroopContainer/IconPanel/TroopIcon
 
 @export var gold_icon_sheet: Texture2D
 var _gold_icon_frames: Array[AtlasTexture] = []
+
+@export var troop_icon_sheet: Texture2D
+var _troop_icon_frames: Array[AtlasTexture] = []
 
 # ---------------------------------------------------------
 # Timer / Pause
@@ -167,6 +174,7 @@ func _ready() -> void:
 
 	_setup_panels()
 	_setup_gold_icons()
+	_setup_troop_icons()
 	_setup_slider()
 	_connect_buttons()
 	_connect_global_signals()
@@ -203,6 +211,23 @@ func _setup_gold_icons() -> void:
 		atlas.atlas = gold_icon_sheet
 		atlas.region = Rect2(i * GOLD_ICON_SIZE.x, 0, GOLD_ICON_SIZE.x, GOLD_ICON_SIZE.y)
 		_gold_icon_frames.append(atlas)
+
+func _setup_troop_icons() -> void:
+	_troop_icon_frames.clear()
+
+	if troop_icon_sheet == null:
+		push_error("No troop_icon_sheet assigned.")
+		return
+
+	print("troop_icon_sheet size: ", troop_icon_sheet.get_size())
+
+	for i in range(TROOP_ICON_COUNT):
+		var atlas := AtlasTexture.new()
+		atlas.atlas = troop_icon_sheet
+		atlas.region = Rect2(i * TROOP_ICON_SIZE.x, 0, TROOP_ICON_SIZE.x, TROOP_ICON_SIZE.y)
+		_troop_icon_frames.append(atlas)
+
+		print("troop frame ", i, " region = ", atlas.region)
 
 func _setup_slider() -> void:
 	if send_slider == null:
@@ -341,8 +366,10 @@ func _refresh_top_bar() -> void:
 	var totals := _calculate_player_totals()
 	var gold_amount := FactionState.get_gold(1) if FactionState != null else 0.0
 
-	if troops_label != null:
-		troops_label.text = "Troops: %d (+%d)" % [totals.troops, totals.troop_rate]
+	troops_label.text = "Troops: %d (+%d)" % [totals.troops, totals.troop_rate]
+
+	if troop_icon != null and _troop_icon_frames.size() == TROOP_ICON_COUNT:
+		troop_icon.texture = _troop_icon_frames[_get_troop_icon_index(totals.troops)]
 
 	_update_gold_display(gold_amount, totals.gold_rate)
 
@@ -382,21 +409,30 @@ func _update_gold_display(amount: float, gold_rate: int) -> void:
 		gold_icon.texture = _gold_icon_frames[_get_gold_icon_index(gold_int)]
 
 func _get_gold_icon_index(gold_amount: int) -> int:
-	if gold_amount < 10:
+	if gold_amount < 5:
 		return 0
-	elif gold_amount < 20:
+	elif gold_amount < 10:
 		return 1
-	elif gold_amount < 30:
+	elif gold_amount < 20:
 		return 2
 	elif gold_amount < 40:
 		return 3
-	elif gold_amount < 50:
+	elif gold_amount < 75:
 		return 4
-	elif gold_amount < 100:
+	elif gold_amount < 150:
 		return 5
-	elif gold_amount < 200:
+	elif gold_amount < 300:
 		return 6
 	return 7
+	
+func _get_troop_icon_index(troop_amount: int) -> int:
+	if troop_amount < 50:
+		return 0
+	elif troop_amount < 100:
+		return 1
+	elif troop_amount < 200:
+		return 2
+	return 3
 
 # =========================================================
 # SIDE PANEL

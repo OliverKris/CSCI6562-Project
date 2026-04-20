@@ -49,9 +49,6 @@ func _ready() -> void:
 
 	_apply_current_visual()
 
-	print(name, " button size: ", size)
-	print(name, " icon size: ", icon.size if icon else Vector2.ZERO)
-
 	button_down.connect(_on_button_down_visual)
 	if not is_toggle_button:
 		button_up.connect(_on_button_up_visual)

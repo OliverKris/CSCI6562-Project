@@ -23,6 +23,7 @@
 [ext_resource type="StyleBox" uid="uid://dfr103i1er7gy" path="res://UI/TextureBoxes/box3.tres" id="15_1g8ct"]
 [ext_resource type="Texture2D" uid="uid://bhu662n0imcgj" path="res://Sprites/UI/clock.png" id="15_6lu0k"]
 [ext_resource type="Script" uid="uid://cx8h7n2g6or6t" path="res://UI/Clock.gd" id="16_r58d0"]
+[ext_resource type="Texture2D" uid="uid://bvds0f56p8mo5" path="res://Sprites/Icons/troopicons.png" id="16_s54qy"]
 [ext_resource type="Texture2D" uid="uid://c42drll8lcvfe" path="res://Sprites/UI/grabber.png" id="18_053ab"]
 [ext_resource type="Texture2D" uid="uid://blvdxfeivahn5" path="res://Sprites/Buttons/25btn.png" id="18_oqpj4"]
 [ext_resource type="Texture2D" uid="uid://bshtj1fjw77ef" path="res://Sprites/UI/grabberselected.png" id="19_34hoh"]
@@ -115,6 +116,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_4itvn")
 gold_icon_sheet = ExtResource("3_7csst")
+troop_icon_sheet = ExtResource("16_s54qy")
 friendly_faction = ExtResource("7_mn42u")
 neutral_faction = ExtResource("4_f3wgw")
 enemy_faction = ExtResource("5_r0t6x")
@@ -210,8 +212,10 @@ layout_mode = 2
 layout_mode = 2
 theme_override_styles/panel = ExtResource("15_1g8ct")
 
-[node name="TextureRect" type="TextureRect" parent="TopLeftGroup/Control/TopBar/HBoxContainer/TroopContainer/IconPanel" unique_id=212985431]
+[node name="TroopIcon" type="TextureRect" parent="TopLeftGroup/Control/TopBar/HBoxContainer/TroopContainer/IconPanel" unique_id=212985431]
+custom_minimum_size = Vector2(64, 0)
 layout_mode = 2
+texture = ExtResource("16_s54qy")
 
 [node name="Troops" type="Label" parent="TopLeftGroup/Control/TopBar/HBoxContainer/TroopContainer" unique_id=2141042486]
 layout_mode = 2
