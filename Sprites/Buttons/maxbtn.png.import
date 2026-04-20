@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ct60pwea2nbxn"
-path="res://.godot/imported/grass1long.png-ead57f172df12eec6363a68a7e308c29.ctex"
+uid="uid://po6u32m0cyp8"
+path="res://.godot/imported/maxbtn.png-61f8940c7b1e59920c5dde600174c7b2.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://grass1long.png"
-dest_files=["res://.godot/imported/grass1long.png-ead57f172df12eec6363a68a7e308c29.ctex"]
+source_file="res://Sprites/Buttons/maxbtn.png"
+dest_files=["res://.godot/imported/maxbtn.png-61f8940c7b1e59920c5dde600174c7b2.ctex"]
 
 [params]
 

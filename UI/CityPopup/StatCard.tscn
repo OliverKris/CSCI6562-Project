@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://ddkyqm6gx16fv"]
+
+[node name="StatCard" type="PanelContainer" unique_id=238221118]
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=919738965]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="HBoxContainer" unique_id=1171448715]
+layout_mode = 2
+
+[node name="StatNameLabel" type="Label" parent="HBoxContainer" unique_id=1798228516]
+layout_mode = 2
+
+[node name="StatValueLabel" type="Label" parent="HBoxContainer" unique_id=459856166]
+layout_mode = 2

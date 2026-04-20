@@ -1,12 +1,12 @@
 [gd_resource type="StyleBoxTexture" format=3 uid="uid://cmbshw3lygs34"]
 
-[ext_resource type="Texture2D" uid="uid://wg4nutv0x2mq" path="res://Sprites/UI/UIBoarder.png" id="1_8lnyy"]
+[ext_resource type="Texture2D" uid="uid://dcodyyp03mw3d" path="res://Sprites/UI/UIBoarder.png" id="1_8lnyy"]
 
 [resource]
-content_margin_left = 20.0
-content_margin_top = 20.0
-content_margin_right = 20.0
-content_margin_bottom = 20.0
+content_margin_left = 15.0
+content_margin_top = 15.0
+content_margin_right = 15.0
+content_margin_bottom = 15.0
 texture = ExtResource("1_8lnyy")
 texture_margin_left = 32.0
 texture_margin_top = 32.0

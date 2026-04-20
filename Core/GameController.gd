@@ -73,6 +73,7 @@ func load_level_scene(level_scene: PackedScene) -> void:
 		return
 
 	_setup_graph_map()
+
 	if game_camera != null:
 		game_camera.global_position = graph_map.get_graph_center()
 	else:

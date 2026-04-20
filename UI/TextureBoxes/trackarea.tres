@@ -1,0 +1,14 @@
+[gd_resource type="StyleBoxTexture" format=3 uid="uid://csfosh77kb7at"]
+
+[ext_resource type="Texture2D" uid="uid://dtl3qv8r5wdkh" path="res://Sprites/UI/trackarea.png" id="1_54sht"]
+
+[resource]
+content_margin_left = 10.0
+content_margin_top = 4.0
+content_margin_right = 10.0
+content_margin_bottom = 4.0
+texture = ExtResource("1_54sht")
+texture_margin_left = 10.0
+texture_margin_top = 2.0
+texture_margin_right = 10.0
+texture_margin_bottom = 2.0

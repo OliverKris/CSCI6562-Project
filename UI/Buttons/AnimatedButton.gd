@@ -60,7 +60,6 @@ func _build_frames() -> void:
 		frame_textures.append(atlas)
 
 func _set_frame(index: int) -> void:
-	print(name, " set frame ", index)
 	if icon == null:
 		return
 	if index < 0 or index >= frame_textures.size():
@@ -101,7 +100,6 @@ func _on_button_down_visual() -> void:
 		_set_frame(2)
 
 func _on_button_up_visual() -> void:
-	print(name, " button_up, toggle=", is_toggle_button)
 	_pressed_visual = false
 	_anim_version += 1
 	var this_anim := _anim_version

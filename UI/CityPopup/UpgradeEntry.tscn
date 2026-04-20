@@ -1,0 +1,124 @@
+[gd_scene format=3 uid="uid://decesgs53tg35"]
+
+[ext_resource type="Texture2D" uid="uid://dnrdkitcixph1" path="res://Sprites/Icons/goldincome.png" id="1_4qsl7"]
+[ext_resource type="StyleBox" uid="uid://bgfdynt76d0hn" path="res://UI/TextureBoxes/box1.tres" id="1_a3x1d"]
+[ext_resource type="FontFile" uid="uid://bcu7ufltrpbt2" path="res://UI/Fonts/CozetteVector.ttf" id="2_4o0mc"]
+[ext_resource type="StyleBox" uid="uid://dxk3y0fn7qtmg" path="res://UI/TextureBoxes/box2.tres" id="2_qghy0"]
+[ext_resource type="Script" uid="uid://d1xxwuiymll35" path="res://UI/CityPopup/UpgradeCounters.gd" id="3_svohy"]
+[ext_resource type="PackedScene" uid="uid://cgilpowmtbmlt" path="res://UI/Buttons/AnimatedButton.tscn" id="7_fx3yk"]
+[ext_resource type="Texture2D" uid="uid://d06kud6k1gml5" path="res://Sprites/UI/upgradesupscale.png" id="7_xs1ho"]
+[ext_resource type="Texture2D" uid="uid://ckfc10dxchy2q" path="res://Sprites/Buttons/upgradebtn.png" id="8_xs1ho"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fx3yk"]
+atlas = ExtResource("7_xs1ho")
+region = Rect2(0, 0, 96, 32)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4o0mc"]
+load_path = "res://.godot/imported/goldcost.png-5fe17258a2ac84bf5c0b822d56eacb04.ctex"
+
+[node name="UpgradeEntry" type="PanelContainer" unique_id=1685063693]
+custom_minimum_size = Vector2(100, 50)
+offset_right = 300.0
+offset_bottom = 72.0
+theme_override_styles/panel = ExtResource("1_a3x1d")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1396899202]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=989864540]
+layout_mode = 2
+
+[node name="IconCenter" type="CenterContainer" parent="MarginContainer/HBoxContainer" unique_id=977035850]
+layout_mode = 2
+
+[node name="IconFrame" type="PanelContainer" parent="MarginContainer/HBoxContainer/IconCenter" unique_id=756480537]
+custom_minimum_size = Vector2(48, 48)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_styles/panel = ExtResource("2_qghy0")
+
+[node name="UpgradeIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/IconCenter/IconFrame" unique_id=1704281931]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("1_4qsl7")
+stretch_mode = 5
+
+[node name="InfoColumn" type="VBoxContainer" parent="MarginContainer/HBoxContainer" unique_id=1988928404]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="UpgradeName" type="Label" parent="MarginContainer/HBoxContainer/InfoColumn" unique_id=835018477]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/font = ExtResource("2_4o0mc")
+text = "Gold Production"
+
+[node name="LevelRow" type="HBoxContainer" parent="MarginContainer/HBoxContainer/InfoColumn" unique_id=1493724764]
+layout_mode = 2
+
+[node name="UpgradeCounters" type="TextureRect" parent="MarginContainer/HBoxContainer/InfoColumn/LevelRow" unique_id=2001674113]
+custom_minimum_size = Vector2(96, 32)
+layout_mode = 2
+texture = SubResource("AtlasTexture_fx3yk")
+script = ExtResource("3_svohy")
+sprite_sheet = ExtResource("7_xs1ho")
+frame_width = 96
+frame_height = 32
+
+[node name="LevelLabel" type="Label" parent="MarginContainer/HBoxContainer/InfoColumn/LevelRow" unique_id=205077364]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("2_4o0mc")
+text = "Lv. 0/3"
+
+[node name="RightColumnCenter" type="CenterContainer" parent="MarginContainer/HBoxContainer" unique_id=1596212081]
+custom_minimum_size = Vector2(56, 0)
+layout_mode = 2
+
+[node name="RightColumn" type="VBoxContainer" parent="MarginContainer/HBoxContainer/RightColumnCenter" unique_id=2146526901]
+layout_mode = 2
+theme_override_constants/separation = 2
+
+[node name="ButtonCenter" type="CenterContainer" parent="MarginContainer/HBoxContainer/RightColumnCenter/RightColumn" unique_id=2059316284]
+layout_mode = 2
+
+[node name="UpgradeButton" parent="MarginContainer/HBoxContainer/RightColumnCenter/RightColumn/ButtonCenter" unique_id=1789498835 instance=ExtResource("7_fx3yk")]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+sprite_sheet = ExtResource("8_xs1ho")
+
+[node name="CostCenter" type="CenterContainer" parent="MarginContainer/HBoxContainer/RightColumnCenter/RightColumn" unique_id=1129312980]
+layout_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/RightColumnCenter/RightColumn/CostCenter" unique_id=461205606]
+layout_mode = 2
+theme_override_constants/margin_left = -2
+
+[node name="CostRow" type="HBoxContainer" parent="MarginContainer/HBoxContainer/RightColumnCenter/RightColumn/CostCenter/MarginContainer" unique_id=636607945]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="CostIcon" type="TextureRect" parent="MarginContainer/HBoxContainer/RightColumnCenter/RightColumn/CostCenter/MarginContainer/CostRow" unique_id=735771299]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = SubResource("CompressedTexture2D_4o0mc")
+
+[node name="CostLabel" type="Label" parent="MarginContainer/HBoxContainer/RightColumnCenter/RightColumn/CostCenter/MarginContainer/CostRow" unique_id=1492341859]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("2_4o0mc")
+text = "50"

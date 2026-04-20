@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://dualkekg2a52i"]
+
+[ext_resource type="StyleBox" uid="uid://dfr103i1er7gy" path="res://UI/TextureBoxes/box3.tres" id="1_asu5t"]
+[ext_resource type="FontFile" uid="uid://bcu7ufltrpbt2" path="res://UI/Fonts/CozetteVector.ttf" id="2_asu5t"]
+[ext_resource type="Texture2D" uid="uid://c7ur3l1mtt2p6" path="res://Sprites/Icons/troopicon.png" id="2_q8agv"]
+
+[node name="ProductionCard" type="PanelContainer" unique_id=87256683]
+theme_override_styles/panel = ExtResource("1_asu5t")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1751911077]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer" unique_id=822856236]
+layout_mode = 2
+
+[node name="Icon" type="TextureRect" parent="MarginContainer/HBoxContainer" unique_id=1221762060]
+layout_mode = 2
+texture = ExtResource("2_q8agv")
+
+[node name="StatValue" type="Label" parent="MarginContainer/HBoxContainer" unique_id=842851430]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = ExtResource("2_asu5t")
+text = "3/sec"

@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var sprite: Sprite2D = $Sprite2D
+@onready var selection_ring: Sprite2D = $"../SelectionRing"
 
 @export var base_scale: Vector2 = Vector2.ONE
 @export var selected_scale_multiplier: float = 1.1
@@ -29,11 +30,8 @@ func set_faction(owner: int) -> void:
 			sprite.modulate = neutral_color
 
 func set_selected(selected: bool) -> void:
-	if selected:
-		scale = base_scale * selected_scale_multiplier
-	else:
-		scale = base_scale
-
+	selection_ring.visible = selected
+	
 func get_radius() -> float:
 	if sprite == null or sprite.texture == null:
 		return 24.0
