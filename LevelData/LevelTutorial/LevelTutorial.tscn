@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://fjocmlsendv0"]
+
+[ext_resource type="Script" uid="uid://gg5n373km41c" path="res://World/GraphMap.gd" id="1_25rhf"]
+[ext_resource type="Resource" uid="uid://bnchy0vmiodna" path="res://LevelData/LevelTutorial/LevelTutorial.tres" id="2_ngw0u"]
+[ext_resource type="PackedScene" uid="uid://c6y25y4mso78f" path="res://World/City/City.tscn" id="3_g0h1k"]
+[ext_resource type="PackedScene" uid="uid://dxlka5t413n17" path="res://World/Unit/Unit.tscn" id="4_xo20b"]
+[ext_resource type="PackedScene" path="res://World/Battle/Battle.tscn" id="5_qgwbg"]
+[ext_resource type="Script" uid="uid://wgxhpu50vd70" path="res://World/Road/RoadLayer.gd" id="6_sognh"]
+[ext_resource type="Texture2D" uid="uid://b66pgqhyh15q8" path="res://Sprites/Tiles/road1.png" id="7_1tmlw"]
+
+[node name="LevelRoot" type="Node" unique_id=290238562]
+
+[node name="Background" type="Node2D" parent="." unique_id=338552951]
+
+[node name="GraphMap" type="Node2D" parent="." unique_id=804803343]
+script = ExtResource("1_25rhf")
+level_data = ExtResource("2_ngw0u")
+city_scene = ExtResource("3_g0h1k")
+unit_scene = ExtResource("4_xo20b")
+battle_scene = ExtResource("5_qgwbg")
+
+[node name="RoadLayer" type="Node2D" parent="GraphMap" unique_id=2027579917]
+script = ExtResource("6_sognh")
+road_textures = Array[Texture2D]([ExtResource("7_1tmlw")])
+
+[node name="Cities" type="Node2D" parent="GraphMap" unique_id=1260987525]

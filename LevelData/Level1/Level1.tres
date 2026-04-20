@@ -15,21 +15,21 @@ army = 40
 script = ExtResource("1_1vilc")
 id = 15
 city_name = "City 15"
-hex_coord = Vector2(-2, -3)
+hex_coord = Vector2(-2, -2)
 army = 30
 
 [sub_resource type="Resource" id="Resource_4f5fc"]
 script = ExtResource("1_1vilc")
 id = 16
 city_name = "City 16"
-hex_coord = Vector2(2, -5)
+hex_coord = Vector2(2, -4)
 army = 30
 
 [sub_resource type="Resource" id="Resource_pakdq"]
 script = ExtResource("1_1vilc")
 id = 17
 city_name = "City 17"
-hex_coord = Vector2(0, -5)
+hex_coord = Vector2(0, -4)
 owner = 2
 army = 20
 
@@ -37,7 +37,7 @@ army = 20
 script = ExtResource("1_1vilc")
 id = 18
 city_name = "City 18"
-hex_coord = Vector2(-1, -6)
+hex_coord = Vector2(-1, -4)
 owner = 2
 army = 20
 
@@ -45,7 +45,7 @@ army = 20
 script = ExtResource("1_1vilc")
 id = 19
 city_name = "City 19"
-hex_coord = Vector2(1, -7)
+hex_coord = Vector2(1, -5)
 owner = 2
 army = 20
 

@@ -55,7 +55,7 @@ alignment = 1
 [node name="Title" type="Label" parent="MarginContainer/VBoxContainer/HeaderBox" unique_id=897755162]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.98, 0.92, 0.75, 1)
-theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.9)
+theme_override_colors/font_shadow_color = Color(0.7628387, 0.56610894, 0.23692861, 0.9019608)
 theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 theme_override_font_sizes/font_size = 74
