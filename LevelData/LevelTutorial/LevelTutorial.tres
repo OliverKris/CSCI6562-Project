@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="LevelData" format=3 uid="uid://bnchy0vmiodna"]
 
-[ext_resource type="Script" uid="uid://cddklyu2i23sm" path="res://World/City/CitySpawnData.gd" id="1_xtv5y"]
+[ext_resource type="Script" uid="uid://c6n4wkaugoykw" path="res://World/City/CitySpawnData.gd" id="1_xtv5y"]
 [ext_resource type="Script" uid="uid://l0fu2w2xmlpv" path="res://World/Road/RoadData.gd" id="2_wom55"]
 [ext_resource type="Script" uid="uid://d1tdep0ttg4im" path="res://LevelData/LevelData.gd" id="3_owltd"]
 

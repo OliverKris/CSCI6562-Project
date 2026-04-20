@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://fjocmlsendv0"]
 
-[ext_resource type="Script" uid="uid://gg5n373km41c" path="res://World/GraphMap.gd" id="1_25rhf"]
+[ext_resource type="Script" uid="uid://bw4s5xw2nv26k" path="res://LevelData/GraphMap.gd" id="1_25rhf"]
 [ext_resource type="Resource" uid="uid://bnchy0vmiodna" path="res://LevelData/LevelTutorial/LevelTutorial.tres" id="2_ngw0u"]
 [ext_resource type="PackedScene" uid="uid://c6y25y4mso78f" path="res://World/City/City.tscn" id="3_g0h1k"]
 [ext_resource type="PackedScene" uid="uid://dxlka5t413n17" path="res://World/Unit/Unit.tscn" id="4_xo20b"]

@@ -42,7 +42,7 @@ func _on_play() -> void:
 	if Engine.has_singleton("LevelSelection"):
 		LevelSelection.selected_level = chosen_index
 
-	get_tree().change_scene_to_file("res://Game.tscn")
+	await CustomSceneTransition.change_scene("res://Game.tscn")
 
 func _on_tutorial() -> void:
 	get_tree().change_scene_to_file("res://UI/Tutorial.tscn")

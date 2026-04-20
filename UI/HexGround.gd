@@ -4,7 +4,7 @@ extends Node2D
 @export var extra_hex_padding := 1
 @export var base_radius := 7
 
-@export var sprite_y_offset := 4.0
+@export var sprite_y_offset := 0
 
 const HEX_SIZE := 64.0
 

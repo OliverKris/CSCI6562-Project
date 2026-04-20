@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://b4vh0ndfpumtb"]
+
+[ext_resource type="StyleBox" uid="uid://bppsn3vxx447e" path="res://UI/TextureBoxes/popup.tres" id="1_2yayu"]
+
+[node name="Popup" type="PanelContainer" unique_id=2103855770]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("1_2yayu")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=962701927]
+layout_mode = 2
+
+[node name="Text" type="Label" parent="." unique_id=1306637236]
+layout_mode = 2
