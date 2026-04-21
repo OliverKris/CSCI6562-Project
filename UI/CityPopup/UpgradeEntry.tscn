@@ -4,12 +4,13 @@
 [ext_resource type="StyleBox" uid="uid://bgfdynt76d0hn" path="res://UI/TextureBoxes/box1.tres" id="1_a3x1d"]
 [ext_resource type="FontFile" uid="uid://bcu7ufltrpbt2" path="res://UI/Fonts/CozetteVector.ttf" id="2_4o0mc"]
 [ext_resource type="StyleBox" uid="uid://dxk3y0fn7qtmg" path="res://UI/TextureBoxes/box2.tres" id="2_qghy0"]
-[ext_resource type="Script" uid="uid://d1xxwuiymll35" path="res://UI/CityPopup/UpgradeCounters.gd" id="3_svohy"]
+[ext_resource type="Script" uid="uid://dibjyjpul3tlp" path="res://UI/CityPopup/UpgradeCounters.gd" id="3_svohy"]
 [ext_resource type="PackedScene" uid="uid://cgilpowmtbmlt" path="res://UI/Buttons/AnimatedButton.tscn" id="7_fx3yk"]
 [ext_resource type="Texture2D" uid="uid://d06kud6k1gml5" path="res://Sprites/UI/upgradesupscale.png" id="7_xs1ho"]
 [ext_resource type="Texture2D" uid="uid://ckfc10dxchy2q" path="res://Sprites/Buttons/upgradebtn.png" id="8_xs1ho"]
+[ext_resource type="AudioStream" uid="uid://dra0vc0humpfx" path="res://Audio/SFX/HoverSound2.wav" id="9_xs1ho"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_fx3yk"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxtiy"]
 atlas = ExtResource("7_xs1ho")
 region = Rect2(0, 0, 96, 32)
 
@@ -65,7 +66,7 @@ layout_mode = 2
 [node name="UpgradeCounters" type="TextureRect" parent="MarginContainer/HBoxContainer/InfoColumn/LevelRow" unique_id=2001674113]
 custom_minimum_size = Vector2(96, 32)
 layout_mode = 2
-texture = SubResource("AtlasTexture_fx3yk")
+texture = SubResource("AtlasTexture_mxtiy")
 script = ExtResource("3_svohy")
 sprite_sheet = ExtResource("7_xs1ho")
 frame_width = 96
@@ -95,6 +96,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 sprite_sheet = ExtResource("8_xs1ho")
+hover_sound = ExtResource("9_xs1ho")
 
 [node name="CostCenter" type="CenterContainer" parent="MarginContainer/HBoxContainer/RightColumnCenter/RightColumn" unique_id=1129312980]
 layout_mode = 2

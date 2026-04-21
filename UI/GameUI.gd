@@ -265,12 +265,19 @@ func on_city_selected(city: City) -> void:
 	var previous_city := _selected_city
 	_selected_city = city
 	if city == null:
+		if previous_city != null:
+			AudioManager.play_city_deselect()
 		_hide_side_panel()
 		return
 	if previous_city == null or not _side_panel_visible:
+		AudioManager.play_city_select()
 		_refresh_selected_city_ui()
 		_show_side_panel()
 		return
+		
+	if previous_city != null:
+		AudioManager.play_city_select()
+	
 	_refresh_selected_city_ui()
 
 func refresh_selected_city() -> void: _refresh_selected_city_ui()
@@ -380,6 +387,23 @@ func _get_troop_icon_index(troop_amount: int) -> int:
 		return 2
 	return 3
 
+func _refresh_speed_buttons() -> void:
+	if speed_slower_btn != null:
+		var can_slow := _speed_index > 0
+		if speed_slower_btn.has_method("set_disabled_visual"):
+			speed_slower_btn.set_disabled_visual(not can_slow)
+		else:
+			speed_slower_btn.disabled = not can_slow
+			speed_slower_btn.modulate = Color(1, 1, 1, 1) if can_slow else Color(0.5, 0.5, 0.5, 1)
+
+	if speed_faster_btn != null:
+		var can_speed := _speed_index < SPEEDS.size() - 1
+		if speed_faster_btn.has_method("set_disabled_visual"):
+			speed_faster_btn.set_disabled_visual(not can_speed)
+		else:
+			speed_faster_btn.disabled = not can_speed
+			speed_faster_btn.modulate = Color(1, 1, 1, 1) if can_speed else Color(0.5, 0.5, 0.5, 1)
+
 # =========================================================
 # SIDE PANEL / UPGRADES (Logic)
 # =========================================================
@@ -461,8 +485,10 @@ func _set_upgrade_entry(entry_root: Control, name_label: Label, level_label: Lab
 		else: cost_label.modulate = Color(1, 0.35, 0.35, 1.0)
 	if button != null:
 		var locked := maxed or not can_afford
-		button.disabled = locked
-		button.modulate = Color(0.5, 0.5, 0.5, 1.0) if locked else Color(1, 1, 1, 1)
+		if button.has_method("set_disabled_visual"):
+			button.set_disabled_visual(locked)
+		else:
+			button.disabled = locked
 
 func _set_production_card(card_root: Control, icon_node: TextureRect, value_label: Label, visible: bool, icon_texture: Texture2D, value_text: String) -> void:
 	if card_root != null: card_root.visible = visible
@@ -546,16 +572,27 @@ func _on_upgrade_defense() -> void:
 func _apply_speed_index() -> void:
 	var speed_value: float = SPEEDS[_speed_index]
 	var speed_text: String = SPEED_LABELS[_speed_index]
+
 	CycleClock.set_speed(speed_value)
-	if speed_label != null: speed_label.text = speed_text
+
+	if speed_label != null:
+		speed_label.text = speed_text
+
+	_refresh_speed_buttons()
 
 func _on_speed_slower() -> void:
-	_speed_index = max(_speed_index - 1, 0)
+	if _speed_index <= 0:
+		return
+
+	_speed_index -= 1
 	_apply_speed_index()
 	speed_interacted.emit()
 
 func _on_speed_faster() -> void:
-	_speed_index = min(_speed_index + 1, SPEEDS.size() - 1)
+	if _speed_index >= SPEEDS.size() - 1:
+		return
+
+	_speed_index += 1
 	_apply_speed_index()
 	speed_interacted.emit()
 

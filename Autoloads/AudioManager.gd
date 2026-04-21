@@ -2,6 +2,7 @@ extends Node
 
 var default_hover_sound: AudioStream = preload("res://Audio/SFX/HoverSound.wav")
 var default_click_sound: AudioStream = preload("res://Audio/SFX/SelectSound.wav")
+var greyed_out_sfx: AudioStream = preload("res://Audio/SFX/GreyedOut.wav")
 
 var main_menu_music: AudioStream = preload("res://Audio/Music/MainMenu.wav")
 #var game_music: AudioStream = preload("res://Audio/Music/GameLoop.wav")
@@ -10,12 +11,17 @@ var main_menu_music: AudioStream = preload("res://Audio/Music/MainMenu.wav")
 var transition_out_sfx: AudioStream = preload("res://Audio/SFX/FadeOut.wav")
 var transition_in_sfx: AudioStream = preload("res://Audio/SFX/FadeIn.wav")
 
+var select_city_sfx: AudioStream = preload("res://Audio/SFX/SelectCity.wav")
+var deselect_city_sfx: AudioStream = preload("res://Audio/SFX/DeselectCity.wav")
+
 const POOL_SIZE := 8
 var _players: Array[AudioStreamPlayer] = []
 var _next_player := 0
 
 var _music_player: AudioStreamPlayer
 var _current_music: AudioStream = null
+
+const SPEEDS: Array = [0.5, 1.0, 2.0, 4.0]
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS
@@ -34,7 +40,7 @@ func _ready() -> void:
 	_music_player.process_mode = Node.PROCESS_MODE_ALWAYS
 	add_child(_music_player)
 
-func _play_sound(stream: AudioStream, volume_db: float = 0.0) -> void:
+func _play_sound(stream: AudioStream, volume_db: float = 0.0, pitch_scale: float = 1.0) -> void:
 	if stream == null:
 		return
 
@@ -44,13 +50,14 @@ func _play_sound(stream: AudioStream, volume_db: float = 0.0) -> void:
 	player.stop()
 	player.stream = stream
 	player.volume_db = volume_db
+	player.pitch_scale = pitch_scale
 	player.play()
 
-func play_hover(sound: AudioStream = null) -> void:
-	_play_sound(sound if sound != null else default_hover_sound, 8.0)
+func play_hover(sound: AudioStream = null, volume_db: float = 8.0, pitch_scale: float = 1.0) -> void:
+	_play_sound(sound if sound != null else default_hover_sound, volume_db, pitch_scale)
 
-func play_click(sound: AudioStream = null) -> void:
-	_play_sound(sound if sound != null else default_click_sound, 8.0)
+func play_click(sound: AudioStream = null, volume_db: float = 8.0, pitch_scale: float = 1.0) -> void:
+	_play_sound(sound if sound != null else default_click_sound, volume_db, pitch_scale)
 
 func play_music(stream: AudioStream, volume_db: float = 0.0, restart_if_same: bool = false) -> void:
 	if stream == null:
@@ -92,11 +99,20 @@ func set_sfx_volume(linear_value: float) -> void:
 	else:
 		AudioServer.set_bus_volume_db(bus_index, linear_to_db(linear_value))
 
+func play_greyed_out() -> void:
+	_play_sound(greyed_out_sfx, 0.0)
+
 func play_transition_out() -> void:
 	_play_sound(transition_out_sfx, 0.0)
 
 func play_transition_in() -> void:
 	_play_sound(transition_in_sfx, 0.0)
+
+func play_city_select() -> void:
+	_play_sound(select_city_sfx, 0.0)
+
+func play_city_deselect() -> void:
+	_play_sound(deselect_city_sfx, 0.0)
 
 func _on_music_slider_changed(value: float) -> void:
 	var bus_index := AudioServer.get_bus_index("Music")

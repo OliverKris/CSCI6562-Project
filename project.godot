@@ -14,6 +14,10 @@ config/name="CSCI6562Project"
 run/main_scene="res://UI/MainMenu/MainMenu.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
+[audio]
+
+buses/default_bus_layout="uid://bwam6c5m7j3nx"
+
 [autoload]
 
 CycleClock="*res://Autoloads/CycleClock.gd"

@@ -19,6 +19,12 @@ signal activated
 @export var hover_brightness: float = 1.18
 @export var hover_time: float = 0.04
 
+@export var hover_sound: AudioStream
+@export var click_sound: AudioStream
+
+@export var disabled_modulate: Color = Color(0.5, 0.5, 0.5, 1.0)
+@export var play_blocked_sound_when_disabled: bool = true
+
 var _is_hovered: bool = false
 var _hover_tween: Tween
 
@@ -89,6 +95,13 @@ func _set_frame(index: int) -> void:
 	icon.flip_h = flipped
 
 func _apply_current_visual() -> void:
+	if disabled:
+		_set_frame(0)
+		_is_hovered = false
+		if icon != null:
+			icon.modulate = disabled_modulate
+		return
+
 	if _pressed_visual:
 		_set_frame(2)
 	elif _toggled_on:
@@ -137,10 +150,12 @@ func _on_button_up_visual() -> void:
 	_apply_current_visual()
 
 func _on_hover_sound() -> void:
-	AudioManager.play_hover()
+	if disabled:
+		return
+	AudioManager.play_hover(hover_sound)
 
 func _on_pressed_action() -> void:
-	AudioManager.play_click()
+	AudioManager.play_click(click_sound)
 	
 	_anim_version += 1
 	var this_anim := _anim_version
@@ -177,6 +192,11 @@ func is_toggled_on() -> bool:
 	return _toggled_on
 	
 func _on_mouse_entered() -> void:
+	if disabled:
+		_is_hovered = false
+		_apply_hover_visual()
+		return
+
 	_is_hovered = true
 	_apply_hover_visual()
 
@@ -195,7 +215,28 @@ func _apply_hover_visual() -> void:
 
 	var target_color := Color(1, 1, 1, 1)
 
-	if _is_hovered:
+	if disabled:
+		target_color = disabled_modulate
+	elif _is_hovered:
 		target_color = Color(hover_brightness, hover_brightness, hover_brightness, 1)
 
 	_hover_tween.tween_property(icon, "modulate", target_color, hover_time)
+	
+func set_disabled_visual(value: bool) -> void:
+	disabled = value
+	_pressed_visual = false
+	_is_hovered = false
+	_apply_current_visual()
+
+func _gui_input(event: InputEvent) -> void:
+	if not disabled:
+		return
+
+	if not play_blocked_sound_when_disabled:
+		return
+
+	if event is InputEventMouseButton \
+	and event.button_index == MOUSE_BUTTON_LEFT \
+	and event.pressed:
+		AudioManager.play_greyed_out()
+		accept_event()
