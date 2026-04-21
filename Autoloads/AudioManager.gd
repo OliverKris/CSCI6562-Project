@@ -21,6 +21,9 @@ var attack_sfx: AudioStream = preload("res://Audio/SFX/Attack.wav")
 
 var death_sfx: AudioStream = preload("res://Audio/SFX/UnitDeath.wav")
 
+var victory: AudioStream = preload("res://Audio/SFX/Victory.wav")
+var defeat: AudioStream = preload("res://Audio/SFX/Defeat.wav")
+
 const POOL_SIZE := 8
 var _players: Array[AudioStreamPlayer] = []
 var _next_player := 0
@@ -98,6 +101,12 @@ func play_main_menu_music() -> void:
 #
 #func play_tutorial_music() -> void:
 	#play_music(tutorial_music, -8.0)
+
+func play_victory() -> void:
+	_play_sound(victory, 0.0)
+
+func play_defeat() -> void:
+	_play_sound(defeat, 0.0)
 
 func set_music_volume(linear_value: float) -> void:
 	var bus_index := AudioServer.get_bus_index("Music")

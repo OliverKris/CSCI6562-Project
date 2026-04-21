@@ -819,5 +819,12 @@ func _on_main_menu() -> void:
 	CustomSceneTransition.change_scene("res://UI/LevelSelect/LevelSelect.tscn")
 
 func show_game_over(player_won: bool) -> void:
-	if game_over_panel != null: game_over_panel.visible = true
-	if game_over_label != null: game_over_label.text = "Victory!" if player_won else "Defeated!"
+	if game_over_panel != null: 
+		game_over_panel.visible = true
+	if game_over_label != null: 
+		if player_won:	
+			game_over_label.text = "Victory!" 
+			AudioManager.play_victory()
+		else: 
+			game_over_label.text = "Defeated!"
+			AudioManager.play_defeat()
