@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://bradj8vqf4k6c" path="res://Sprites/Buttons/tutorialbtn.png" id="6_w5vcv"]
 [ext_resource type="Texture2D" uid="uid://dbddjnn00gqud" path="res://Sprites/Buttons/quitbtn.png" id="7_d2d4f"]
 [ext_resource type="StyleBox" uid="uid://cmbshw3lygs34" path="res://UI/TextureBoxes/uiboarder.tres" id="9_jhcbk"]
+[ext_resource type="AudioStream" uid="uid://dovnfagfm3fyv" path="res://Audio/Music/MainMenu.wav" id="10_32jca"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_scroll"]
 shader = ExtResource("3_shader")
@@ -146,3 +147,7 @@ layout_mode = 2
 
 [node name="Quit" parent="Confirmation/VBoxContainer" unique_id=856657525 instance=ExtResource("4_obtq6")]
 layout_mode = 2
+
+[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="." unique_id=1900898267]
+stream = ExtResource("10_32jca")
+autoplay = true
