@@ -25,9 +25,25 @@ signal arrived(unit: Unit, target_city: City)
 @export var death_frames: int = 4
 @export var death_fps: float = 10.0
 
-@export var player_tint: Color = Color(0.2, 0.7, 1.0)
-@export var enemy_tint: Color = Color(1.0, 0.3, 0.3)
-@export var neutral_tint: Color = Color(0.7, 0.7, 0.7)
+@export var player_tints: Array[Color] = [
+	Color("2aa8e0"), # base blue
+	Color("1f90c4"), # slightly darker
+	Color("4fc2ee")  # slightly lighter
+]
+
+@export var enemy_tints: Array[Color] = [
+	Color("e24a4a"), # base red
+	Color("c23a3a"), # slightly darker
+	Color("f06a6a")  # slightly lighter
+]
+
+@export var neutral_tints: Array[Color] = [
+	Color("7a7f87"), # base gray
+	Color("656a72"), # darker gray
+	Color("9aa0a8")  # lighter gray
+]
+
+var _chosen_tint: Color = Color.WHITE
 
 @export var sprite_faces_right: bool = true
 @export var death_hold_time: float = 1.0
@@ -74,6 +90,7 @@ var _field_battle_opponent: Unit = null
 var _is_battle_manager: bool = false
 
 func _ready() -> void:
+	randomize()
 	area_entered.connect(_on_area_entered)
 	_build_animation_frames()
 
@@ -90,6 +107,8 @@ func setup(from_city: City, to_city: City, road_data: RoadData, send_amount: int
 	road = road_data
 	amount = send_amount
 	unit_owner = faction_owner
+	
+	_chosen_tint = _pick_unit_tint()
 
 	var dir: Vector2 = (to_city.global_position - from_city.global_position).normalized()
 	_start_pos = from_city.global_position + dir * from_city.get_radius()
@@ -107,6 +126,22 @@ func setup(from_city: City, to_city: City, road_data: RoadData, send_amount: int
 
 	var computed_time: float = (dist / pixels_per_road_unit) * road_len
 	_travel_time = max(computed_time, 0.05)
+
+func _pick_unit_tint() -> Color:
+	var palette: Array[Color] = neutral_tints
+
+	match unit_owner:
+		1:
+			palette = player_tints
+		2:
+			palette = enemy_tints
+		_:
+			palette = neutral_tints
+
+	if palette.is_empty():
+		return Color.WHITE
+
+	return palette[randi() % palette.size()]
 
 func _build_animation_frames() -> void:
 	_walk_frame_textures.clear()
@@ -141,17 +176,11 @@ func _build_frame_range(start_index: int, count: int) -> Array[AtlasTexture]:
 	return result
 
 func _apply_owner_visuals() -> void:
-	var tint := neutral_tint
-	match unit_owner:
-		1:
-			tint = player_tint
-		2:
-			tint = enemy_tint
-		_:
-			tint = neutral_tint
+	if _chosen_tint == Color.WHITE:
+		_chosen_tint = _pick_unit_tint()
 
 	if sprite != null:
-		sprite.modulate = tint
+		sprite.modulate = _chosen_tint
 
 func _update_label() -> void:
 	if label == null:

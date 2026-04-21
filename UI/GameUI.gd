@@ -34,6 +34,9 @@ const GOLD_ICON_SIZE := Vector2i(32, 32)
 const TROOP_ICON_COUNT := 4
 const TROOP_ICON_SIZE := Vector2i(32, 32)
 
+const BALANCE_ICON_COUNT := 5
+const BALANCE_ICON_SIZE := Vector2i(32, 32)
+
 # ---------------------------------------------------------
 # Top Bar
 # ---------------------------------------------------------
@@ -42,12 +45,17 @@ const TROOP_ICON_SIZE := Vector2i(32, 32)
 @onready var gold_icon: TextureRect = $TopLeftGroup/Control/TopBar/HBoxContainer/GoldContainer/IconPanel/GoldIcon
 @onready var troops_label: Label = $TopLeftGroup/Control/TopBar/HBoxContainer/TroopContainer/Troops
 @onready var troop_icon: TextureRect = $TopLeftGroup/Control/TopBar/HBoxContainer/TroopContainer/IconPanel/TroopIcon
+@onready var balance_label: Label = $TopLeftGroup/Control/TopBar/HBoxContainer/CityContainer/City
+@onready var balance_icon: TextureRect = $TopLeftGroup/Control/TopBar/HBoxContainer/CityContainer/CityPanel/CityIcon
 
 @export var gold_icon_sheet: Texture2D
 var _gold_icon_frames: Array[AtlasTexture] = []
 
 @export var troop_icon_sheet: Texture2D
 var _troop_icon_frames: Array[AtlasTexture] = []
+
+@export var balance_icon_sheet: Texture2D
+var _balance_icon_frames: Array[AtlasTexture] = []
 
 # ---------------------------------------------------------
 # Timer / Pause
@@ -165,6 +173,7 @@ func _ready() -> void:
 	_setup_panels()
 	_setup_gold_icons()
 	_setup_troop_icons()
+	_setup_balance_icons()
 	_setup_slider()
 	_setup_volume_sliders()
 	_connect_buttons()
@@ -199,6 +208,19 @@ func _setup_troop_icons() -> void:
 		atlas.atlas = troop_icon_sheet
 		atlas.region = Rect2(i * TROOP_ICON_SIZE.x, 0, TROOP_ICON_SIZE.x, TROOP_ICON_SIZE.y)
 		_troop_icon_frames.append(atlas)
+
+func _setup_balance_icons() -> void:
+	_balance_icon_frames.clear()
+
+	if balance_icon_sheet == null:
+		push_error("No balance_icon_sheet assigned.")
+		return
+
+	for i in range(BALANCE_ICON_COUNT):
+		var atlas := AtlasTexture.new()
+		atlas.atlas = balance_icon_sheet
+		atlas.region = Rect2(i * BALANCE_ICON_SIZE.x, 0, BALANCE_ICON_SIZE.x, BALANCE_ICON_SIZE.y)
+		_balance_icon_frames.append(atlas)
 
 func _setup_slider() -> void:
 	if send_slider == null: return
@@ -326,13 +348,15 @@ func _refresh_tick_label() -> void:
 	if tick_number != null: tick_number.text = "Tick %d" % current_tick
 
 func _refresh_top_bar() -> void:
-	if graph_map == null: return
+	if graph_map == null:
+		return
+
 	var totals := _calculate_player_totals()
-	
+
 	if totals.city_count != _last_city_count:
 		_last_city_count = totals.city_count
 		player_city_count_changed.emit(_last_city_count)
-	
+
 	var gold_amount := FactionState.get_gold(1) if FactionState != null else 0.0
 
 	troops_label.text = "Troops: %d (+%d)" % [totals.troops, totals.troop_rate]
@@ -340,18 +364,41 @@ func _refresh_top_bar() -> void:
 	if troop_icon != null and _troop_icon_frames.size() == TROOP_ICON_COUNT:
 		troop_icon.texture = _troop_icon_frames[_get_troop_icon_index(totals.troops)]
 
+	if balance_icon != null and _balance_icon_frames.size() == BALANCE_ICON_COUNT:
+		var balance_idx := _get_balance_icon_index(totals.city_count, totals.total_city_count)
+		balance_icon.texture = _balance_icon_frames[balance_idx]
+
+	if balance_label != null:
+		balance_label.text = "%d / %d" % [totals.city_count, totals.total_city_count]
+
 	_update_gold_display(gold_amount, totals.gold_rate)
 
 func _calculate_player_totals() -> Dictionary:
-	var result := {"troops": 0, "troop_rate": 0, "gold_rate": 0, "city_count": 0}
-	if graph_map == null: return result
+	var result := {
+		"troops": 0,
+		"troop_rate": 0,
+		"gold_rate": 0,
+		"city_count": 0,
+		"total_city_count": 0
+	}
+
+	if graph_map == null:
+		return result
+
 	for city in graph_map.get_all_cities():
-		if city == null or city.data == null: continue
-		if city.data.owner != 1: continue
+		if city == null or city.data == null:
+			continue
+
+		result.total_city_count += 1
+
+		if city.data.owner != 1:
+			continue
+
 		result.troops += city.data.army
 		result.troop_rate += city.data.production_per_cycle
 		result.gold_rate += city.data.gold_per_cycle
 		result.city_count += 1
+
 	return result
 
 func _update_gold_display_and_rate(amount: float) -> void:
@@ -390,6 +437,22 @@ func _get_troop_icon_index(troop_amount: int) -> int:
 	elif troop_amount < 200:
 		return 2
 	return 3
+	
+func _get_balance_icon_index(player_cities: int, total_cities: int) -> int:
+	if total_cities <= 0:
+		return 0
+
+	var ratio: float = float(player_cities) / float(total_cities)
+
+	if ratio < 0.2:
+		return 0
+	elif ratio < 0.4:
+		return 1
+	elif ratio < 0.6:
+		return 2
+	elif ratio < 0.8:
+		return 3
+	return 4
 
 func _refresh_speed_buttons() -> void:
 	if speed_slower_btn != null:

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cee1l7i5l0agi"]
 
-[ext_resource type="Script" uid="uid://7wdl4ddbnikn" path="res://UI/MainMenu/MainMenu.gd" id="1_menu"]
+[ext_resource type="Script" uid="uid://cy5ygs33yxgj0" path="res://UI/MainMenu/MainMenu.gd" id="1_menu"]
 [ext_resource type="Texture2D" uid="uid://gai5uej0tle" path="res://UI/BackgroundImages/cherry_blossom.jpg" id="3_jhcbk"]
 [ext_resource type="Shader" uid="uid://cwkuceblnxcsb" path="res://UI/bg_scroll.gdshader" id="3_shader"]
 [ext_resource type="PackedScene" uid="uid://cgilpowmtbmlt" path="res://UI/Buttons/AnimatedButton.tscn" id="4_obtq6"]

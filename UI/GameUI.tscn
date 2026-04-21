@@ -27,6 +27,7 @@
 [ext_resource type="Texture2D" uid="uid://bvds0f56p8mo5" path="res://Sprites/Icons/troopicons.png" id="16_s54qy"]
 [ext_resource type="Texture2D" uid="uid://c42drll8lcvfe" path="res://Sprites/UI/grabber.png" id="18_053ab"]
 [ext_resource type="Texture2D" uid="uid://blvdxfeivahn5" path="res://Sprites/Buttons/25btn.png" id="18_oqpj4"]
+[ext_resource type="Texture2D" uid="uid://bshak4dvv5vsm" path="res://Sprites/Icons/balance.png" id="18_yqbs8"]
 [ext_resource type="Texture2D" uid="uid://bshtj1fjw77ef" path="res://Sprites/UI/grabberselected.png" id="19_34hoh"]
 [ext_resource type="Texture2D" uid="uid://dek3u8kxjmo6i" path="res://Sprites/Buttons/50btn.png" id="19_053ab"]
 [ext_resource type="StyleBox" uid="uid://kjvtabc86745" path="res://UI/TextureBoxes/slider.tres" id="20_01n3j"]
@@ -121,6 +122,7 @@ mouse_filter = 2
 script = ExtResource("1_4itvn")
 gold_icon_sheet = ExtResource("3_7csst")
 troop_icon_sheet = ExtResource("16_s54qy")
+balance_icon_sheet = ExtResource("18_yqbs8")
 friendly_faction = ExtResource("7_mn42u")
 neutral_faction = ExtResource("4_f3wgw")
 enemy_faction = ExtResource("5_r0t6x")
@@ -236,9 +238,12 @@ layout_mode = 2
 
 [node name="CityPanel" type="PanelContainer" parent="TopLeftGroup/Control/TopBar/HBoxContainer/CityContainer" unique_id=239351158]
 layout_mode = 2
+theme_override_styles/panel = ExtResource("15_1g8ct")
 
-[node name="TextureRect" type="TextureRect" parent="TopLeftGroup/Control/TopBar/HBoxContainer/CityContainer/CityPanel" unique_id=1650586686]
+[node name="CityIcon" type="TextureRect" parent="TopLeftGroup/Control/TopBar/HBoxContainer/CityContainer/CityPanel" unique_id=1650586686]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+texture = ExtResource("18_yqbs8")
 
 [node name="City" type="Label" parent="TopLeftGroup/Control/TopBar/HBoxContainer/CityContainer" unique_id=94697885]
 layout_mode = 2

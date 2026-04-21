@@ -1,5 +1,4 @@
 [gd_scene format=3 uid="uid://dxnj71kb3tpa"]
-[gd_scene format=3 uid="uid://dxnj71kb3tpa"]
 
 [ext_resource type="Script" uid="uid://c07nii3hxpoc1" path="res://UI/LevelSelect/LevelSelect.gd" id="1_lsel"]
 [ext_resource type="Texture2D" uid="uid://gai5uej0tle" path="res://UI/BackgroundImages/cherry_blossom.jpg" id="3_fvgb5"]

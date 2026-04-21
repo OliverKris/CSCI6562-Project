@@ -6,32 +6,60 @@ extends Node2D
 @export var base_scale: Vector2 = Vector2.ONE
 @export var selected_scale_multiplier: float = 1.1
 
-@export var player_color: Color = Color(0.2, 0.7, 1.0, 1.0)
-@export var enemy_color: Color = Color(1.0, 0.3, 0.3, 1.0)
-@export var neutral_color: Color = Color(0.6, 0.6, 0.6, 1.0)
+@export var player_colors: Array[Color] = [
+	Color("2aa8e0"),
+	Color("1f90c4"),
+	Color("4fc2ee")
+]
+
+@export var enemy_colors: Array[Color] = [
+	Color("e24a4a"),
+	Color("c23a3a"),
+	Color("f06a6a")
+]
+
+@export var neutral_colors: Array[Color] = [
+	Color("7a7f87"),
+	Color("656a72"),
+	Color("9aa0a8")
+]
 
 var current_owner: int = 0
+var chosen_color: Color = Color.WHITE
 
 func _ready() -> void:
+	randomize()
 	scale = base_scale
 
 func set_faction(owner: int) -> void:
 	current_owner = owner
+	chosen_color = _pick_city_color(owner)
 
 	if sprite == null:
 		return
 
+	sprite.modulate = chosen_color
+
+func _pick_city_color(owner: int) -> Color:
+	var palette: Array[Color] = neutral_colors
+
 	match owner:
 		1:
-			sprite.modulate = player_color
+			palette = player_colors
 		2:
-			sprite.modulate = enemy_color
+			palette = enemy_colors
 		_:
-			sprite.modulate = neutral_color
+			palette = neutral_colors
+
+	if palette.is_empty():
+		return Color.WHITE
+
+	var idx : float = abs(name.hash()) % palette.size()
+	return palette[idx]
 
 func set_selected(selected: bool) -> void:
 	selection_ring.visible = selected
-	
+
 func get_radius() -> float:
 	if sprite == null or sprite.texture == null:
 		return 24.0
