@@ -10,7 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://ckfc10dxchy2q" path="res://Sprites/Buttons/upgradebtn.png" id="8_xs1ho"]
 [ext_resource type="AudioStream" uid="uid://dra0vc0humpfx" path="res://Audio/SFX/HoverSound2.wav" id="9_xs1ho"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_mxtiy"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_xs1ho"]
 atlas = ExtResource("7_xs1ho")
 region = Rect2(0, 0, 96, 32)
 
@@ -66,7 +66,7 @@ layout_mode = 2
 [node name="UpgradeCounters" type="TextureRect" parent="MarginContainer/HBoxContainer/InfoColumn/LevelRow" unique_id=2001674113]
 custom_minimum_size = Vector2(96, 32)
 layout_mode = 2
-texture = SubResource("AtlasTexture_mxtiy")
+texture = SubResource("AtlasTexture_xs1ho")
 script = ExtResource("3_svohy")
 sprite_sheet = ExtResource("7_xs1ho")
 frame_width = 96

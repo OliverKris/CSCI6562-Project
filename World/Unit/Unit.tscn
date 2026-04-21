@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bpf44xioabad4" path="res://World/Unit/Unit.gd" id="1_a3rga"]
 [ext_resource type="Texture2D" uid="uid://bn4slsg5fw623" path="res://Sprites/Unit/unit.png" id="2_weblr"]
+[ext_resource type="FontFile" uid="uid://bcu7ufltrpbt2" path="res://UI/Fonts/CozetteVector.ttf" id="3_bh8im"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_unit"]
 radius = 16.0
@@ -33,4 +34,5 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
 theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
 theme_override_constants/shadow_outline_size = 6
+theme_override_fonts/font = ExtResource("3_bh8im")
 horizontal_alignment = 1

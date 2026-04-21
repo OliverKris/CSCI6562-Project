@@ -67,6 +67,7 @@ var _troop_icon_frames: Array[AtlasTexture] = []
 @export var side_panel_slide_duration: float = 0.28
 @export var side_panel_hidden_margin: float = 24.0
 
+@onready var send_section: HBoxContainer = $SidePanel/VBoxContainer/SendSection
 @onready var send_slider: HSlider = $SidePanel/VBoxContainer/SendSection/MarginContainer/VBoxContainer/SendSlider
 @onready var send_percent: Label = $SidePanel/VBoxContainer/SendSection/MarginContainer/VBoxContainer/SendInfoRow/PercentLabel
 @onready var send_amount: Label = $SidePanel/VBoxContainer/SendSection/MarginContainer/VBoxContainer/SendInfoRow/TroopPreviewLabel
@@ -113,14 +114,17 @@ var _troop_icon_frames: Array[AtlasTexture] = []
 @onready var production_upgrade_name: Label = $SidePanel/VBoxContainer/UpgradeSection/ProductionUpgrade/MarginContainer/HBoxContainer/InfoColumn/UpgradeName
 @onready var production_upgrade_button: BaseButton = $SidePanel/VBoxContainer/UpgradeSection/ProductionUpgrade/MarginContainer/HBoxContainer/RightColumnCenter/RightColumn/ButtonCenter/UpgradeButton
 @onready var production_upgrade_cost: Label = $SidePanel/VBoxContainer/UpgradeSection/ProductionUpgrade/MarginContainer/HBoxContainer/RightColumnCenter/RightColumn/CostCenter/MarginContainer/CostRow/CostLabel
+@onready var production_upgrade_cost_icon: TextureRect = $SidePanel/VBoxContainer/UpgradeSection/ProductionUpgrade/MarginContainer/HBoxContainer/RightColumnCenter/RightColumn/CostCenter/MarginContainer/CostRow/CostIcon
 
 @onready var gold_upgrade_name: Label = $SidePanel/VBoxContainer/UpgradeSection/GoldUpgrade/MarginContainer/HBoxContainer/InfoColumn/UpgradeName
 @onready var gold_upgrade_button: BaseButton = $SidePanel/VBoxContainer/UpgradeSection/GoldUpgrade/MarginContainer/HBoxContainer/RightColumnCenter/RightColumn/ButtonCenter/UpgradeButton
 @onready var gold_upgrade_cost: Label = $SidePanel/VBoxContainer/UpgradeSection/GoldUpgrade/MarginContainer/HBoxContainer/RightColumnCenter/RightColumn/CostCenter/MarginContainer/CostRow/CostLabel
+@onready var gold_upgrade_cost_icon: TextureRect = $SidePanel/VBoxContainer/UpgradeSection/GoldUpgrade/MarginContainer/HBoxContainer/RightColumnCenter/RightColumn/CostCenter/MarginContainer/CostRow/CostIcon
 
 @onready var defense_upgrade_name: Label = $SidePanel/VBoxContainer/UpgradeSection/DefenseUpgrade/MarginContainer/HBoxContainer/InfoColumn/UpgradeName
 @onready var defense_upgrade_button: BaseButton = $SidePanel/VBoxContainer/UpgradeSection/DefenseUpgrade/MarginContainer/HBoxContainer/RightColumnCenter/RightColumn/ButtonCenter/UpgradeButton
 @onready var defense_upgrade_cost: Label = $SidePanel/VBoxContainer/UpgradeSection/DefenseUpgrade/MarginContainer/HBoxContainer/RightColumnCenter/RightColumn/CostCenter/MarginContainer/CostRow/CostLabel
+@onready var defense_upgrade_cost_icon: TextureRect = $SidePanel/VBoxContainer/UpgradeSection/DefenseUpgrade/MarginContainer/HBoxContainer/RightColumnCenter/RightColumn/CostCenter/MarginContainer/CostRow/CostIcon
 
 # Production Cards
 @export var current_troops_icon: Texture2D
@@ -450,15 +454,69 @@ func _refresh_production_cards(d: CityData) -> void:
 func _refresh_upgrade_entries(d: CityData, is_player_city: bool, pool: float) -> void:
 	var prod_cost := d.get_production_upgrade_cost()
 	var prod_maxed := d.production_level >= 3
-	_set_upgrade_entry(production_upgrade, production_upgrade_name, production_upgrade_level_label, production_upgrade_counters, production_upgrade_icon_node, production_upgrade_cost, production_upgrade_button, is_player_city, "Production", d.production_level, 3, production_upgrade_icon, prod_cost, prod_maxed, pool >= prod_cost)
-	
+	_set_upgrade_entry(
+		production_upgrade,
+		production_upgrade_name,
+		production_upgrade_level_label,
+		production_upgrade_counters,
+		production_upgrade_icon_node,
+		production_upgrade_cost,
+		production_upgrade_cost_icon,
+		production_upgrade_button,
+		true,
+		is_player_city,
+		"Production",
+		d.production_level,
+		3,
+		production_upgrade_icon,
+		prod_cost,
+		prod_maxed,
+		pool >= prod_cost
+	)
+
 	var gold_cost := d.get_gold_upgrade_cost()
 	var gold_maxed := d.gold_level >= 3
-	_set_upgrade_entry(gold_upgrade, gold_upgrade_name, gold_upgrade_level_label, gold_upgrade_counters, gold_upgrade_icon_node, gold_upgrade_cost, gold_upgrade_button, is_player_city, "Gold", d.gold_level, 3, gold_upgrade_icon, gold_cost, gold_maxed, pool >= gold_cost)
-	
+	_set_upgrade_entry(
+		gold_upgrade,
+		gold_upgrade_name,
+		gold_upgrade_level_label,
+		gold_upgrade_counters,
+		gold_upgrade_icon_node,
+		gold_upgrade_cost,
+		gold_upgrade_cost_icon,
+		gold_upgrade_button,
+		true,
+		is_player_city,
+		"Gold",
+		d.gold_level,
+		3,
+		gold_upgrade_icon,
+		gold_cost,
+		gold_maxed,
+		pool >= gold_cost
+	)
+
 	var def_cost := d.get_defense_upgrade_cost()
 	var def_maxed := d.defense_level >= 3
-	_set_upgrade_entry(defense_upgrade, defense_upgrade_name, defense_upgrade_level_label, defense_upgrade_counters, defense_upgrade_icon_node, defense_upgrade_cost, defense_upgrade_button, is_player_city, "Defense", d.defense_level, 3, defense_upgrade_icon, def_cost, def_maxed, pool >= def_cost)
+	_set_upgrade_entry(
+		defense_upgrade,
+		defense_upgrade_name,
+		defense_upgrade_level_label,
+		defense_upgrade_counters,
+		defense_upgrade_icon_node,
+		defense_upgrade_cost,
+		defense_upgrade_cost_icon,
+		defense_upgrade_button,
+		true,
+		is_player_city,
+		"Defense",
+		d.defense_level,
+		3,
+		defense_upgrade_icon,
+		def_cost,
+		def_maxed,
+		pool >= def_cost
+	)
 
 func _refresh_send_ui(d: CityData, is_player_city: bool) -> void:
 	if send_slider != null: send_slider.visible = is_player_city
@@ -471,19 +529,67 @@ func _update_send_preview(value: float, army_count: int) -> void:
 	if send_percent != null: send_percent.text = "%d%%" % int(value * 100)
 	if send_amount != null: send_amount.text = "(%d troops)" % int(army_count * value)
 
-func _set_upgrade_entry(entry_root: Control, name_label: Label, level_label: Label, counters_node, icon_node: TextureRect, cost_label: Label, button: BaseButton, visible: bool, upgrade_name: String, current_level: int, max_level: int, upgrade_icon: Texture2D, cost: int, maxed: bool, can_afford: bool) -> void:
-	if entry_root != null: entry_root.visible = visible
-	if not visible: return
-	if name_label != null: name_label.text = upgrade_name
-	if level_label != null: level_label.text = "Lv. %d/%d" % [current_level, max_level]
-	if counters_node != null: counters_node.current_level = current_level
-	if icon_node != null: icon_node.texture = upgrade_icon
+func _set_upgrade_entry(
+	entry_root: Control,
+	name_label: Label,
+	level_label: Label,
+	counters_node,
+	icon_node: TextureRect,
+	cost_label: Label,
+	cost_icon: TextureRect,
+	button: BaseButton,
+	visible: bool,
+	is_player_city: bool,
+	upgrade_name: String,
+	current_level: int,
+	max_level: int,
+	upgrade_icon: Texture2D,
+	cost: int,
+	maxed: bool,
+	can_afford: bool
+) -> void:
+	if entry_root != null:
+		entry_root.visible = visible
+	if not visible:
+		return
+
+	if name_label != null:
+		name_label.text = upgrade_name
+
+	if level_label != null:
+		level_label.text = "Lv. %d/%d" % [current_level, max_level]
+
+	if counters_node != null:
+		counters_node.current_level = current_level
+
+	if icon_node != null:
+		icon_node.texture = upgrade_icon
+
+	# Non-player city: show info only, hide action UI
+	if not is_player_city:
+		if cost_label != null:
+			cost_label.visible = false
+		if button != null:
+			button.visible = false
+		if cost_icon != null:
+			cost_icon.visible = false
+		if send_section != null:
+			send_section.visible = false
+		return
+
+	# Player city: show full upgrade controls
 	if cost_label != null:
+		cost_label.visible = true
 		cost_label.text = "MAX" if maxed else str(cost)
-		if maxed: cost_label.modulate = Color(0.7, 0.7, 0.7, 1.0)
-		elif can_afford: cost_label.modulate = Color(1, 1, 1, 1)
-		else: cost_label.modulate = Color(1, 0.35, 0.35, 1.0)
+		if maxed:
+			cost_label.modulate = Color(0.7, 0.7, 0.7, 1.0)
+		elif can_afford:
+			cost_label.modulate = Color(1, 1, 1, 1)
+		else:
+			cost_label.modulate = Color(1, 0.35, 0.35, 1.0)
+
 	if button != null:
+		button.visible = true
 		var locked := maxed or not can_afford
 		if button.has_method("set_disabled_visual"):
 			button.set_disabled_visual(locked)
