@@ -11,20 +11,6 @@ city_name = "City 14"
 hex_coord = Vector2(0, -2)
 army = 40
 
-[sub_resource type="Resource" id="Resource_5rm44"]
-script = ExtResource("1_1vilc")
-id = 15
-city_name = "City 15"
-hex_coord = Vector2(-2, -2)
-army = 30
-
-[sub_resource type="Resource" id="Resource_4f5fc"]
-script = ExtResource("1_1vilc")
-id = 16
-city_name = "City 16"
-hex_coord = Vector2(2, -4)
-army = 30
-
 [sub_resource type="Resource" id="Resource_pakdq"]
 script = ExtResource("1_1vilc")
 id = 17
@@ -32,43 +18,6 @@ city_name = "City 17"
 hex_coord = Vector2(0, -4)
 owner = 2
 army = 20
-
-[sub_resource type="Resource" id="Resource_2vnc8"]
-script = ExtResource("1_1vilc")
-id = 18
-city_name = "City 18"
-hex_coord = Vector2(-1, -4)
-owner = 2
-army = 20
-
-[sub_resource type="Resource" id="Resource_hwhky"]
-script = ExtResource("1_1vilc")
-id = 19
-city_name = "City 19"
-hex_coord = Vector2(1, -5)
-owner = 2
-army = 20
-
-[sub_resource type="Resource" id="Resource_1vilc"]
-script = ExtResource("1_1vilc")
-id = 20
-city_name = "City 20"
-owner = 1
-army = 20
-
-[sub_resource type="Resource" id="Resource_c2hq8"]
-script = ExtResource("1_1vilc")
-id = 21
-city_name = "City 21"
-hex_coord = Vector2(2, -2)
-army = 5
-
-[sub_resource type="Resource" id="Resource_r1a8r"]
-script = ExtResource("1_1vilc")
-id = 22
-city_name = "City 22"
-hex_coord = Vector2(-2, 0)
-army = 5
 
 [sub_resource type="Resource" id="Resource_50yqw"]
 script = ExtResource("1_1vilc")
@@ -84,89 +33,35 @@ city_name = "City 24"
 hex_coord = Vector2(2, 0)
 army = 5
 
-[sub_resource type="Resource" id="Resource_188ci"]
-script = ExtResource("2_ejs3y")
-a_id = 23
-b_id = 20
-length = 2.0
-
-[sub_resource type="Resource" id="Resource_mloj1"]
-script = ExtResource("2_ejs3y")
-a_id = 20
-b_id = 22
-length = 2.0
-
-[sub_resource type="Resource" id="Resource_tt3cl"]
-script = ExtResource("2_ejs3y")
-a_id = 22
-b_id = 23
-length = 2.0
-
-[sub_resource type="Resource" id="Resource_misd0"]
-script = ExtResource("2_ejs3y")
-a_id = 24
-b_id = 21
-length = 2.0
-
-[sub_resource type="Resource" id="Resource_tf7p8"]
-script = ExtResource("2_ejs3y")
-a_id = 21
-b_id = 20
-length = 2.0
-
-[sub_resource type="Resource" id="Resource_7iwmt"]
-script = ExtResource("2_ejs3y")
-a_id = 20
-b_id = 24
-length = 2.0
-
-[sub_resource type="Resource" id="Resource_77cn6"]
-script = ExtResource("2_ejs3y")
-a_id = 20
-b_id = 14
-length = 2.0
-
-[sub_resource type="Resource" id="Resource_4njwj"]
-script = ExtResource("2_ejs3y")
-a_id = 14
-b_id = 15
-length = 3.0
-
-[sub_resource type="Resource" id="Resource_l54bw"]
-script = ExtResource("2_ejs3y")
-a_id = 15
-b_id = 17
-length = 2.0
-
-[sub_resource type="Resource" id="Resource_lccsn"]
-script = ExtResource("2_ejs3y")
-a_id = 17
-b_id = 16
-length = 2.0
-
-[sub_resource type="Resource" id="Resource_kxfgi"]
-script = ExtResource("2_ejs3y")
-a_id = 16
-b_id = 14
-length = 3.0
+[sub_resource type="Resource" id="Resource_qdyl2"]
+script = ExtResource("1_1vilc")
+id = 25
+city_name = "City 25"
+hex_coord = Vector2(0, 2)
+owner = 1
+army = 20
 
 [sub_resource type="Resource" id="Resource_l3twp"]
-script = ExtResource("2_ejs3y")
-a_id = 17
-b_id = 18
-length = 2.0
+script = ExtResource("1_1vilc")
+id = 26
+city_name = "City 26"
+hex_coord = Vector2(-2, -4)
+owner = 2
+army = 20
 
 [sub_resource type="Resource" id="Resource_7yth2"]
-script = ExtResource("2_ejs3y")
-a_id = 18
-b_id = 19
-length = 2.0
+script = ExtResource("1_1vilc")
+id = 27
+city_name = "City 27"
+hex_coord = Vector2(2, -6)
+owner = 2
+army = 20
 
-[sub_resource type="Resource" id="Resource_racwc"]
-script = ExtResource("2_ejs3y")
-a_id = 19
-b_id = 17
-length = 2.0
+[sub_resource type="Resource" id="Resource_mloj1"]
+script = ExtResource("1_1vilc")
+id = 28
+city_name = "City 28"
+army = 20
 
 [sub_resource type="Resource" id="Resource_8lihp"]
 script = ExtResource("2_ejs3y")
@@ -174,20 +69,56 @@ a_id = 17
 b_id = 14
 length = 3.0
 
-[sub_resource type="Resource" id="Resource_nkgfk"]
+[sub_resource type="Resource" id="Resource_racwc"]
 script = ExtResource("2_ejs3y")
-a_id = 15
-b_id = 18
-length = 3.0
+a_id = 27
+b_id = 17
+length = 2.0
 
-[sub_resource type="Resource" id="Resource_wrjv3"]
+[sub_resource type="Resource" id="Resource_7nh4v"]
 script = ExtResource("2_ejs3y")
-a_id = 19
-b_id = 16
-length = 3.0
+a_id = 26
+b_id = 17
+length = 2.0
+
+[sub_resource type="Resource" id="Resource_ycutw"]
+script = ExtResource("2_ejs3y")
+a_id = 26
+b_id = 27
+length = 4.0
+
+[sub_resource type="Resource" id="Resource_bmeu3"]
+script = ExtResource("2_ejs3y")
+a_id = 25
+b_id = 23
+length = 2.0
+
+[sub_resource type="Resource" id="Resource_cb1lh"]
+script = ExtResource("2_ejs3y")
+a_id = 24
+b_id = 25
+length = 2.0
+
+[sub_resource type="Resource" id="Resource_tf7p8"]
+script = ExtResource("2_ejs3y")
+a_id = 24
+b_id = 28
+length = 2.0
+
+[sub_resource type="Resource" id="Resource_77cn6"]
+script = ExtResource("2_ejs3y")
+a_id = 28
+b_id = 14
+length = 2.0
+
+[sub_resource type="Resource" id="Resource_fqyhu"]
+script = ExtResource("2_ejs3y")
+a_id = 28
+b_id = 23
+length = 2.0
 
 [resource]
 script = ExtResource("3_r1a8r")
 level_name = "Level 1"
-cities = Array[ExtResource("1_1vilc")]([SubResource("Resource_wb36l"), SubResource("Resource_5rm44"), SubResource("Resource_4f5fc"), SubResource("Resource_pakdq"), SubResource("Resource_2vnc8"), SubResource("Resource_hwhky"), SubResource("Resource_1vilc"), SubResource("Resource_c2hq8"), SubResource("Resource_r1a8r"), SubResource("Resource_50yqw"), SubResource("Resource_ejs3y")])
-roads = Array[ExtResource("2_ejs3y")]([SubResource("Resource_188ci"), SubResource("Resource_mloj1"), SubResource("Resource_tt3cl"), SubResource("Resource_misd0"), SubResource("Resource_tf7p8"), SubResource("Resource_7iwmt"), SubResource("Resource_77cn6"), SubResource("Resource_4njwj"), SubResource("Resource_l54bw"), SubResource("Resource_lccsn"), SubResource("Resource_kxfgi"), SubResource("Resource_l3twp"), SubResource("Resource_7yth2"), SubResource("Resource_racwc"), SubResource("Resource_8lihp"), SubResource("Resource_nkgfk"), SubResource("Resource_wrjv3")])
+cities = Array[ExtResource("1_1vilc")]([SubResource("Resource_wb36l"), SubResource("Resource_pakdq"), SubResource("Resource_50yqw"), SubResource("Resource_ejs3y"), SubResource("Resource_qdyl2"), SubResource("Resource_l3twp"), SubResource("Resource_7yth2"), SubResource("Resource_mloj1")])
+roads = Array[ExtResource("2_ejs3y")]([SubResource("Resource_8lihp"), SubResource("Resource_racwc"), SubResource("Resource_7nh4v"), SubResource("Resource_ycutw"), SubResource("Resource_bmeu3"), SubResource("Resource_cb1lh"), SubResource("Resource_tf7p8"), SubResource("Resource_77cn6"), SubResource("Resource_fqyhu")])
