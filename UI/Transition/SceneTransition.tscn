@@ -10,6 +10,7 @@ shader_parameter/grid_cols = 40.0
 shader_parameter/cell_grow_portion = 0.18
 shader_parameter/random_delay_strength = 0.035
 shader_parameter/wipe_color = Color(0, 0, 0, 1)
+shader_parameter/revealing = false
 
 [node name="SceneTransition" type="CanvasLayer" unique_id=572253420]
 layer = 10

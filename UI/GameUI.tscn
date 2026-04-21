@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://uyvmyacuhary"]
 
-[ext_resource type="Script" uid="uid://3q4i6y64d37r" path="res://UI/GameUI.gd" id="1_4itvn"]
+[ext_resource type="Script" uid="uid://ova1q1l2c0cl" path="res://UI/GameUI.gd" id="1_4itvn"]
 [ext_resource type="StyleBox" uid="uid://cmbshw3lygs34" path="res://UI/TextureBoxes/uiboarder.tres" id="2_lwtm8"]
 [ext_resource type="Texture2D" uid="uid://jssx2w6gpi5q" path="res://Sprites/Icons/unitproduction.png" id="3_6daxq"]
 [ext_resource type="Texture2D" uid="uid://22ai8w25kqaw" path="res://UI/IconMaps/goldicons2.tres" id="3_7csst"]
@@ -32,7 +32,10 @@
 [ext_resource type="StyleBox" uid="uid://kjvtabc86745" path="res://UI/TextureBoxes/slider.tres" id="20_01n3j"]
 [ext_resource type="Texture2D" uid="uid://chpbfnmufjb67" path="res://Sprites/Buttons/75btn.png" id="20_34hoh"]
 [ext_resource type="Texture2D" uid="uid://po6u32m0cyp8" path="res://Sprites/Buttons/maxbtn.png" id="21_01n3j"]
+[ext_resource type="AudioStream" uid="uid://dra0vc0humpfx" path="res://Audio/SFX/HoverSound2.wav" id="21_aerra"]
+[ext_resource type="AudioStream" uid="uid://bf3lq0sbr8uud" path="res://Audio/SFX/SlowDown.wav" id="21_g4452"]
 [ext_resource type="StyleBox" uid="uid://csfosh77kb7at" path="res://UI/TextureBoxes/trackarea.tres" id="21_hs3m3"]
+[ext_resource type="AudioStream" uid="uid://dwch2ioctrtc5" path="res://Audio/SFX/SpeedUp.wav" id="22_aerra"]
 [ext_resource type="StyleBox" uid="uid://l8lqtn15u1dk" path="res://UI/TextureBoxes/trackareahighlight.tres" id="22_qhh4m"]
 [ext_resource type="StyleBox" uid="uid://dd5tpwm8aurw2" path="res://UI/TextureBoxes/citystats.tres" id="22_s54qy"]
 [ext_resource type="Texture2D" uid="uid://blt43ycii442k" path="res://Sprites/Icons/music.png" id="33_ufle8"]
@@ -299,6 +302,8 @@ layout_mode = 2
 [node name="SlowDown" parent="TimerBox/MarginContainer/VBoxContainer/SpeedRow/SlowCenterContainer" unique_id=934925372 instance=ExtResource("4_dgedd")]
 layout_mode = 2
 flipped = true
+hover_sound = ExtResource("21_aerra")
+click_sound = ExtResource("21_g4452")
 
 [node name="SpeedLabel" type="Label" parent="TimerBox/MarginContainer/VBoxContainer/SpeedRow" unique_id=2141042493]
 custom_minimum_size = Vector2(64, 0)
@@ -318,6 +323,8 @@ layout_mode = 2
 [node name="SpeedUp" parent="TimerBox/MarginContainer/VBoxContainer/SpeedRow/SpeedCenterContainer" unique_id=1289328742 instance=ExtResource("4_dgedd")]
 layout_mode = 2
 flip_h = true
+hover_sound = ExtResource("21_aerra")
+click_sound = ExtResource("22_aerra")
 
 [node name="PauseContainer" type="CenterContainer" parent="TimerBox/MarginContainer/VBoxContainer" unique_id=2055718415]
 layout_mode = 2
@@ -326,6 +333,7 @@ layout_mode = 2
 layout_mode = 2
 sprite_sheet = ExtResource("6_1vk3t")
 is_toggle_button = true
+hover_sound = ExtResource("21_aerra")
 
 [node name="SidePanel" type="PanelContainer" parent="." unique_id=1799400505]
 layout_mode = 1
@@ -488,18 +496,22 @@ theme_override_constants/separation = 8
 [node name="Quarter" parent="SidePanel/VBoxContainer/SendSection/MarginContainer/VBoxContainer/PresetRow" unique_id=556932398 instance=ExtResource("4_dgedd")]
 layout_mode = 2
 sprite_sheet = ExtResource("18_oqpj4")
+hover_sound = ExtResource("21_aerra")
 
 [node name="Half" parent="SidePanel/VBoxContainer/SendSection/MarginContainer/VBoxContainer/PresetRow" unique_id=1387046022 instance=ExtResource("4_dgedd")]
 layout_mode = 2
 sprite_sheet = ExtResource("19_053ab")
+hover_sound = ExtResource("21_aerra")
 
 [node name="ThreeQuarters" parent="SidePanel/VBoxContainer/SendSection/MarginContainer/VBoxContainer/PresetRow" unique_id=1259132750 instance=ExtResource("4_dgedd")]
 layout_mode = 2
 sprite_sheet = ExtResource("20_34hoh")
+hover_sound = ExtResource("21_aerra")
 
 [node name="Max" parent="SidePanel/VBoxContainer/SendSection/MarginContainer/VBoxContainer/PresetRow" unique_id=2094992495 instance=ExtResource("4_dgedd")]
 layout_mode = 2
 sprite_sheet = ExtResource("21_01n3j")
+hover_sound = ExtResource("21_aerra")
 
 [node name="UpgradeSection" type="VBoxContainer" parent="SidePanel/VBoxContainer" unique_id=1190902186]
 layout_mode = 2

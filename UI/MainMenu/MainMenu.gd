@@ -17,6 +17,8 @@ const SCROLL_SPEED: float = 30.0
 static var shared_scroll_offset: float = 0.0
 
 func _ready() -> void:
+	AudioManager.play_main_menu_music()
+	
 	play_button.pressed.connect(_on_play)
 	tutorial_button.pressed.connect(_on_tutorial)
 	quit_button.pressed.connect(_on_quit)

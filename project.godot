@@ -14,12 +14,17 @@ config/name="CSCI6562Project"
 run/main_scene="res://UI/MainMenu/MainMenu.tscn"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
+[audio]
+
+buses/default_bus_layout="uid://bwam6c5m7j3nx"
+
 [autoload]
 
 CycleClock="*res://Autoloads/CycleClock.gd"
 FactionState="*res://Autoloads/FactionState.gd"
 LevelSelection="*res://Autoloads/LevelSelection.gd"
 CustomSceneTransition="*uid://bx0vhoqcb7gk5"
+AudioManager="*uid://17h0bm78vmkx"
 
 [display]
 

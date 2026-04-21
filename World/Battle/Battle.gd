@@ -11,7 +11,6 @@ var attacker_owner: int = 0
 var target_city: City = null
 var _finished: bool = false
 
-# Visual marker radius and colour — mirrors Unit's style.
 @export var radius: float = 8.0
 var fill_color: Color = Color(1, 1, 1)
 
@@ -32,10 +31,11 @@ func setup(attackers: int, owner: int, city: City, road_data: RoadData, parked_u
 
 	if target_city != null and parked_unit != null:
 		global_position = parked_unit.global_position
+		_parked_unit.visible = true
+		if _parked_unit.has_method("begin_city_attack"):
+			_parked_unit.begin_city_attack()
 	elif target_city != null:
 		global_position = target_city.global_position
-
-	queue_redraw()
 
 func _ready() -> void:
 	add_to_group("active_battles")
@@ -46,15 +46,17 @@ func _exit_tree() -> void:
 		CycleClock.cycle_ticked.disconnect(_on_cycle)
 
 func _draw() -> void:
-	draw_circle(Vector2.ZERO, radius, fill_color)
-	draw_arc(Vector2.ZERO, radius + 2.0, 0, TAU, 24, Color(1, 1, 0, 0.9), 2.0)
-	var label_pos := Vector2(-10, -radius - 14)
-	draw_string(ThemeDB.fallback_font, label_pos, str(attacker_count),
-		HORIZONTAL_ALIGNMENT_LEFT, -1, 12, Color(1, 1, 1))
+	pass
 
 func _on_cycle() -> void:
 	if _finished:
 		return
+
+	if _parked_unit != null and is_instance_valid(_parked_unit):
+		_parked_unit.global_position = global_position
+		_parked_unit.amount = attacker_count
+		if _parked_unit.has_method("_update_label"):
+			_parked_unit._update_label()
 
 	if target_city == null or not is_instance_valid(target_city):
 		_finish(0)
@@ -77,30 +79,21 @@ func _on_cycle() -> void:
 		_finish(attacker_count)
 		return
 
-	# Square-root scaling: each side loses ceil(sqrt(opponent)) per cycle.
-	# This slows down lopsided battles — a 100-vs-10 fight now takes many
-	# more ticks than a 10-vs-10 fight, giving smaller defenders a real chance
-	# and preventing instant wipes from large armies.
 	var attacker_damage: int = maxi(1, int(sqrt(float(garrison))))
 	var garrison_damage: int = maxi(1, int(sqrt(float(attacker_count))))
 
-	# Apply city defense bonus — reduces damage the garrison takes each cycle.
-	# Level 0: 5% less damage taken
-	# Level 1: 10% less damage taken
-	# Level 2: 15% less damage taken
-	# Level 3: 20% less damage taken
 	var defense_reduction: float = 0.0
 	match target_city.data.defense_level:
 		0: defense_reduction = 0.05
 		1: defense_reduction = 0.10
 		2: defense_reduction = 0.15
 		3: defense_reduction = 0.20
+
 	garrison_damage = maxi(1, int(float(garrison_damage) * (1.0 - defense_reduction)))
 
 	attacker_count -= attacker_damage
 	target_city.data.army -= garrison_damage
 	target_city.refresh_from_data()
-	queue_redraw()
 
 	if attacker_count <= 0 and target_city.data.army <= 0:
 		target_city.data.army = 0
@@ -114,8 +107,21 @@ func _on_cycle() -> void:
 
 func _finish(survivors: int) -> void:
 	_finished = true
+
 	if _parked_unit != null and is_instance_valid(_parked_unit):
-		_parked_unit.queue_free()
+		if survivors > 0:
+			if _parked_unit.has_method("end_city_attack"):
+				_parked_unit.end_city_attack()
+			_parked_unit.queue_free()
+		else:
+			if _parked_unit.has_method("die_in_battle"):
+				_parked_unit.die_in_battle()
+			elif _parked_unit.has_method("_die"):
+				_parked_unit._die()
+			else:
+				_parked_unit.queue_free()
+
 		_parked_unit = null
+
 	emit_signal("battle_ended", self, survivors, attacker_owner)
 	queue_free()
