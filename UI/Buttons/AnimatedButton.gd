@@ -136,6 +136,8 @@ func _on_button_up_visual() -> void:
 	_apply_current_visual()
 
 func _on_pressed_action() -> void:
+	AudioManager.play_click()
+	
 	_anim_version += 1
 	var this_anim := _anim_version
 
