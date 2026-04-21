@@ -14,6 +14,8 @@ var transition_in_sfx: AudioStream = preload("res://Audio/SFX/FadeIn.wav")
 var select_city_sfx: AudioStream = preload("res://Audio/SFX/SelectCity.wav")
 var deselect_city_sfx: AudioStream = preload("res://Audio/SFX/DeselectCity.wav")
 
+var death_sfx: AudioStream = preload("res://Audio/SFX/UnitDeath.wav")
+
 const POOL_SIZE := 8
 var _players: Array[AudioStreamPlayer] = []
 var _next_player := 0

@@ -1,9 +1,13 @@
 [gd_scene format=3 uid="uid://dxnj71kb3tpa"]
 
-[ext_resource type="Script" uid="uid://c07nii3hxpoc1" path="res://UI/LevelSelect/LevelSelect.gd" id="1_lsel"]
+[ext_resource type="Script" uid="uid://b33nakf75qj25" path="res://UI/LevelSelect/LevelSelect.gd" id="1_lsel"]
 [ext_resource type="Texture2D" uid="uid://gai5uej0tle" path="res://UI/BackgroundImages/cherry_blossom.jpg" id="3_fvgb5"]
 [ext_resource type="Shader" uid="uid://cwkuceblnxcsb" path="res://UI/bg_scroll.gdshader" id="3_shader"]
 [ext_resource type="FontFile" uid="uid://bcu7ufltrpbt2" path="res://UI/Fonts/CozetteVector.ttf" id="4_font"]
+[ext_resource type="PackedScene" uid="uid://cgilpowmtbmlt" path="res://UI/Buttons/AnimatedButton.tscn" id="5_tnpda"]
+[ext_resource type="Texture2D" uid="uid://u1b7814if5bw" path="res://Sprites/Buttons/chapter0btn.png" id="6_pnd5t"]
+[ext_resource type="Texture2D" uid="uid://jxmxn1cvyuux" path="res://Sprites/Buttons/chapter1btn.png" id="7_h4voy"]
+[ext_resource type="Texture2D" uid="uid://c1uabhm4uhbh4" path="res://Sprites/Buttons/chapter2btn.png" id="8_csrw2"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_scroll"]
 shader = ExtResource("3_shader")
@@ -37,7 +41,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.05, 0.03, 0.02, 0.6)
-color = Color(0.05, 0.03, 0.02, 0.6)
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=990745290]
 layout_mode = 1
@@ -69,51 +72,26 @@ horizontal_alignment = 1
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=885970856]
 layout_mode = 2
 
-[node name="TutorialButton" type="Button" parent="VBoxContainer" unique_id=1943830271]
-custom_minimum_size = Vector2(0, 72)
+[node name="TutorialButton" parent="VBoxContainer" unique_id=1789498835 instance=ExtResource("5_tnpda")]
+custom_minimum_size = Vector2(320, 96)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.98, 0.92, 0.78, 1)
-theme_override_colors/font_pressed_color = Color(0.75, 0.6, 0.25, 1)
-theme_override_colors/font_hover_color = Color(1, 0.85, 0.45, 1)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.98, 0.92, 0.78, 1)
-theme_override_colors/font_pressed_color = Color(0.75, 0.6, 0.25, 1)
-theme_override_colors/font_hover_color = Color(1, 0.85, 0.45, 1)
-theme_override_fonts/font = ExtResource("4_font")
-theme_override_font_sizes/font_size = 42
-text = "Tutorial Chapter"
+sprite_sheet = ExtResource("6_pnd5t")
 
-[node name="Chapter1Button" type="Button" parent="VBoxContainer" unique_id=91458994]
-custom_minimum_size = Vector2(0, 72)
+[node name="Chapter1Button" parent="VBoxContainer" unique_id=1335648600 instance=ExtResource("5_tnpda")]
+custom_minimum_size = Vector2(320, 96)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.98, 0.92, 0.78, 1)
-theme_override_colors/font_pressed_color = Color(0.75, 0.6, 0.25, 1)
-theme_override_colors/font_hover_color = Color(1, 0.85, 0.45, 1)
-theme_override_colors/font_hover_color = Color(1, 0.85, 0.45, 1)
-theme_override_fonts/font = ExtResource("4_font")
-theme_override_font_sizes/font_size = 42
-text = "Chapter 1"
+sprite_sheet = ExtResource("7_h4voy")
 
-[node name="Chapter2Button" type="Button" parent="VBoxContainer" unique_id=1228737488]
-custom_minimum_size = Vector2(0, 72)
+[node name="Chapter2Button" parent="VBoxContainer" unique_id=932413201 instance=ExtResource("5_tnpda")]
+custom_minimum_size = Vector2(320, 96)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.98, 0.92, 0.78, 1)
-theme_override_colors/font_pressed_color = Color(0.75, 0.6, 0.25, 1)
-theme_override_colors/font_hover_color = Color(1, 0.85, 0.45, 1)
-theme_override_colors/font_hover_color = Color(1, 0.85, 0.45, 1)
-theme_override_fonts/font = ExtResource("4_font")
-theme_override_font_sizes/font_size = 42
-text = "Chapter 2"
+sprite_sheet = ExtResource("8_csrw2")
 
 [node name="HSeparator2" type="HSeparator" parent="VBoxContainer" unique_id=287521951]
 layout_mode = 2
 
 [node name="ReturnButton" type="Button" parent="VBoxContainer" unique_id=1457025329]
 custom_minimum_size = Vector2(0, 56)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.75, 0.65, 0.5, 1)
-theme_override_colors/font_pressed_color = Color(0.55, 0.45, 0.25, 1)
-theme_override_colors/font_hover_color = Color(0.95, 0.8, 0.4, 1)
 layout_mode = 2
 theme_override_colors/font_color = Color(0.75, 0.65, 0.5, 1)
 theme_override_colors/font_pressed_color = Color(0.55, 0.45, 0.25, 1)

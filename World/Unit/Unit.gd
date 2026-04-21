@@ -395,6 +395,8 @@ func _die() -> void:
 	if _is_dying:
 		return
 
+	AudioManager._play_sound(AudioManager.death_sfx, 0.0)
+
 	_is_dying = true
 	_in_battle = false
 	_is_battle_manager = false
