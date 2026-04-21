@@ -79,8 +79,8 @@ size_flags_vertical = 3
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/margin_left = 250
-theme_override_constants/margin_right = 250
+theme_override_constants/margin_left = 295
+theme_override_constants/margin_right = 280
 
 [node name="TutorialText" type="RichTextLabel" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer" unique_id=1840359719]
 layout_mode = 2
@@ -146,7 +146,8 @@ text = "[center][b][color=#f0d080]✦  Welcome, Daimyō  ✦[/color][/b][/center
 
 [center][font_size=30][b]Field Battles:[/b][/font_size] Sending a sortie against an enemy army on the road can weaken it and buy time for reinforcements. Split-second decisions can turn the tide of war.[/center]
 
-[center][img=280x600]res://UI/TutorialGraphics/garrison.png[/img]  [img=280x600]res://UI/TutorialGraphics/field.png[/img] [img=280x600]res://UI/TutorialGraphics/siege.png[/img][/center]"
+[center][img=270x630]res://UI/TutorialGraphics/garrison.png[/img]  [img=270x630]res://UI/TutorialGraphics/field.png[/img] [img=270x630]res://UI/TutorialGraphics/siege.png[/img][/center]"
+fit_content = true
 
 [node name="FooterDivider" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1086313137]
 layout_mode = 2

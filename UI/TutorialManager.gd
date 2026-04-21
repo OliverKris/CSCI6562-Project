@@ -8,9 +8,9 @@ const MISSION_POPUP_SCENE := preload("res://UI/TutorialPopup/MissionPopup.tscn")
 # Video Paths
 # ---------------------------------------------------------
 const VIDEO_UI := "res://UI/TutorialVideos/TutorialUI.ogv"
-const VIDEO_UPGRADE := "res://UI/TutorialVideos/UpgradeTutorial.ogv"
-const VIDEO_SEND := "res://UI/TutorialVideos/SendTutorial.ogv"
-const VIDEO_CONQUER := "res://UI/TutorialVideos/ConquerTutorial.ogv"
+const VIDEO_UPGRADE := "res://UI/TutorialVideos/TutorialUpgrade.ogv"
+const VIDEO_SEND := "res://UI/TutorialVideos/TutorialBattle.ogv"
+const VIDEO_CONQUER := "res://UI/TutorialVideos/TutorialWin.ogv"
 
 # ---------------------------------------------------------
 # Tutorial Step Definitions
