@@ -36,9 +36,6 @@ func apply_content(text: String, video_path: String):
 			video_player.show() 
 			video_player.play()
 			
-			await get_tree().process_frame
-			# If the video is huge, it might need an extra frame to load
-			video_player.stream_position = 0.01
 
 func _on_ok_pressed() -> void:
 	dismissed.emit()
