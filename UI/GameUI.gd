@@ -569,7 +569,7 @@ func _on_resume() -> void:
 func _on_main_menu() -> void:
 	CycleClock.resume_clock()
 	get_tree().paused = false
-	CustomSceneTransition.change_scene("res://UI/MainMenu/MainMenu.tscn")
+	CustomSceneTransition.change_scene("res://UI/LevelSelect/LevelSelect.tscn")
 
 func show_game_over(player_won: bool) -> void:
 	if game_over_panel != null: game_over_panel.visible = true

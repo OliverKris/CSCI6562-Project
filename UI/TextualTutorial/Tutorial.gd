@@ -1,6 +1,6 @@
 extends Control
 
-@onready var back_button: Button = $MarginContainer/VBoxContainer/BackButton
+@onready var back_button: AnimatedIconButton = $MarginContainer/VBoxContainer/BackButton
 
 func _ready() -> void:
 	back_button.pressed.connect(_on_back)

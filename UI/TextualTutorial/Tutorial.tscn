@@ -1,7 +1,9 @@
 [gd_scene format=3 uid="uid://t5aw7gxjjhxo"]
 
 [ext_resource type="Script" uid="uid://cpi05qxsvsg2s" path="res://UI/TextualTutorial/Tutorial.gd" id="1_tut"]
-[ext_resource type="Texture2D" uid="uid://fodg3pdcfgdi" path="res://UI/BackgroundImages/wave.jpg" id="2_4s1lc"]
+[ext_resource type="Texture2D" uid="uid://fodg3pdcfgdi" path="res://UI/BackgroundImages/wave.jpg" id="2_5mqb1"]
+[ext_resource type="PackedScene" uid="uid://cgilpowmtbmlt" path="res://UI/Buttons/AnimatedButton.tscn" id="3_animbtn"]
+[ext_resource type="Texture2D" uid="uid://cg8k2skl0x14i" path="res://Sprites/Buttons/mainmenubtn.png" id="4_mainmenubtn"]
 
 [node name="Tutorial" type="Control" unique_id=920627524]
 layout_mode = 3
@@ -19,7 +21,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_4s1lc")
+texture = ExtResource("2_5mqb1")
 expand_mode = 1
 stretch_mode = 5
 
@@ -146,7 +148,6 @@ text = "[center][b][color=#f0d080]✦  Welcome, Daimyō  ✦[/color][/b][/center
 [center][font_size=30][b]Field Battles:[/b][/font_size] Sending a sortie against an enemy army on the road can weaken it and buy time for reinforcements. Split-second decisions can turn the tide of war.[/center]
 
 [center][img=430x500]res://UI/TutorialGraphics/graphic.png[/img]  [img=430x500]res://UI/TutorialGraphics/graphic.png[/img] [img=430x500]res://UI/TutorialGraphics/graphic.png[/img][/center]"
-fit_content = true
 
 [node name="FooterDivider" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1086313137]
 layout_mode = 2
@@ -155,7 +156,7 @@ theme_override_font_sizes/font_size = 24
 text = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 horizontal_alignment = 1
 
-[node name="BackButton" type="Button" parent="MarginContainer/VBoxContainer" unique_id=33360291]
+[node name="BackButton" parent="MarginContainer/VBoxContainer" unique_id=33360291 instance=ExtResource("3_animbtn")]
+custom_minimum_size = Vector2(108, 64)
 layout_mode = 2
-theme_override_font_sizes/font_size = 36
-text = "◀  Return to Menu"
+sprite_sheet = ExtResource("4_mainmenubtn")
