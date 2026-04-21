@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://t5aw7gxjjhxo"]
 
 [ext_resource type="Script" uid="uid://cpi05qxsvsg2s" path="res://UI/TextualTutorial/Tutorial.gd" id="1_tut"]
-[ext_resource type="Texture2D" uid="uid://d1y0hgnoi47n2" path="res://UI/cherry_blossom.jpg" id="2_bg"]
+[ext_resource type="Texture2D" uid="uid://c44cqewdr2jra" path="res://UI/Great_Wave_of_Kanagawa.png" id="2_4s1lc"]
 
 [node name="Tutorial" type="Control" unique_id=920627524]
 layout_mode = 3
@@ -19,7 +19,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_bg")
+texture = ExtResource("2_4s1lc")
 expand_mode = 1
 stretch_mode = 5
 
