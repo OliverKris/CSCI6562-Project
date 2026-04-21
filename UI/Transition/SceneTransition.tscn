@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bx0vhoqcb7gk5"]
 
-[ext_resource type="Shader" path="res://UI/Transition/SceneTransition.gdshader" id="1_7dtq0"]
-[ext_resource type="Script" path="res://UI/Transition/SceneTransition.gd" id="1_po053"]
+[ext_resource type="Shader" uid="uid://qlf636y7k2i4" path="res://UI/Transition/SceneTransition.gdshader" id="1_7dtq0"]
+[ext_resource type="Script" uid="uid://slllsunttvkr" path="res://UI/Transition/SceneTransition.gd" id="1_po053"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_po053"]
 shader = ExtResource("1_7dtq0")

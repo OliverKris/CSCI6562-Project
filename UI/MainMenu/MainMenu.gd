@@ -8,6 +8,8 @@ const LEVEL_COUNT: int = 3  # update this as you add levels
 @onready var quit_button: TextureButton = $VBoxContainer/QuitCenter/QuitButton
 @onready var bg_rect: TextureRect = $BackgroundScroll
 
+var level_select: OptionButton = null
+
 const SCROLL_SPEED: float = 30.0
 var _scroll_offset: float = 0.0
 
@@ -37,7 +39,7 @@ func _on_play() -> void:
 	if Engine.has_singleton("LevelSelection"):
 		LevelSelection.selected_level = chosen_index
 
-	await CustomSceneTransition.change_scene("res://Game.tscn")
+	get_tree().change_scene_to_file("res://UI/LevelSelect/LevelSelect.tscn")
 
 func _on_tutorial() -> void:
 	get_tree().change_scene_to_file("res://UI/TextualTutorial/Tutorial.tscn")
