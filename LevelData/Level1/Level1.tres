@@ -90,85 +90,85 @@ a_id = 23
 b_id = 20
 length = 2.0
 
-[sub_resource type="Resource" id="Resource_3givr"]
+[sub_resource type="Resource" id="Resource_mloj1"]
 script = ExtResource("2_ejs3y")
 a_id = 20
 b_id = 22
 length = 2.0
 
-[sub_resource type="Resource" id="Resource_cgl1v"]
+[sub_resource type="Resource" id="Resource_tt3cl"]
 script = ExtResource("2_ejs3y")
 a_id = 22
 b_id = 23
 length = 2.0
 
-[sub_resource type="Resource" id="Resource_07qoj"]
+[sub_resource type="Resource" id="Resource_misd0"]
 script = ExtResource("2_ejs3y")
 a_id = 24
 b_id = 21
 length = 2.0
 
-[sub_resource type="Resource" id="Resource_2wb7i"]
+[sub_resource type="Resource" id="Resource_tf7p8"]
 script = ExtResource("2_ejs3y")
 a_id = 21
 b_id = 20
 length = 2.0
 
-[sub_resource type="Resource" id="Resource_l6or5"]
+[sub_resource type="Resource" id="Resource_7iwmt"]
 script = ExtResource("2_ejs3y")
 a_id = 20
 b_id = 24
 length = 2.0
 
-[sub_resource type="Resource" id="Resource_chljm"]
+[sub_resource type="Resource" id="Resource_77cn6"]
 script = ExtResource("2_ejs3y")
 a_id = 20
 b_id = 14
 length = 2.0
 
-[sub_resource type="Resource" id="Resource_p3ddy"]
+[sub_resource type="Resource" id="Resource_4njwj"]
 script = ExtResource("2_ejs3y")
 a_id = 14
 b_id = 15
 length = 3.0
 
-[sub_resource type="Resource" id="Resource_ghvsc"]
+[sub_resource type="Resource" id="Resource_l54bw"]
 script = ExtResource("2_ejs3y")
 a_id = 15
 b_id = 17
 length = 2.0
 
-[sub_resource type="Resource" id="Resource_lfhnr"]
+[sub_resource type="Resource" id="Resource_lccsn"]
 script = ExtResource("2_ejs3y")
 a_id = 17
 b_id = 16
 length = 2.0
 
-[sub_resource type="Resource" id="Resource_1mxq2"]
+[sub_resource type="Resource" id="Resource_kxfgi"]
 script = ExtResource("2_ejs3y")
 a_id = 16
 b_id = 14
 length = 3.0
 
-[sub_resource type="Resource" id="Resource_sabt5"]
+[sub_resource type="Resource" id="Resource_l3twp"]
 script = ExtResource("2_ejs3y")
 a_id = 17
 b_id = 18
 length = 2.0
 
-[sub_resource type="Resource" id="Resource_1hp1i"]
+[sub_resource type="Resource" id="Resource_7yth2"]
 script = ExtResource("2_ejs3y")
 a_id = 18
 b_id = 19
 length = 2.0
 
-[sub_resource type="Resource" id="Resource_160wp"]
+[sub_resource type="Resource" id="Resource_racwc"]
 script = ExtResource("2_ejs3y")
 a_id = 19
 b_id = 17
 length = 2.0
 
-[sub_resource type="Resource" id="Resource_vybfb"]
+[sub_resource type="Resource" id="Resource_8lihp"]
 script = ExtResource("2_ejs3y")
 a_id = 17
 b_id = 14
@@ -190,4 +190,4 @@ length = 3.0
 script = ExtResource("3_r1a8r")
 level_name = "Level 1"
 cities = Array[ExtResource("1_1vilc")]([SubResource("Resource_wb36l"), SubResource("Resource_5rm44"), SubResource("Resource_4f5fc"), SubResource("Resource_pakdq"), SubResource("Resource_2vnc8"), SubResource("Resource_hwhky"), SubResource("Resource_1vilc"), SubResource("Resource_c2hq8"), SubResource("Resource_r1a8r"), SubResource("Resource_50yqw"), SubResource("Resource_ejs3y")])
-roads = Array[ExtResource("2_ejs3y")]([SubResource("Resource_188ci"), SubResource("Resource_3givr"), SubResource("Resource_cgl1v"), SubResource("Resource_07qoj"), SubResource("Resource_2wb7i"), SubResource("Resource_l6or5"), SubResource("Resource_chljm"), SubResource("Resource_p3ddy"), SubResource("Resource_ghvsc"), SubResource("Resource_lfhnr"), SubResource("Resource_1mxq2"), SubResource("Resource_sabt5"), SubResource("Resource_1hp1i"), SubResource("Resource_160wp"), SubResource("Resource_vybfb"), SubResource("Resource_nkgfk"), SubResource("Resource_wrjv3")])
+roads = Array[ExtResource("2_ejs3y")]([SubResource("Resource_188ci"), SubResource("Resource_mloj1"), SubResource("Resource_tt3cl"), SubResource("Resource_misd0"), SubResource("Resource_tf7p8"), SubResource("Resource_7iwmt"), SubResource("Resource_77cn6"), SubResource("Resource_4njwj"), SubResource("Resource_l54bw"), SubResource("Resource_lccsn"), SubResource("Resource_kxfgi"), SubResource("Resource_l3twp"), SubResource("Resource_7yth2"), SubResource("Resource_racwc"), SubResource("Resource_8lihp"), SubResource("Resource_nkgfk"), SubResource("Resource_wrjv3")])

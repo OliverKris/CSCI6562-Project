@@ -54,13 +54,14 @@ vertical_alignment = 1
 autowrap_mode = 2
 
 [node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="Panel/MarginContainer/VBoxContainer" unique_id=1173155003]
-custom_minimum_size = Vector2(900, 472)
+custom_minimum_size = Vector2(900, 530)
 layout_mode = 2
 autoplay = true
 expand = true
 loop = true
 
 [node name="Button" parent="Panel/MarginContainer/VBoxContainer" unique_id=1789498835 instance=ExtResource("4_w0fib")]
-custom_minimum_size = Vector2(168, 128)
+custom_minimum_size = Vector2(126, 96)
 layout_mode = 2
+button_mask = 3
 sprite_sheet = ExtResource("5_0nann")
