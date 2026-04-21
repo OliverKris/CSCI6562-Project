@@ -101,7 +101,7 @@ text = "[center][b][color=#f0d080]✦  Welcome, Daimyō  ✦[/color][/b][/center
 
 [center]You will start by viewing a map of your province. The province is made of a network of cities connected by roads. You and the enemy control cities mobilized for war, while other cities are neutral and defended by garrisons. Defend your territory and defeat the enemy Daimyō by capturing every enemy city![/center]
 
-[center][img=800x420]res://UI/TutorialGraphics/graphic.png[/img][/center]
+[center][img=540x720]res://UI/TutorialGraphics/gamestate.png[/img][/center]
 
 [center]——————————————————————————————[/center]
 
@@ -117,7 +117,7 @@ text = "[center][b][color=#f0d080]✦  Welcome, Daimyō  ✦[/color][/b][/center
 
 [center][i]How to upgrade: Hover the cursor over a city, left-click to select it, then select an upgrade in the side panel.[/i][/center]
 
-[center][img=600x315]res://UI/TutorialGraphics/graphic.png[/img]  [img=600x315]res://UI/TutorialGraphics/graphic.png[/img][/center]
+[center][img=520x490]res://UI/TutorialGraphics/city.png[/img]  [img=300x490]res://UI/TutorialGraphics/cityui.png[/img][/center]
 
 [center]——————————————————————————————[/center]
 
@@ -145,7 +145,7 @@ text = "[center][b][color=#f0d080]✦  Welcome, Daimyō  ✦[/color][/b][/center
 
 [center][font_size=30][b]Field Battles:[/b][/font_size] Sending a sortie against an enemy army on the road can weaken it and buy time for reinforcements. Split-second decisions can turn the tide of war.[/center]
 
-[center][img=600x315]res://UI/TutorialGraphics/graphic.png[/img]  [img=600x315]res://UI/TutorialGraphics/graphic.png[/img][/center]"
+[center][img=430x500]res://UI/TutorialGraphics/graphic.png[/img]  [img=430x500]res://UI/TutorialGraphics/graphic.png[/img] [img=430x500]res://UI/TutorialGraphics/graphic.png[/img][/center]"
 fit_content = true
 
 [node name="FooterDivider" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1086313137]
