@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://t5aw7gxjjhxo"]
 
-[ext_resource type="Script" uid="uid://cpi05qxsvsg2s" path="res://UI/TextualTutorial/Tutorial.gd" id="1_tut"]
+[ext_resource type="Script" uid="uid://dl5h3783gaevj" path="res://UI/TextualTutorial/Tutorial.gd" id="1_tut"]
 [ext_resource type="Texture2D" uid="uid://fodg3pdcfgdi" path="res://UI/BackgroundImages/wave.jpg" id="2_5mqb1"]
 [ext_resource type="PackedScene" uid="uid://cgilpowmtbmlt" path="res://UI/Buttons/AnimatedButton.tscn" id="3_animbtn"]
 [ext_resource type="Texture2D" uid="uid://cg8k2skl0x14i" path="res://Sprites/Buttons/mainmenubtn.png" id="4_mainmenubtn"]
@@ -156,7 +156,10 @@ theme_override_font_sizes/font_size = 24
 text = "━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━"
 horizontal_alignment = 1
 
-[node name="BackButton" parent="MarginContainer/VBoxContainer" unique_id=33360291 instance=ExtResource("3_animbtn")]
-custom_minimum_size = Vector2(108, 64)
+[node name="CenterContainer" type="CenterContainer" parent="MarginContainer/VBoxContainer" unique_id=757325096]
+layout_mode = 2
+
+[node name="BackButton" parent="MarginContainer/VBoxContainer/CenterContainer" unique_id=1789498835 instance=ExtResource("3_animbtn")]
+custom_minimum_size = Vector2(320, 96)
 layout_mode = 2
 sprite_sheet = ExtResource("4_mainmenubtn")

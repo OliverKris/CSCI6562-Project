@@ -4,10 +4,12 @@
 [ext_resource type="Texture2D" uid="uid://gai5uej0tle" path="res://UI/BackgroundImages/cherry_blossom.jpg" id="3_fvgb5"]
 [ext_resource type="Shader" uid="uid://cwkuceblnxcsb" path="res://UI/bg_scroll.gdshader" id="3_shader"]
 [ext_resource type="FontFile" uid="uid://bcu7ufltrpbt2" path="res://UI/Fonts/CozetteVector.ttf" id="4_font"]
+[ext_resource type="Texture2D" uid="uid://bjmm784yp54f1" path="res://Sprites/UI/hseparator.png" id="5_csrw2"]
 [ext_resource type="PackedScene" uid="uid://cgilpowmtbmlt" path="res://UI/Buttons/AnimatedButton.tscn" id="5_tnpda"]
 [ext_resource type="Texture2D" uid="uid://u1b7814if5bw" path="res://Sprites/Buttons/chapter0btn.png" id="6_pnd5t"]
 [ext_resource type="Texture2D" uid="uid://jxmxn1cvyuux" path="res://Sprites/Buttons/chapter1btn.png" id="7_h4voy"]
 [ext_resource type="Texture2D" uid="uid://c1uabhm4uhbh4" path="res://Sprites/Buttons/chapter2btn.png" id="8_csrw2"]
+[ext_resource type="Texture2D" uid="uid://cg8k2skl0x14i" path="res://Sprites/Buttons/mainmenubtn.png" id="9_h4voy"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_scroll"]
 shader = ExtResource("3_shader")
@@ -40,24 +42,29 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.05, 0.03, 0.02, 0.6)
+color = Color(0.050980393, 0.03137255, 0.019607844, 0.7019608)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=990745290]
+[node name="Content" type="Control" parent="." unique_id=1769689996]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Content" unique_id=990745290]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -220.0
-offset_top = -230.0
-offset_right = 220.0
-offset_bottom = 230.0
+offset_left = 700.0
+offset_top = 208.5
+offset_right = 1180.0
+offset_bottom = 831.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 24
 
-[node name="Title" type="Label" parent="VBoxContainer" unique_id=1705421076]
+[node name="Title" type="Label" parent="Content/VBoxContainer" unique_id=1705421076]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.98, 0.92, 0.78, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.85)
@@ -69,33 +76,44 @@ theme_override_font_sizes/font_size = 80
 text = "Select Level"
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=885970856]
+[node name="HSeparator" type="TextureRect" parent="Content/VBoxContainer" unique_id=682266658]
+layout_mode = 2
+texture = ExtResource("5_csrw2")
+stretch_mode = 1
+
+[node name="TutorialCenter" type="CenterContainer" parent="Content/VBoxContainer" unique_id=1348296560]
 layout_mode = 2
 
-[node name="TutorialButton" parent="VBoxContainer" unique_id=1789498835 instance=ExtResource("5_tnpda")]
+[node name="TutorialButton" parent="Content/VBoxContainer/TutorialCenter" unique_id=1789498835 instance=ExtResource("5_tnpda")]
 custom_minimum_size = Vector2(320, 96)
 layout_mode = 2
 sprite_sheet = ExtResource("6_pnd5t")
 
-[node name="Chapter1Button" parent="VBoxContainer" unique_id=1335648600 instance=ExtResource("5_tnpda")]
+[node name="Chapter1Center" type="CenterContainer" parent="Content/VBoxContainer" unique_id=1210791410]
+layout_mode = 2
+
+[node name="Chapter1Button" parent="Content/VBoxContainer/Chapter1Center" unique_id=1335648600 instance=ExtResource("5_tnpda")]
 custom_minimum_size = Vector2(320, 96)
 layout_mode = 2
 sprite_sheet = ExtResource("7_h4voy")
 
-[node name="Chapter2Button" parent="VBoxContainer" unique_id=932413201 instance=ExtResource("5_tnpda")]
+[node name="Chapter2Center" type="CenterContainer" parent="Content/VBoxContainer" unique_id=1899818025]
+layout_mode = 2
+
+[node name="Chapter2Button" parent="Content/VBoxContainer/Chapter2Center" unique_id=932413201 instance=ExtResource("5_tnpda")]
 custom_minimum_size = Vector2(320, 96)
 layout_mode = 2
 sprite_sheet = ExtResource("8_csrw2")
 
-[node name="HSeparator2" type="HSeparator" parent="VBoxContainer" unique_id=287521951]
+[node name="HSeparator2" type="TextureRect" parent="Content/VBoxContainer" unique_id=43465079]
+layout_mode = 2
+texture = ExtResource("5_csrw2")
+stretch_mode = 1
+
+[node name="ReturnCenter" type="CenterContainer" parent="Content/VBoxContainer" unique_id=1119880173]
 layout_mode = 2
 
-[node name="ReturnButton" type="Button" parent="VBoxContainer" unique_id=1457025329]
-custom_minimum_size = Vector2(0, 56)
+[node name="ReturnButton" parent="Content/VBoxContainer/ReturnCenter" unique_id=859668934 instance=ExtResource("5_tnpda")]
+custom_minimum_size = Vector2(320, 96)
 layout_mode = 2
-theme_override_colors/font_color = Color(0.75, 0.65, 0.5, 1)
-theme_override_colors/font_pressed_color = Color(0.55, 0.45, 0.25, 1)
-theme_override_colors/font_hover_color = Color(0.95, 0.8, 0.4, 1)
-theme_override_fonts/font = ExtResource("4_font")
-theme_override_font_sizes/font_size = 32
-text = "◀  Return to Menu"
+sprite_sheet = ExtResource("9_h4voy")

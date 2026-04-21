@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://c7b7xbdjc2ti5"]
+
+[ext_resource type="FontFile" uid="uid://bcu7ufltrpbt2" path="res://UI/Fonts/CozetteVector.ttf" id="1_5vslh"]
+[ext_resource type="Script" uid="uid://dx46tsuqfwfj5" path="res://UI/TutorialPopup/MissionPopup.gd" id="1_euhbp"]
+[ext_resource type="Texture2D" uid="uid://bjmm784yp54f1" path="res://Sprites/UI/hseparator.png" id="2_tkjma"]
+[ext_resource type="StyleBox" uid="uid://dls3x3xymdgbi" path="res://UI/TextureBoxes/mission.tres" id="2_u2npq"]
+
+[node name="MissionPopup" type="Control" unique_id=719030944]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_euhbp")
+
+[node name="Panel" type="PanelContainer" parent="." unique_id=348193119]
+layout_mode = 0
+offset_right = 88.0
+offset_bottom = 40.0
+theme_override_styles/panel = ExtResource("2_u2npq")
+
+[node name="MarginContainer" type="MarginContainer" parent="Panel" unique_id=948233236]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Panel/MarginContainer" unique_id=1451052881]
+layout_mode = 2
+
+[node name="HeaderLabel" type="Label" parent="Panel/MarginContainer/VBoxContainer" unique_id=860480540]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/font = ExtResource("1_5vslh")
+text = "Change Time"
+
+[node name="HSeparator" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer" unique_id=45975514]
+layout_mode = 2
+texture = ExtResource("2_tkjma")
+stretch_mode = 1
+
+[node name="ObjectivesContainer" type="VBoxContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=1208461630]
+layout_mode = 2
+
+[node name="CloseHintButton" type="TextureButton" parent="Panel/MarginContainer/VBoxContainer" unique_id=1297849769]
+layout_mode = 2

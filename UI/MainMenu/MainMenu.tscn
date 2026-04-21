@@ -5,6 +5,7 @@
 [ext_resource type="Shader" uid="uid://cwkuceblnxcsb" path="res://UI/bg_scroll.gdshader" id="3_shader"]
 [ext_resource type="PackedScene" uid="uid://cgilpowmtbmlt" path="res://UI/Buttons/AnimatedButton.tscn" id="4_obtq6"]
 [ext_resource type="FontFile" uid="uid://bcu7ufltrpbt2" path="res://UI/Fonts/CozetteVector.ttf" id="4_t4ff4"]
+[ext_resource type="Texture2D" uid="uid://bjmm784yp54f1" path="res://Sprites/UI/hseparator.png" id="5_32jca"]
 [ext_resource type="Texture2D" uid="uid://cgjpm50uvvs0s" path="res://Sprites/Buttons/playbtn.png" id="5_t4ff4"]
 [ext_resource type="Texture2D" uid="uid://bradj8vqf4k6c" path="res://Sprites/Buttons/tutorialbtn.png" id="6_w5vcv"]
 [ext_resource type="Texture2D" uid="uid://dbddjnn00gqud" path="res://Sprites/Buttons/quitbtn.png" id="7_d2d4f"]
@@ -35,30 +36,34 @@ texture = ExtResource("3_jhcbk")
 expand_mode = 1
 
 [node name="Overlay" type="ColorRect" parent="." unique_id=548227785]
-layout_mode = 1
-anchors_preset = 15
+layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.05, 0.03, 0.02, 0.55)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1141494922]
+[node name="Content" type="Control" parent="." unique_id=1626380788]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Content" unique_id=1141494922]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -180.0
-offset_top = -160.0
-offset_right = 180.0
-offset_bottom = 160.0
+offset_left = 602.0
+offset_top = 239.0
+offset_right = 1278.0
+offset_bottom = 801.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 20
 
-[node name="Title" type="Label" parent="VBoxContainer" unique_id=585097480]
+[node name="Title" type="Label" parent="Content/VBoxContainer" unique_id=585097480]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.98, 0.92, 0.78, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
@@ -70,7 +75,7 @@ theme_override_font_sizes/font_size = 104
 text = "Sengoku Jidai"
 horizontal_alignment = 1
 
-[node name="Subtitle" type="Label" parent="VBoxContainer" unique_id=1110332969]
+[node name="Subtitle" type="Label" parent="Content/VBoxContainer" unique_id=1110332969]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.9, 0.75, 0.5, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.8)
@@ -82,40 +87,42 @@ theme_override_font_sizes/font_size = 52
 text = "The Age of Warring States"
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=1810625167]
+[node name="HSeparator" type="TextureRect" parent="Content/VBoxContainer" unique_id=1125168850]
+layout_mode = 2
+texture = ExtResource("5_32jca")
+stretch_mode = 1
+
+[node name="PlayCenter" type="CenterContainer" parent="Content/VBoxContainer" unique_id=1119267035]
 layout_mode = 2
 
-[node name="PlayCenter" type="CenterContainer" parent="VBoxContainer" unique_id=1119267035]
-layout_mode = 2
-
-[node name="PlayButton" parent="VBoxContainer/PlayCenter" unique_id=1789498835 instance=ExtResource("4_obtq6")]
+[node name="PlayButton" parent="Content/VBoxContainer/PlayCenter" unique_id=1789498835 instance=ExtResource("4_obtq6")]
 custom_minimum_size = Vector2(320, 96)
 layout_mode = 2
 size_flags_stretch_ratio = 2.0
 sprite_sheet = ExtResource("5_t4ff4")
 press_in_time = 0.02
 
-[node name="TutorialCenter" type="CenterContainer" parent="VBoxContainer" unique_id=1772015919]
+[node name="TutorialCenter" type="CenterContainer" parent="Content/VBoxContainer" unique_id=1772015919]
 layout_mode = 2
 
-[node name="TutorialButton" parent="VBoxContainer/TutorialCenter" unique_id=377233274 instance=ExtResource("4_obtq6")]
+[node name="TutorialButton" parent="Content/VBoxContainer/TutorialCenter" unique_id=377233274 instance=ExtResource("4_obtq6")]
 custom_minimum_size = Vector2(320, 96)
 layout_mode = 2
 size_flags_horizontal = 4
 sprite_sheet = ExtResource("6_w5vcv")
 press_in_time = 0.02
 
-[node name="QuitCenter" type="CenterContainer" parent="VBoxContainer" unique_id=1846560939]
+[node name="QuitCenter" type="CenterContainer" parent="Content/VBoxContainer" unique_id=1846560939]
 layout_mode = 2
 
-[node name="QuitButton" parent="VBoxContainer/QuitCenter" unique_id=1318041578 instance=ExtResource("4_obtq6")]
+[node name="QuitButton" parent="Content/VBoxContainer/QuitCenter" unique_id=1318041578 instance=ExtResource("4_obtq6")]
 custom_minimum_size = Vector2(320, 96)
 layout_mode = 2
 size_flags_horizontal = 4
 sprite_sheet = ExtResource("7_d2d4f")
 press_in_time = 0.02
 
-[node name="Confirmation" type="PanelContainer" parent="." unique_id=251519257]
+[node name="Confirmation" type="PanelContainer" parent="Content" unique_id=251519257]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -123,26 +130,26 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
+offset_left = 869.0
+offset_top = 460.0
+offset_right = 1011.0
+offset_bottom = 584.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = ExtResource("9_jhcbk")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Confirmation" unique_id=73665269]
+[node name="VBoxContainer" type="VBoxContainer" parent="Content/Confirmation" unique_id=73665269]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Confirmation/VBoxContainer" unique_id=737077987]
+[node name="Label" type="Label" parent="Content/Confirmation/VBoxContainer" unique_id=737077987]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
 theme_override_constants/shadow_outline_size = 4
 theme_override_fonts/font = ExtResource("4_t4ff4")
 text = "Quit the game?"
 
-[node name="Cancel" parent="Confirmation/VBoxContainer" unique_id=38289005 instance=ExtResource("4_obtq6")]
+[node name="Cancel" parent="Content/Confirmation/VBoxContainer" unique_id=38289005 instance=ExtResource("4_obtq6")]
 layout_mode = 2
 
-[node name="Quit" parent="Confirmation/VBoxContainer" unique_id=856657525 instance=ExtResource("4_obtq6")]
+[node name="Quit" parent="Content/Confirmation/VBoxContainer" unique_id=856657525 instance=ExtResource("4_obtq6")]
 layout_mode = 2

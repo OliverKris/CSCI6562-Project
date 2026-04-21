@@ -72,6 +72,7 @@ var _balance_icon_frames: Array[AtlasTexture] = []
 
 @onready var side_panel: Control = $SidePanel
 @onready var side_panel_content: Control = $SidePanel/VBoxContainer
+@onready var side_panel_hsep2: TextureRect = $SidePanel/VBoxContainer/HSeparator2
 @export var side_panel_slide_duration: float = 0.28
 @export var side_panel_hidden_margin: float = 24.0
 
@@ -272,6 +273,11 @@ func _connect_global_signals() -> void:
 func set_graph_map(gm: GraphMap) -> void:
 	graph_map = gm
 	
+	if graph_map != null:
+		for city in graph_map.get_all_cities():
+			if city != null and city.has_signal("captured"):
+				city.captured.connect(_on_city_capture)
+	
 	if graph_map != null and graph_map.level_data != null:
 		var totals = _calculate_player_totals()
 		_last_city_count = totals.city_count
@@ -320,6 +326,9 @@ func _on_cycle_ticked() -> void:
 
 	_refresh_top_bar()
 	_refresh_selected_city_ui()
+
+func _on_city_capture(city: City, new_owner: int) -> void:
+	AudioManager.play_city_capture(new_owner)
 
 func _on_gold_changed(owner: int, new_amount: float) -> void:
 	if owner != 1: return
@@ -638,7 +647,14 @@ func _set_upgrade_entry(
 			cost_icon.visible = false
 		if send_section != null:
 			send_section.visible = false
+		if side_panel_hsep2 != null:
+			side_panel_hsep2.visible = false
 		return
+	else:
+		if send_section != null:
+			send_section.visible = true
+		if side_panel_hsep2 != null:
+			side_panel_hsep2.visible = true
 
 	# Player city: show full upgrade controls
 	if cost_label != null:

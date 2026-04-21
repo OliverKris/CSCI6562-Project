@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://benxin0kga6lw"]
+
+[ext_resource type="Script" uid="uid://dniglolvnig12" path="res://UI/TutorialPopup/MissionRow.gd" id="1_dcfvc"]
+[ext_resource type="Texture2D" uid="uid://1xahr5p11r25" path="res://Sprites/UI/checkboxblank.png" id="2_q1mp4"]
+[ext_resource type="FontFile" uid="uid://bcu7ufltrpbt2" path="res://UI/Fonts/CozetteVector.ttf" id="2_qxvvq"]
+[ext_resource type="Texture2D" uid="uid://bdsqbx4f2kk7c" path="res://Sprites/UI/checkboxcheck.png" id="3_56upd"]
+
+[node name="MissionRow" type="HBoxContainer" unique_id=1146905284]
+script = ExtResource("1_dcfvc")
+unchecked_texture = ExtResource("2_q1mp4")
+checked_texture = ExtResource("3_56upd")
+
+[node name="CheckBoxIcon" type="TextureRect" parent="." unique_id=370846310]
+layout_mode = 2
+
+[node name="ObjectiveLabel" type="Label" parent="." unique_id=1334154362]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/font = ExtResource("2_qxvvq")

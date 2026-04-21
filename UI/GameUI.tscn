@@ -39,6 +39,7 @@
 [ext_resource type="AudioStream" uid="uid://dwch2ioctrtc5" path="res://Audio/SFX/SpeedUp.wav" id="22_aerra"]
 [ext_resource type="StyleBox" uid="uid://l8lqtn15u1dk" path="res://UI/TextureBoxes/trackareahighlight.tres" id="22_qhh4m"]
 [ext_resource type="StyleBox" uid="uid://dd5tpwm8aurw2" path="res://UI/TextureBoxes/citystats.tres" id="22_s54qy"]
+[ext_resource type="Texture2D" uid="uid://bjmm784yp54f1" path="res://Sprites/UI/hseparator.png" id="26_qabmg"]
 [ext_resource type="Texture2D" uid="uid://blt43ycii442k" path="res://Sprites/Icons/music.png" id="33_ufle8"]
 [ext_resource type="Texture2D" uid="uid://bh7qkan184hew" path="res://Sprites/Icons/sound.png" id="34_ohaem"]
 
@@ -408,6 +409,11 @@ theme_override_constants/shadow_outline_size = 4
 theme_override_fonts/font = ExtResource("3_hqqrp")
 text = "Blue (You)"
 
+[node name="HSeparator" type="TextureRect" parent="SidePanel/VBoxContainer" unique_id=1691596901]
+layout_mode = 2
+texture = ExtResource("26_qabmg")
+stretch_mode = 1
+
 [node name="ProductionSection" type="VBoxContainer" parent="SidePanel/VBoxContainer" unique_id=602287224]
 layout_mode = 2
 
@@ -446,6 +452,11 @@ theme_override_styles/panel = ExtResource("22_s54qy")
 [node name="Defense" parent="SidePanel/VBoxContainer/ProductionSection/MarginContainer/VBoxContainer/GridContainer" unique_id=482910003 instance=ExtResource("13_eomcs")]
 layout_mode = 2
 theme_override_styles/panel = ExtResource("22_s54qy")
+
+[node name="HSeparator2" type="TextureRect" parent="SidePanel/VBoxContainer" unique_id=1042020126]
+layout_mode = 2
+texture = ExtResource("26_qabmg")
+stretch_mode = 1
 
 [node name="SendSection" type="HBoxContainer" parent="SidePanel/VBoxContainer" unique_id=1841083833]
 layout_mode = 2
@@ -517,6 +528,11 @@ hover_sound = ExtResource("21_aerra")
 layout_mode = 2
 sprite_sheet = ExtResource("21_01n3j")
 hover_sound = ExtResource("21_aerra")
+
+[node name="HSeparator3" type="TextureRect" parent="SidePanel/VBoxContainer" unique_id=334774482]
+layout_mode = 2
+texture = ExtResource("26_qabmg")
+stretch_mode = 1
 
 [node name="UpgradeSection" type="VBoxContainer" parent="SidePanel/VBoxContainer" unique_id=1190902186]
 layout_mode = 2
@@ -682,3 +698,7 @@ sprite_sheet = ExtResource("7_h2x3y")
 custom_minimum_size = Vector2(81, 48)
 layout_mode = 2
 sprite_sheet = ExtResource("8_flmfk")
+
+[node name="MarginContainer" type="MarginContainer" parent="PausePanel/VBoxContainer" unique_id=1482697051]
+custom_minimum_size = Vector2(0, 6)
+layout_mode = 2

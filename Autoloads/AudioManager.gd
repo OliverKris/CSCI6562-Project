@@ -13,6 +13,9 @@ var transition_in_sfx: AudioStream = preload("res://Audio/SFX/FadeIn.wav")
 
 var select_city_sfx: AudioStream = preload("res://Audio/SFX/SelectCity.wav")
 var deselect_city_sfx: AudioStream = preload("res://Audio/SFX/DeselectCity.wav")
+var city_capture_player_sfx: AudioStream = preload("res://Audio/SFX/CityCapturePlayer.wav")
+var city_capture_enemy_sfx: AudioStream = preload("res://Audio/SFX/CityCaptureEnemy.wav")
+
 
 var death_sfx: AudioStream = preload("res://Audio/SFX/UnitDeath.wav")
 
@@ -115,6 +118,13 @@ func play_city_select() -> void:
 
 func play_city_deselect() -> void:
 	_play_sound(deselect_city_sfx, 0.0)
+
+func play_city_capture(agent: int) -> void:
+	print(agent)
+	if agent == 1:
+		_play_sound(city_capture_player_sfx, 0.0)
+	else:
+		_play_sound(city_capture_enemy_sfx, 0.0)
 
 func _on_music_slider_changed(value: float) -> void:
 	var bus_index := AudioServer.get_bus_index("Music")

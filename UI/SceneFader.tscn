@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://bls4r1d4b76tl"]
+
+[ext_resource type="Script" uid="uid://b4h8acy3y1m3e" path="res://UI/SceneFader.gd" id="1_60pk7"]
+
+[node name="SceneFader" type="CanvasLayer" unique_id=2064653266]
+script = ExtResource("1_60pk7")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=883685772]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.1, 0.1, 0.1, 1)
