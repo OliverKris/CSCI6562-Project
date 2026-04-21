@@ -106,9 +106,7 @@ func _on_cycle() -> void:
 	for c in cities_node.get_children():
 		if c is City:
 			c.produce_once()
-			if c.data != null and c.data.owner != 0:
-				FactionState.add_gold(c.data.owner, float(c.data.gold_per_cycle))
-
+			
 	_check_win_loss()
 
 func _process(_delta: float) -> void:
