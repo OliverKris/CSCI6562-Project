@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://level_select_scene"]
+[gd_scene format=3 uid="uid://dxnj71kb3tpa"]
 
-[ext_resource type="Script" path="res://UI/LevelSelect/LevelSelect.gd" id="1_lsel"]
+[ext_resource type="Script" uid="uid://b33nakf75qj25" path="res://UI/LevelSelect/LevelSelect.gd" id="1_lsel"]
 [ext_resource type="Texture2D" uid="uid://d1y0hgnoi47n2" path="res://UI/cherry_blossom.jpg" id="2_bg"]
 [ext_resource type="Shader" uid="uid://cwkuceblnxcsb" path="res://UI/bg_scroll.gdshader" id="3_shader"]
 [ext_resource type="FontFile" uid="uid://bcu7ufltrpbt2" path="res://UI/Fonts/CozetteVector.ttf" id="4_font"]
@@ -9,7 +9,7 @@
 shader = ExtResource("3_shader")
 shader_parameter/offset = 0.0
 
-[node name="LevelSelect" type="Control"]
+[node name="LevelSelect" type="Control" unique_id=710624960]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,7 +18,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_lsel")
 
-[node name="BackgroundScroll" type="TextureRect" parent="."]
+[node name="BackgroundScroll" type="TextureRect" parent="." unique_id=383433463]
 material = SubResource("ShaderMaterial_scroll")
 layout_mode = 1
 anchors_preset = 15
@@ -29,16 +29,16 @@ grow_vertical = 2
 texture = ExtResource("2_bg")
 expand_mode = 1
 
-[node name="Overlay" type="ColorRect" parent="."]
+[node name="Overlay" type="ColorRect" parent="." unique_id=270618317]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.05, 0.03, 0.02, 0.60)
+color = Color(0.05, 0.03, 0.02, 0.6)
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=957035315]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -53,7 +53,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 24
 
-[node name="Title" type="Label" parent="VBoxContainer"]
+[node name="Title" type="Label" parent="VBoxContainer" unique_id=1394655962]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.98, 0.92, 0.78, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.85)
@@ -65,48 +65,48 @@ theme_override_font_sizes/font_size = 80
 text = "Select Level"
 horizontal_alignment = 1
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=532332663]
 layout_mode = 2
 
-[node name="TutorialButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
+[node name="TutorialButton" type="Button" parent="VBoxContainer" unique_id=2031080878]
 custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98, 0.92, 0.78, 1)
+theme_override_colors/font_pressed_color = Color(0.75, 0.6, 0.25, 1)
+theme_override_colors/font_hover_color = Color(1, 0.85, 0.45, 1)
 theme_override_fonts/font = ExtResource("4_font")
 theme_override_font_sizes/font_size = 42
-theme_override_colors/font_color = Color(0.98, 0.92, 0.78, 1)
-theme_override_colors/font_hover_color = Color(1.0, 0.85, 0.45, 1)
-theme_override_colors/font_pressed_color = Color(0.75, 0.6, 0.25, 1)
 text = "Tutorial Chapter"
 
-[node name="Chapter1Button" type="Button" parent="VBoxContainer"]
-layout_mode = 2
+[node name="Chapter1Button" type="Button" parent="VBoxContainer" unique_id=1554489808]
 custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98, 0.92, 0.78, 1)
+theme_override_colors/font_pressed_color = Color(0.75, 0.6, 0.25, 1)
+theme_override_colors/font_hover_color = Color(1, 0.85, 0.45, 1)
 theme_override_fonts/font = ExtResource("4_font")
 theme_override_font_sizes/font_size = 42
-theme_override_colors/font_color = Color(0.98, 0.92, 0.78, 1)
-theme_override_colors/font_hover_color = Color(1.0, 0.85, 0.45, 1)
-theme_override_colors/font_pressed_color = Color(0.75, 0.6, 0.25, 1)
 text = "Chapter 1"
 
-[node name="Chapter2Button" type="Button" parent="VBoxContainer"]
-layout_mode = 2
+[node name="Chapter2Button" type="Button" parent="VBoxContainer" unique_id=464718147]
 custom_minimum_size = Vector2(0, 72)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.98, 0.92, 0.78, 1)
+theme_override_colors/font_pressed_color = Color(0.75, 0.6, 0.25, 1)
+theme_override_colors/font_hover_color = Color(1, 0.85, 0.45, 1)
 theme_override_fonts/font = ExtResource("4_font")
 theme_override_font_sizes/font_size = 42
-theme_override_colors/font_color = Color(0.98, 0.92, 0.78, 1)
-theme_override_colors/font_hover_color = Color(1.0, 0.85, 0.45, 1)
-theme_override_colors/font_pressed_color = Color(0.75, 0.6, 0.25, 1)
 text = "Chapter 2"
 
-[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer" unique_id=620376199]
 layout_mode = 2
 
-[node name="ReturnButton" type="Button" parent="VBoxContainer"]
-layout_mode = 2
+[node name="ReturnButton" type="Button" parent="VBoxContainer" unique_id=1787590114]
 custom_minimum_size = Vector2(0, 56)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.75, 0.65, 0.5, 1)
+theme_override_colors/font_pressed_color = Color(0.55, 0.45, 0.25, 1)
+theme_override_colors/font_hover_color = Color(0.95, 0.8, 0.4, 1)
 theme_override_fonts/font = ExtResource("4_font")
 theme_override_font_sizes/font_size = 32
-theme_override_colors/font_color = Color(0.75, 0.65, 0.5, 1)
-theme_override_colors/font_hover_color = Color(0.95, 0.8, 0.4, 1)
-theme_override_colors/font_pressed_color = Color(0.55, 0.45, 0.25, 1)
 text = "◀  Return to Menu"

@@ -31,7 +31,8 @@ func _go_to_level(level_id: int) -> void:
 	else:
 		# Fallback: stash in a globally-accessible meta on the Engine object
 		Engine.set_meta("selected_level", level_id)
-	get_tree().change_scene_to_file("res://Game.tscn")
+	
+	await CustomSceneTransition.change_scene("res://Game.tscn")
 
 func _on_tutorial() -> void:
 	_go_to_level(0)
