@@ -24,8 +24,8 @@ CycleClock="*res://Autoloads/CycleClock.gd"
 FactionState="*res://Autoloads/FactionState.gd"
 LevelSelection="*res://Autoloads/LevelSelection.gd"
 CustomSceneTransition="*uid://bx0vhoqcb7gk5"
-AudioManager="*uid://17h0bm78vmkx"
 CustomSceneFader="*uid://bls4r1d4b76tl"
+AudioManager="*uid://cr6iqlsyjuhe5"
 
 [display]
 

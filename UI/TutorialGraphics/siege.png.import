@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dyytgojhy26yw"
-path="res://.godot/imported/graphic.png-da057ee37c858aa928b37111dc41200d.ctex"
+uid="uid://cukoogp26su1k"
+path="res://.godot/imported/siege.png-7239f0fb57a7f80050c2d49615f886fa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/TutorialGraphics/graphic.png"
-dest_files=["res://.godot/imported/graphic.png-da057ee37c858aa928b37111dc41200d.ctex"]
+source_file="res://UI/TutorialGraphics/siege.png"
+dest_files=["res://.godot/imported/siege.png-7239f0fb57a7f80050c2d49615f886fa.ctex"]
 
 [params]
 
