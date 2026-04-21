@@ -2,13 +2,13 @@
 
 importer="wav"
 type="AudioStreamWAV"
-uid="uid://de67dulorxu3k"
-path="res://.godot/imported/SelectSound.wav-c99460b54e25a61b94f6e31010709dab.sample"
+uid="uid://cwpeaolxnk78g"
+path="res://.godot/imported/FadeOut.wav-ebfceee1149104392edae4c7455cb1ac.sample"
 
 [deps]
 
-source_file="res://Audio/SelectSound.wav"
-dest_files=["res://.godot/imported/SelectSound.wav-c99460b54e25a61b94f6e31010709dab.sample"]
+source_file="res://Audio/SFX/FadeOut.wav"
+dest_files=["res://.godot/imported/FadeOut.wav-ebfceee1149104392edae4c7455cb1ac.sample"]
 
 [params]
 

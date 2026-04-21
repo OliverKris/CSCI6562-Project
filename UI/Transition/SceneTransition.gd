@@ -62,6 +62,8 @@ func change_scene(scene_path: String) -> void:
 
 	_is_running = true
 	_show_layer()
+	
+	AudioManager.play_transition_out()
 
 	# Fade out: top-left -> bottom-right
 	_set_reveal_mode(false)
@@ -81,7 +83,9 @@ func change_scene(scene_path: String) -> void:
 	if black_hold_time > 0.0:
 		await get_tree().create_timer(black_hold_time, true, false, true).timeout
 
-	# Fade in: also top-left -> bottom-right
+	AudioManager.play_transition_in()
+
+	# Fade in: also top-left -> bottom-right 
 	_set_reveal_mode(true)
 	_set_progress(0.0)
 

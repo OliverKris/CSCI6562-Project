@@ -59,6 +59,9 @@ var _troop_icon_frames: Array[AtlasTexture] = []
 @onready var tick_number: Label = $TimerBox/MarginContainer/VBoxContainer/ClockSection/TickLabel
 @onready var pause_btn: TextureButton = $TimerBox/MarginContainer/VBoxContainer/PauseContainer/Pause
 
+@onready var music_slider: HSlider = $PausePanel/VBoxContainer/Music/MarginContainer/SFXRow/SFXSlider
+@onready var sfx_slider: HSlider = $PausePanel/VBoxContainer/SoundFXs/MarginContainer/SFXRow/SFXSlider
+
 @onready var side_panel: Control = $SidePanel
 @onready var side_panel_content: Control = $SidePanel/VBoxContainer
 @export var side_panel_slide_duration: float = 0.28
@@ -159,6 +162,7 @@ func _ready() -> void:
 	_setup_gold_icons()
 	_setup_troop_icons()
 	_setup_slider()
+	_setup_volume_sliders()
 	_connect_buttons()
 	_connect_global_signals()
 	_apply_speed_index()
@@ -203,6 +207,21 @@ func _setup_slider() -> void:
 	if send_button_50 != null: send_button_50.pressed.connect(_on_send_50_pressed)
 	if send_button_75 != null: send_button_75.pressed.connect(_on_send_75_pressed)
 	if send_button_max != null: send_button_max.pressed.connect(_on_send_max_pressed)
+
+func _setup_volume_sliders() -> void:
+	if music_slider != null:
+		music_slider.min_value = 0.0
+		music_slider.max_value = 1.0
+		music_slider.step = 0.01
+		if not music_slider.value_changed.is_connected(_on_music_slider_changed):
+			music_slider.value_changed.connect(_on_music_slider_changed)
+
+	if sfx_slider != null:
+		sfx_slider.min_value = 0.0
+		sfx_slider.max_value = 1.0
+		sfx_slider.step = 0.01
+		if not sfx_slider.value_changed.is_connected(_on_sfx_slider_changed):
+			sfx_slider.value_changed.connect(_on_sfx_slider_changed)
 
 func _connect_buttons() -> void:
 	if production_upgrade_button != null: production_upgrade_button.pressed.connect(_on_upgrade_production)
@@ -561,6 +580,12 @@ func _on_resume() -> void:
 	if pause_btn != null and pause_btn.has_method("set_toggled_state"):
 		pause_btn.set_toggled_state(false)
 	if pause_panel != null: pause_panel.visible = false
+
+func _on_music_slider_changed(value: float) -> void:
+	AudioManager.set_music_volume(value)
+
+func _on_sfx_slider_changed(value: float) -> void:
+	AudioManager.set_sfx_volume(value)
 
 # =========================================================
 # NAVIGATION / GAME OVER

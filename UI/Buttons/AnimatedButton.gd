@@ -55,6 +55,7 @@ func _ready() -> void:
 	pressed.connect(_on_pressed_action)
 	
 	mouse_entered.connect(_on_mouse_entered)
+	mouse_entered.connect(_on_hover_sound)
 	mouse_exited.connect(_on_mouse_exited)
 
 func _build_frames() -> void:
@@ -134,6 +135,9 @@ func _on_button_up_visual() -> void:
 		return
 
 	_apply_current_visual()
+
+func _on_hover_sound() -> void:
+	AudioManager.play_hover()
 
 func _on_pressed_action() -> void:
 	AudioManager.play_click()
