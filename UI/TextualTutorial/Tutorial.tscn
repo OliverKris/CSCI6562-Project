@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://t5aw7gxjjhxo"]
 
-[ext_resource type="Script" uid="uid://dl5h3783gaevj" path="res://UI/TextualTutorial/Tutorial.gd" id="1_tut"]
+[ext_resource type="Script" uid="uid://dgtghkdonfs0k" path="res://UI/TextualTutorial/Tutorial.gd" id="1_tut"]
 [ext_resource type="Texture2D" uid="uid://fodg3pdcfgdi" path="res://UI/BackgroundImages/wave.jpg" id="2_5mqb1"]
 [ext_resource type="PackedScene" uid="uid://cgilpowmtbmlt" path="res://UI/Buttons/AnimatedButton.tscn" id="3_animbtn"]
 [ext_resource type="Texture2D" uid="uid://cg8k2skl0x14i" path="res://Sprites/Buttons/mainmenubtn.png" id="4_mainmenubtn"]
@@ -84,7 +84,6 @@ theme_override_constants/margin_right = 250
 
 [node name="TutorialText" type="RichTextLabel" parent="MarginContainer/VBoxContainer/ScrollContainer/MarginContainer" unique_id=1840359719]
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 3
 theme_override_colors/default_color = Color(0.93, 0.88, 0.78, 1)
 theme_override_font_sizes/normal_font_size = 30
@@ -131,7 +130,7 @@ text = "[center][b][color=#f0d080]✦  Welcome, Daimyō  ✦[/color][/b][/center
 
 [center][i]How to Send Troops: Select a city, set the send ratio with the slider, then drag to the destination city.[/i][/center]
 
-[center][img=800x420]res://UI/TutorialGraphics/graphic.png[/img][/center]
+[center][img=280x420]res://UI/TutorialGraphics/unit.png[/img][/center]
 
 [center]——————————————————————————————[/center]
 
@@ -147,7 +146,7 @@ text = "[center][b][color=#f0d080]✦  Welcome, Daimyō  ✦[/color][/b][/center
 
 [center][font_size=30][b]Field Battles:[/b][/font_size] Sending a sortie against an enemy army on the road can weaken it and buy time for reinforcements. Split-second decisions can turn the tide of war.[/center]
 
-[center][img=430x500]res://UI/TutorialGraphics/graphic.png[/img]  [img=430x500]res://UI/TutorialGraphics/graphic.png[/img] [img=430x500]res://UI/TutorialGraphics/graphic.png[/img][/center]"
+[center][img=280x600]res://UI/TutorialGraphics/garrison.png[/img]  [img=280x600]res://UI/TutorialGraphics/field.png[/img] [img=280x600]res://UI/TutorialGraphics/siege.png[/img][/center]"
 
 [node name="FooterDivider" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1086313137]
 layout_mode = 2
