@@ -16,6 +16,8 @@ var deselect_city_sfx: AudioStream = preload("res://Audio/SFX/DeselectCity.wav")
 var city_capture_player_sfx: AudioStream = preload("res://Audio/SFX/CityCapturePlayer.wav")
 var city_capture_enemy_sfx: AudioStream = preload("res://Audio/SFX/CityCaptureEnemy.wav")
 
+var unit_depart_sfx: AudioStream = preload("res://Audio/SFX/Depart.wav")
+var attack_sfx: AudioStream = preload("res://Audio/SFX/Attack.wav")
 
 var death_sfx: AudioStream = preload("res://Audio/SFX/UnitDeath.wav")
 
@@ -63,6 +65,13 @@ func play_hover(sound: AudioStream = null, volume_db: float = 8.0, pitch_scale: 
 
 func play_click(sound: AudioStream = null, volume_db: float = 8.0, pitch_scale: float = 1.0) -> void:
 	_play_sound(sound if sound != null else default_click_sound, volume_db, pitch_scale)
+
+func play_unit_attack() -> void:	
+	var pitch := (0.9 + (0.1 * randi_range(0, 2))) # subtle variation
+	_play_sound(attack_sfx, 0.0, pitch)
+
+func play_unit_depart() -> void:
+	_play_sound(unit_depart_sfx, 0.0)
 
 func play_music(stream: AudioStream, volume_db: float = 0.0, restart_if_same: bool = false) -> void:
 	if stream == null:

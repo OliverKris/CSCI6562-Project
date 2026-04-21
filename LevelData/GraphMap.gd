@@ -326,6 +326,7 @@ func send_units_from(from_city: City, to_city: City, ratio: float) -> void:
 	_do_send(from_city, to_city, ratio)
 
 func _do_send(from_city: City, to_city: City, ratio: float) -> void:
+	AudioManager.play_unit_depart()
 	if from_city == null or to_city == null:
 		return
 	if from_city.data == null or to_city.data == null:
@@ -374,8 +375,8 @@ func _on_unit_arrived(unit: Unit, target_city: City) -> void:
 		return
 
 	if target_city.data.owner == arriving_owner:
-		unit.queue_free()
 		target_city.receive_reinforcement(arriving_amount)
+		unit.fade_out_into_friendly_city()
 		return
 
 	unit.park_at_city()

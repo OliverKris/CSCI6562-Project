@@ -21,6 +21,9 @@ signal arrived(unit: Unit, target_city: City)
 @export var attack_frames: int = 7
 @export var attack_fps: float = 10.0
 
+@export var arrival_fade_time: float = 0.2
+var _is_arrival_fading: bool = false
+
 @export var death_start: int = 11
 @export var death_frames: int = 4
 @export var death_fps: float = 10.0
@@ -44,6 +47,9 @@ signal arrived(unit: Unit, target_city: City)
 ]
 
 var _chosen_tint: Color = Color.WHITE
+
+@export var attack_impact_frame: int = 3
+var _attack_sound_played_this_cycle: bool = false
 
 @export var sprite_faces_right: bool = true
 @export var death_hold_time: float = 1.0
@@ -84,6 +90,7 @@ var _elapsed: float = 0.0
 var _in_battle: bool = false
 var _is_dying: bool = false
 var _parked: bool = false
+var _has_arrived: bool = false
 
 # ── Field battle ──────────────────────────────────────────────────────────────
 var _field_battle_opponent: Unit = null
@@ -107,6 +114,8 @@ func setup(from_city: City, to_city: City, road_data: RoadData, send_amount: int
 	road = road_data
 	amount = send_amount
 	unit_owner = faction_owner
+	_has_arrived = false
+	_is_arrival_fading = false
 	
 	_chosen_tint = _pick_unit_tint()
 
@@ -203,6 +212,7 @@ func _play_walk() -> void:
 	_anim_state = UnitAnimState.WALK
 	_anim_time = 0.0
 	_anim_frame_index = 0
+	_attack_sound_played_this_cycle = false	
 	_death_finished = false
 	_apply_current_frame()
 
@@ -215,6 +225,7 @@ func _play_attack() -> void:
 	_anim_state = UnitAnimState.ATTACK
 	_anim_time = 0.0
 	_anim_frame_index = 0
+	_attack_sound_played_this_cycle = false	
 	_apply_current_frame()
 
 func _play_death() -> void:
@@ -224,8 +235,33 @@ func _play_death() -> void:
 	_anim_state = UnitAnimState.DEATH
 	_anim_time = 0.0
 	_anim_frame_index = 0
+	_attack_sound_played_this_cycle = false	
 	_death_finished = false
 	_apply_current_frame()
+
+func fade_out_into_friendly_city() -> void:
+	if _is_dying or _is_arrival_fading:
+		return
+
+	_is_arrival_fading = true
+	_has_arrived = true
+	_parked = false
+	_in_battle = false
+	set_process(false)
+	monitoring = false
+	monitorable = false
+
+	if label != null:
+		label.visible = false
+
+	var tween := create_tween()
+	if sprite != null:
+		tween.tween_property(sprite, "modulate:a", 0.0, arrival_fade_time)
+	else:
+		tween.tween_property(self, "modulate:a", 0.0, arrival_fade_time)
+
+	await tween.finished
+	queue_free()
 
 func _get_current_frame_array() -> Array[AtlasTexture]:
 	match _anim_state:
@@ -247,6 +283,17 @@ func _get_current_fps() -> float:
 			return death_fps
 	return 1.0
 
+func _try_play_attack_sound() -> void:
+	if _anim_state != UnitAnimState.ATTACK:
+		return
+
+	if _attack_sound_played_this_cycle:
+		return
+
+	if _anim_frame_index == attack_impact_frame:
+		_attack_sound_played_this_cycle = true
+		AudioManager.play_unit_attack()
+
 func _apply_current_frame() -> void:
 	if sprite == null:
 		print("Sprite is null")
@@ -265,8 +312,8 @@ func _update_animation(delta: float) -> void:
 	if frames.is_empty():
 		return
 
-	var fps : float = max(_get_current_fps(), 0.01)
-	var frame_duration : float = 1.0 / fps
+	var fps: float = max(_get_current_fps(), 0.01)
+	var frame_duration: float = 1.0 / fps
 
 	_anim_time += delta
 	while _anim_time >= frame_duration:
@@ -281,6 +328,11 @@ func _update_animation(delta: float) -> void:
 		else:
 			if _anim_frame_index >= frames.size():
 				_anim_frame_index = 0
+
+				if _anim_state == UnitAnimState.ATTACK:
+					_attack_sound_played_this_cycle = false
+
+		_try_play_attack_sound()
 
 	_apply_current_frame()
 
@@ -485,7 +537,8 @@ func _process(delta: float) -> void:
 			else:
 				sprite.flip_h = dir.x < 0.0
 
-	if t >= 1.0:
+	if t >= 1.0 and not _has_arrived:
+		_has_arrived = true
 		emit_signal("arrived", self, target_city)
 
 func die_in_battle() -> void:

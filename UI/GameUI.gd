@@ -456,7 +456,7 @@ func _get_balance_icon_index(player_cities: int, total_cities: int) -> int:
 	if ratio < 0.2:
 		return 0
 	elif ratio < 0.4:
-		return 1
+		return 1	
 	elif ratio < 0.6:
 		return 2
 	elif ratio < 0.8:
