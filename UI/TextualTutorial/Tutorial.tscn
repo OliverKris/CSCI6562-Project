@@ -146,7 +146,7 @@ text = "[center][b][color=#f0d080]✦  Welcome, Daimyō  ✦[/color][/b][/center
 
 [center][font_size=30][b]Field Battles:[/b][/font_size] Sending a sortie against an enemy army on the road can weaken it and buy time for reinforcements. Split-second decisions can turn the tide of war.[/center]
 
-[center][img=270x630]res://UI/TutorialGraphics/garrison.png[/img]  [img=270x630]res://UI/TutorialGraphics/field.png[/img] [img=270x630]res://UI/TutorialGraphics/siege.png[/img][/center]"
+[center][img=260x630]res://UI/TutorialGraphics/garrison.png[/img]            [img=260x630]res://UI/TutorialGraphics/field.png[/img]            [img=260x630]res://UI/TutorialGraphics/siege.png[/img][/center]"
 fit_content = true
 
 [node name="FooterDivider" type="Label" parent="MarginContainer/VBoxContainer" unique_id=1086313137]
