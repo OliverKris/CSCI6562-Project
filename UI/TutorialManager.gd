@@ -30,7 +30,7 @@ const STEPS := [
 	{
 		"id": "upgrades",
 		"title": "Upgrade a City",
-		"text": "Select one of your cities and purchase all three upgrade types!",
+		"text": "Select one of your cities and use gold to purchase all three upgrade types!\nYou can see how much gold you have in the top left!\nTip: You can increase speed to finish this step sooner!",
 		"video": VIDEO_UPGRADE,
 		"goals": [
 			{ "id": "upgrade_production", "text": "Buy a production upgrade" },
@@ -41,7 +41,7 @@ const STEPS := [
 	{
 		"id": "capture_city",
 		"title": "Capture a City",
-		"text": "Select a ratio and send troops by dragging to an adjacent enemy city to capture it!",
+		"text": "Select a ratio and send troops by left-clicking a city and dragging to an adjacent enemy city to capture it!",
 		"video": VIDEO_SEND,
 		"goals": [
 			{ "id": "captured_city", "text": "Capture an enemy city" }
@@ -50,7 +50,7 @@ const STEPS := [
 	{
 		"id": "finish_game",
 		"title": "Win the Mission",
-		"text": "Beat the game by capturing the final enemy city!",
+		"text": "Play around with the Interface and Mechanics!\nWhen you feel confident, beat the game by capturing the final enemy city!",
 		"video": VIDEO_CONQUER,
 		"goals": [
 			{ "id": "won_game", "text": "Capture the final enemy city" }

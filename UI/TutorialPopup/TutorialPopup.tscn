@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://h7c0gaht678p"]
 
-[ext_resource type="Script" uid="uid://b60xfdlmtmng8" path="res://UI/TutorialPopup/TutorialPopup.gd" id="1_popup_script"]
+[ext_resource type="Script" uid="uid://c4qjjmiutfxao" path="res://UI/TutorialPopup/TutorialPopup.gd" id="1_popup_script"]
 [ext_resource type="StyleBox" uid="uid://bppsn3vxx447e" path="res://UI/TextureBoxes/popup.tres" id="2_ty11b"]
 [ext_resource type="FontFile" uid="uid://bcu7ufltrpbt2" path="res://UI/Fonts/CozetteVector.ttf" id="3_4qkyv"]
 [ext_resource type="PackedScene" uid="uid://cgilpowmtbmlt" path="res://UI/Buttons/AnimatedButton.tscn" id="4_w0fib"]
