@@ -137,6 +137,7 @@ func setup(from_city: City, to_city: City, road_data: RoadData, send_amount: int
 	_travel_time = max(computed_time, 0.05)
 
 func _pick_unit_tint() -> Color:
+	randomize()
 	var palette: Array[Color] = neutral_tints
 
 	match unit_owner:

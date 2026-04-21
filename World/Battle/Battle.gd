@@ -112,14 +112,14 @@ func _finish(survivors: int) -> void:
 		if survivors > 0:
 			if _parked_unit.has_method("end_city_attack"):
 				_parked_unit.end_city_attack()
-			_parked_unit.queue_free()
+			_parked_unit.fade_out_into_friendly_city()
 		else:
 			if _parked_unit.has_method("die_in_battle"):
 				_parked_unit.die_in_battle()
 			elif _parked_unit.has_method("_die"):
 				_parked_unit._die()
 			else:
-				_parked_unit.queue_free()
+				_parked_unit.fade_out_into_friendly_city()
 
 		_parked_unit = null
 

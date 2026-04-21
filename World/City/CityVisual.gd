@@ -41,6 +41,7 @@ func set_faction(owner: int) -> void:
 	sprite.modulate = chosen_color
 
 func _pick_city_color(owner: int) -> Color:
+	randomize()
 	var palette: Array[Color] = neutral_colors
 
 	match owner:
@@ -54,7 +55,7 @@ func _pick_city_color(owner: int) -> Color:
 	if palette.is_empty():
 		return Color.WHITE
 
-	var idx : float = abs(name.hash()) % palette.size()
+	var idx : int = abs(name.hash()) % palette.size()
 	return palette[idx]
 
 func set_selected(selected: bool) -> void:

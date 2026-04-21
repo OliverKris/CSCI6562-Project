@@ -395,7 +395,7 @@ func _start_battle(attackers: int, attacker_owner: int, target_city: City, road_
 			target_city.data.army = 0
 			target_city.refresh_from_data()
 		if parked_unit != null and is_instance_valid(parked_unit):
-			parked_unit.queue_free()
+			parked_unit.fade_out_into_friendly_city()
 		return
 
 	var battle_instance := battle_scene.instantiate()
