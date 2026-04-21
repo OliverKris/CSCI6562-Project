@@ -16,6 +16,12 @@ signal activated
 @export var is_toggle_button: bool = false
 @export var start_toggled_on: bool = false
 
+@export var hover_brightness: float = 1.18
+@export var hover_time: float = 0.04
+
+var _is_hovered: bool = false
+var _hover_tween: Tween
+
 var frame_textures: Array[AtlasTexture] = []
 var _pressed_visual: bool = false
 var _toggled_on: bool = false
@@ -31,12 +37,25 @@ func _ready() -> void:
 	_toggled_on = start_toggled_on
 
 	_build_frames()
+
+	if icon != null:
+		icon.set_anchors_preset(Control.PRESET_FULL_RECT)
+		icon.offset_left = 0
+		icon.offset_top = 0
+		icon.offset_right = 0
+		icon.offset_bottom = 0
+		icon.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+		icon.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+
 	_apply_current_visual()
 
 	button_down.connect(_on_button_down_visual)
 	if not is_toggle_button:
 		button_up.connect(_on_button_up_visual)
 	pressed.connect(_on_pressed_action)
+	
+	mouse_entered.connect(_on_mouse_entered)
+	mouse_exited.connect(_on_mouse_exited)
 
 func _build_frames() -> void:
 	frame_textures.clear()
@@ -71,12 +90,12 @@ func _set_frame(index: int) -> void:
 func _apply_current_visual() -> void:
 	if _pressed_visual:
 		_set_frame(2)
-		return
-
-	if _toggled_on:
+	elif _toggled_on:
 		_set_frame(2)
 	else:
 		_set_frame(0)
+
+	_apply_hover_visual()
 
 func _on_button_down_visual() -> void:
 	_pressed_visual = true
@@ -150,3 +169,27 @@ func set_toggled_state(value: bool) -> void:
 
 func is_toggled_on() -> bool:
 	return _toggled_on
+	
+func _on_mouse_entered() -> void:
+	_is_hovered = true
+	_apply_hover_visual()
+
+func _on_mouse_exited() -> void:
+	_is_hovered = false
+	_apply_hover_visual()
+	
+func _apply_hover_visual() -> void:
+	if icon == null:
+		return
+
+	if _hover_tween != null:
+		_hover_tween.kill()
+
+	_hover_tween = create_tween()
+
+	var target_color := Color(1, 1, 1, 1)
+
+	if _is_hovered:
+		target_color = Color(hover_brightness, hover_brightness, hover_brightness, 1)
+
+	_hover_tween.tween_property(icon, "modulate", target_color, hover_time)

@@ -1,8 +1,11 @@
 extends Control
 
-@onready var play_button: TextureButton = $VBoxContainer/PlayButton
-@onready var tutorial_button: TextureButton = $VBoxContainer/TutorialButton
-@onready var quit_button: TextureButton = $VBoxContainer/QuitButton
+## How many levels exist. Keep in sync with GameController.level_scenes array.
+const LEVEL_COUNT: int = 3  # update this as you add levels
+
+@onready var play_button: TextureButton = $VBoxContainer/PlayCenter/PlayButton
+@onready var tutorial_button: TextureButton = $VBoxContainer/TutorialCenter/TutorialButton
+@onready var quit_button: TextureButton = $VBoxContainer/QuitCenter/QuitButton
 @onready var bg_rect: TextureRect = $BackgroundScroll
 
 const SCROLL_SPEED: float = 30.0
@@ -25,7 +28,16 @@ func _process(delta: float) -> void:
 		bg_rect.material.set_shader_parameter("offset", _scroll_offset / tex_w)
 
 func _on_play() -> void:
-	get_tree().change_scene_to_file("res://UI/LevelSelect/LevelSelect.tscn")
+	var chosen_index: int = 0
+	if level_select != null:
+		chosen_index = level_select.get_selected_id()
+
+	# Guard against LevelSelection not yet being registered as an Autoload.
+	# To register: Project > Project Settings > Autoload > add LevelSelection.gd as "LevelSelection"
+	if Engine.has_singleton("LevelSelection"):
+		LevelSelection.selected_level = chosen_index
+
+	await CustomSceneTransition.change_scene("res://Game.tscn")
 
 func _on_tutorial() -> void:
 	get_tree().change_scene_to_file("res://UI/TextualTutorial/Tutorial.tscn")

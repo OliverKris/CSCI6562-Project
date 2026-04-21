@@ -20,10 +20,11 @@
 [ext_resource type="Texture2D" uid="uid://c6odj70vbshqd" path="res://Sprites/Icons/defenseicon.png" id="9_r0t6x"]
 [ext_resource type="PackedScene" uid="uid://decesgs53tg35" path="res://UI/CityPopup/UpgradeEntry.tscn" id="9_taf65"]
 [ext_resource type="PackedScene" uid="uid://dualkekg2a52i" path="res://UI/CityPopup/ProductionCard.tscn" id="13_eomcs"]
-[ext_resource type="StyleBox" uid="uid://cgeesuybl3g3v" path="res://UI/TextureBoxes/uiboarder2.tres" id="13_grobk"]
 [ext_resource type="StyleBox" uid="uid://dfr103i1er7gy" path="res://UI/TextureBoxes/box3.tres" id="15_1g8ct"]
 [ext_resource type="Texture2D" uid="uid://bhu662n0imcgj" path="res://Sprites/UI/clock.png" id="15_6lu0k"]
+[ext_resource type="Texture2D" uid="uid://co7at21hcwd2q" path="res://Sprites/Icons/mitsudomoebanner.png" id="15_mn1rn"]
 [ext_resource type="Script" uid="uid://cx8h7n2g6or6t" path="res://UI/Clock.gd" id="16_r58d0"]
+[ext_resource type="Texture2D" uid="uid://bvds0f56p8mo5" path="res://Sprites/Icons/troopicons.png" id="16_s54qy"]
 [ext_resource type="Texture2D" uid="uid://c42drll8lcvfe" path="res://Sprites/UI/grabber.png" id="18_053ab"]
 [ext_resource type="Texture2D" uid="uid://blvdxfeivahn5" path="res://Sprites/Buttons/25btn.png" id="18_oqpj4"]
 [ext_resource type="Texture2D" uid="uid://bshtj1fjw77ef" path="res://Sprites/UI/grabberselected.png" id="19_34hoh"]
@@ -33,6 +34,9 @@
 [ext_resource type="Texture2D" uid="uid://po6u32m0cyp8" path="res://Sprites/Buttons/maxbtn.png" id="21_01n3j"]
 [ext_resource type="StyleBox" uid="uid://csfosh77kb7at" path="res://UI/TextureBoxes/trackarea.tres" id="21_hs3m3"]
 [ext_resource type="StyleBox" uid="uid://l8lqtn15u1dk" path="res://UI/TextureBoxes/trackareahighlight.tres" id="22_qhh4m"]
+[ext_resource type="StyleBox" uid="uid://dd5tpwm8aurw2" path="res://UI/TextureBoxes/citystats.tres" id="22_s54qy"]
+[ext_resource type="Texture2D" uid="uid://blt43ycii442k" path="res://Sprites/Icons/music.png" id="33_ufle8"]
+[ext_resource type="Texture2D" uid="uid://bh7qkan184hew" path="res://Sprites/Icons/sound.png" id="34_ohaem"]
 
 [sub_resource type="GDScript" id="GDScript_grobk"]
 script/source = "extends PanelContainer
@@ -113,6 +117,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_4itvn")
 gold_icon_sheet = ExtResource("3_7csst")
+troop_icon_sheet = ExtResource("16_s54qy")
 friendly_faction = ExtResource("7_mn42u")
 neutral_faction = ExtResource("4_f3wgw")
 enemy_faction = ExtResource("5_r0t6x")
@@ -133,7 +138,7 @@ theme_override_constants/separation = 0
 [node name="FactionPanel" type="PanelContainer" parent="TopLeftGroup" unique_id=697985684]
 custom_minimum_size = Vector2(150, 150)
 layout_mode = 2
-theme_override_styles/panel = ExtResource("13_grobk")
+theme_override_styles/panel = ExtResource("2_lwtm8")
 
 [node name="MarginContainer" type="MarginContainer" parent="TopLeftGroup/FactionPanel" unique_id=2121738957]
 layout_mode = 2
@@ -145,10 +150,14 @@ theme_override_constants/separation = 6
 [node name="FactionIcon" type="TextureRect" parent="TopLeftGroup/FactionPanel/MarginContainer/VBoxContainer" unique_id=941802554]
 custom_minimum_size = Vector2(96, 96)
 layout_mode = 2
-texture = ExtResource("7_mn42u")
+texture = ExtResource("15_mn1rn")
 stretch_mode = 5
 
-[node name="FactionName" type="Label" parent="TopLeftGroup/FactionPanel/MarginContainer/VBoxContainer" unique_id=17317649]
+[node name="PanelContainer" type="PanelContainer" parent="TopLeftGroup/FactionPanel/MarginContainer/VBoxContainer" unique_id=291195936]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("15_1g8ct")
+
+[node name="FactionName" type="Label" parent="TopLeftGroup/FactionPanel/MarginContainer/VBoxContainer/PanelContainer" unique_id=17317649]
 layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -204,8 +213,10 @@ layout_mode = 2
 layout_mode = 2
 theme_override_styles/panel = ExtResource("15_1g8ct")
 
-[node name="TextureRect" type="TextureRect" parent="TopLeftGroup/Control/TopBar/HBoxContainer/TroopContainer/IconPanel" unique_id=212985431]
+[node name="TroopIcon" type="TextureRect" parent="TopLeftGroup/Control/TopBar/HBoxContainer/TroopContainer/IconPanel" unique_id=212985431]
+custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+texture = ExtResource("16_s54qy")
 
 [node name="Troops" type="Label" parent="TopLeftGroup/Control/TopBar/HBoxContainer/TroopContainer" unique_id=2141042486]
 layout_mode = 2
@@ -216,6 +227,25 @@ theme_override_constants/shadow_outline_size = 8
 theme_override_fonts/font = ExtResource("3_hqqrp")
 theme_override_font_sizes/font_size = 22
 text = "Troops: 0 (+1)"
+
+[node name="CityContainer" type="HBoxContainer" parent="TopLeftGroup/Control/TopBar/HBoxContainer" unique_id=151698192]
+layout_mode = 2
+
+[node name="CityPanel" type="PanelContainer" parent="TopLeftGroup/Control/TopBar/HBoxContainer/CityContainer" unique_id=239351158]
+layout_mode = 2
+
+[node name="TextureRect" type="TextureRect" parent="TopLeftGroup/Control/TopBar/HBoxContainer/CityContainer/CityPanel" unique_id=1650586686]
+layout_mode = 2
+
+[node name="City" type="Label" parent="TopLeftGroup/Control/TopBar/HBoxContainer/CityContainer" unique_id=94697885]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_offset_x = 1
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 8
+theme_override_fonts/font = ExtResource("3_hqqrp")
+theme_override_font_sizes/font_size = 22
+text = "Cities: 1/3"
 
 [node name="TimerBox" type="PanelContainer" parent="." unique_id=1840410696]
 layout_mode = 1
@@ -390,15 +420,19 @@ columns = 2
 
 [node name="CurrentTroops" parent="SidePanel/VBoxContainer/ProductionSection/MarginContainer/VBoxContainer/GridContainer" unique_id=87256683 instance=ExtResource("13_eomcs")]
 layout_mode = 2
+theme_override_styles/panel = ExtResource("22_s54qy")
 
 [node name="TroopProduction" parent="SidePanel/VBoxContainer/ProductionSection/MarginContainer/VBoxContainer/GridContainer" unique_id=833829396 instance=ExtResource("13_eomcs")]
 layout_mode = 2
+theme_override_styles/panel = ExtResource("22_s54qy")
 
 [node name="GoldProduction" parent="SidePanel/VBoxContainer/ProductionSection/MarginContainer/VBoxContainer/GridContainer" unique_id=1094324214 instance=ExtResource("13_eomcs")]
 layout_mode = 2
+theme_override_styles/panel = ExtResource("22_s54qy")
 
 [node name="Defense" parent="SidePanel/VBoxContainer/ProductionSection/MarginContainer/VBoxContainer/GridContainer" unique_id=482910003 instance=ExtResource("13_eomcs")]
 layout_mode = 2
+theme_override_styles/panel = ExtResource("22_s54qy")
 
 [node name="SendSection" type="HBoxContainer" parent="SidePanel/VBoxContainer" unique_id=1841083833]
 layout_mode = 2
@@ -489,6 +523,7 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="GameOverPanel" type="PanelContainer" parent="." unique_id=1111111109]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -526,7 +561,6 @@ sprite_sheet = ExtResource("8_flmfk")
 
 [node name="PausePanel" type="PanelContainer" parent="." unique_id=1111111130]
 process_mode = 3
-visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -542,9 +576,8 @@ grow_vertical = 2
 theme_override_styles/panel = ExtResource("2_lwtm8")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PausePanel" unique_id=1111111131]
-custom_minimum_size = Vector2(0, 250)
 layout_mode = 2
-theme_override_constants/separation = 16
+theme_override_constants/separation = 8
 
 [node name="PauseLabel" type="Label" parent="PausePanel/VBoxContainer" unique_id=1111111132]
 layout_mode = 2
@@ -557,12 +590,78 @@ theme_override_font_sizes/font_size = 48
 text = "Paused"
 horizontal_alignment = 1
 
+[node name="SoundFXs" type="VBoxContainer" parent="PausePanel/VBoxContainer" unique_id=479378932]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="PausePanel/VBoxContainer/SoundFXs" unique_id=495994551]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="SFXRow" type="HBoxContainer" parent="PausePanel/VBoxContainer/SoundFXs/MarginContainer" unique_id=1120964461]
+layout_mode = 2
+
+[node name="SFXPanel" type="PanelContainer" parent="PausePanel/VBoxContainer/SoundFXs/MarginContainer/SFXRow" unique_id=1978238742]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("15_1g8ct")
+
+[node name="SFXIcon" type="TextureRect" parent="PausePanel/VBoxContainer/SoundFXs/MarginContainer/SFXRow/SFXPanel" unique_id=1971737957]
+layout_mode = 2
+texture = ExtResource("34_ohaem")
+
+[node name="SFXSlider" type="HSlider" parent="PausePanel/VBoxContainer/SoundFXs/MarginContainer/SFXRow" unique_id=822044481]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_icons/grabber = ExtResource("18_053ab")
+theme_override_icons/grabber_highlight = ExtResource("19_34hoh")
+theme_override_styles/slider = ExtResource("20_01n3j")
+theme_override_styles/grabber_area = ExtResource("21_hs3m3")
+theme_override_styles/grabber_area_highlight = ExtResource("22_qhh4m")
+value = 100.0
+
+[node name="Music" type="VBoxContainer" parent="PausePanel/VBoxContainer" unique_id=1533951630]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="MarginContainer" type="MarginContainer" parent="PausePanel/VBoxContainer/Music" unique_id=1677503686]
+layout_mode = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 8
+
+[node name="SFXRow" type="HBoxContainer" parent="PausePanel/VBoxContainer/Music/MarginContainer" unique_id=470505558]
+layout_mode = 2
+
+[node name="SFXPanel" type="PanelContainer" parent="PausePanel/VBoxContainer/Music/MarginContainer/SFXRow" unique_id=2102839901]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("15_1g8ct")
+
+[node name="SFXIcon" type="TextureRect" parent="PausePanel/VBoxContainer/Music/MarginContainer/SFXRow/SFXPanel" unique_id=718064239]
+layout_mode = 2
+texture = ExtResource("33_ufle8")
+
+[node name="SFXSlider" type="HSlider" parent="PausePanel/VBoxContainer/Music/MarginContainer/SFXRow" unique_id=1656450580]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_icons/grabber = ExtResource("18_053ab")
+theme_override_icons/grabber_highlight = ExtResource("19_34hoh")
+theme_override_styles/slider = ExtResource("20_01n3j")
+theme_override_styles/grabber_area = ExtResource("21_hs3m3")
+theme_override_styles/grabber_area_highlight = ExtResource("22_qhh4m")
+value = 100.0
+
 [node name="ResumeButton" parent="PausePanel/VBoxContainer" unique_id=2079654420 instance=ExtResource("4_dgedd")]
-custom_minimum_size = Vector2(108, 64)
+custom_minimum_size = Vector2(81, 48)
 layout_mode = 2
 sprite_sheet = ExtResource("7_h2x3y")
 
 [node name="MainMenuButton" parent="PausePanel/VBoxContainer" unique_id=1857689231 instance=ExtResource("4_dgedd")]
-custom_minimum_size = Vector2(108, 64)
+custom_minimum_size = Vector2(81, 48)
 layout_mode = 2
 sprite_sheet = ExtResource("8_flmfk")

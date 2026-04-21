@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://cgjpm50uvvs0s" path="res://Sprites/Buttons/playbtn.png" id="5_t4ff4"]
 [ext_resource type="Texture2D" uid="uid://bradj8vqf4k6c" path="res://Sprites/Buttons/tutorialbtn.png" id="6_w5vcv"]
 [ext_resource type="Texture2D" uid="uid://dbddjnn00gqud" path="res://Sprites/Buttons/quitbtn.png" id="7_d2d4f"]
+[ext_resource type="StyleBox" uid="uid://cmbshw3lygs34" path="res://UI/TextureBoxes/uiboarder.tres" id="9_jhcbk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_scroll"]
 shader = ExtResource("3_shader")
@@ -84,20 +85,64 @@ horizontal_alignment = 1
 [node name="HSeparator" type="HSeparator" parent="VBoxContainer" unique_id=1810625167]
 layout_mode = 2
 
-[node name="PlayButton" parent="VBoxContainer" unique_id=1789498835 instance=ExtResource("4_obtq6")]
-custom_minimum_size = Vector2(160, 96)
+[node name="PlayCenter" type="CenterContainer" parent="VBoxContainer" unique_id=1119267035]
 layout_mode = 2
+
+[node name="PlayButton" parent="VBoxContainer/PlayCenter" unique_id=1789498835 instance=ExtResource("4_obtq6")]
+custom_minimum_size = Vector2(320, 96)
+layout_mode = 2
+size_flags_stretch_ratio = 2.0
 sprite_sheet = ExtResource("5_t4ff4")
 press_in_time = 0.02
 
-[node name="TutorialButton" parent="VBoxContainer" unique_id=377233274 instance=ExtResource("4_obtq6")]
-custom_minimum_size = Vector2(160, 96)
+[node name="TutorialCenter" type="CenterContainer" parent="VBoxContainer" unique_id=1772015919]
 layout_mode = 2
+
+[node name="TutorialButton" parent="VBoxContainer/TutorialCenter" unique_id=377233274 instance=ExtResource("4_obtq6")]
+custom_minimum_size = Vector2(320, 96)
+layout_mode = 2
+size_flags_horizontal = 4
 sprite_sheet = ExtResource("6_w5vcv")
 press_in_time = 0.02
 
-[node name="QuitButton" parent="VBoxContainer" unique_id=1318041578 instance=ExtResource("4_obtq6")]
-custom_minimum_size = Vector2(160, 96)
+[node name="QuitCenter" type="CenterContainer" parent="VBoxContainer" unique_id=1846560939]
 layout_mode = 2
+
+[node name="QuitButton" parent="VBoxContainer/QuitCenter" unique_id=1318041578 instance=ExtResource("4_obtq6")]
+custom_minimum_size = Vector2(320, 96)
+layout_mode = 2
+size_flags_horizontal = 4
 sprite_sheet = ExtResource("7_d2d4f")
 press_in_time = 0.02
+
+[node name="Confirmation" type="PanelContainer" parent="." unique_id=251519257]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("9_jhcbk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Confirmation" unique_id=73665269]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Confirmation/VBoxContainer" unique_id=737077987]
+layout_mode = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/font = ExtResource("4_t4ff4")
+text = "Quit the game?"
+
+[node name="Cancel" parent="Confirmation/VBoxContainer" unique_id=38289005 instance=ExtResource("4_obtq6")]
+layout_mode = 2
+
+[node name="Quit" parent="Confirmation/VBoxContainer" unique_id=856657525 instance=ExtResource("4_obtq6")]
+layout_mode = 2

@@ -19,6 +19,7 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 CycleClock="*res://Autoloads/CycleClock.gd"
 FactionState="*res://Autoloads/FactionState.gd"
 LevelSelection="*res://Autoloads/LevelSelection.gd"
+CustomSceneTransition="*uid://brb8onxw17ko7"
 
 [display]
 

@@ -39,6 +39,6 @@ func update_drag_visuals() -> void:
 
 	if valid_target:
 		target_marker.visible = true
-		target_marker.global_position = end + Vector2(0, -5)
+		target_marker.global_position = end + Vector2(0, -4)
 	else:
 		target_marker.visible = false
