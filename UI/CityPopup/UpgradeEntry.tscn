@@ -11,7 +11,7 @@
 [ext_resource type="AudioStream" uid="uid://dra0vc0humpfx" path="res://Audio/SFX/HoverSound2.wav" id="9_xs1ho"]
 [ext_resource type="AudioStream" uid="uid://g0fkqjbenyme" path="res://Audio/SFX/Upgrade.wav" id="10_mxtiy"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_pf62l"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_mxtiy"]
 atlas = ExtResource("7_xs1ho")
 region = Rect2(0, 0, 96, 32)
 
@@ -59,6 +59,7 @@ theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
 theme_override_constants/shadow_outline_size = 4
 theme_override_fonts/font = ExtResource("2_4o0mc")
+theme_override_font_sizes/font_size = 18
 text = "Gold Production"
 
 [node name="LevelRow" type="HBoxContainer" parent="MarginContainer/HBoxContainer/InfoColumn" unique_id=1493724764]
@@ -67,7 +68,7 @@ layout_mode = 2
 [node name="UpgradeCounters" type="TextureRect" parent="MarginContainer/HBoxContainer/InfoColumn/LevelRow" unique_id=2001674113]
 custom_minimum_size = Vector2(96, 32)
 layout_mode = 2
-texture = SubResource("AtlasTexture_pf62l")
+texture = SubResource("AtlasTexture_mxtiy")
 script = ExtResource("3_svohy")
 sprite_sheet = ExtResource("7_xs1ho")
 frame_width = 96
@@ -80,6 +81,7 @@ theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
 theme_override_constants/shadow_outline_size = 2
 theme_override_fonts/font = ExtResource("2_4o0mc")
+theme_override_font_sizes/font_size = 18
 text = "Lv. 0/3"
 
 [node name="RightColumnCenter" type="CenterContainer" parent="MarginContainer/HBoxContainer" unique_id=1596212081]
@@ -125,4 +127,5 @@ theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
 theme_override_constants/shadow_outline_size = 2
 theme_override_fonts/font = ExtResource("2_4o0mc")
+theme_override_font_sizes/font_size = 18
 text = "50"

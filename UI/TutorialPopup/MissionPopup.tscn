@@ -6,6 +6,7 @@
 [ext_resource type="StyleBox" uid="uid://dls3x3xymdgbi" path="res://UI/TextureBoxes/mission.tres" id="2_u2npq"]
 
 [node name="MissionPopup" type="Control" unique_id=719030944]
+custom_minimum_size = Vector2(300, 200)
 layout_mode = 3
 anchors_preset = 0
 script = ExtResource("1_euhbp")
@@ -27,6 +28,7 @@ layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
 theme_override_constants/shadow_outline_size = 4
 theme_override_fonts/font = ExtResource("1_5vslh")
+theme_override_font_sizes/font_size = 32
 text = "Change Time"
 
 [node name="HSeparator" type="TextureRect" parent="Panel/MarginContainer/VBoxContainer" unique_id=45975514]

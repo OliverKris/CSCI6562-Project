@@ -381,7 +381,7 @@ theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
 theme_override_constants/shadow_outline_size = 4
 theme_override_fonts/font = ExtResource("3_hqqrp")
-theme_override_font_sizes/font_size = 26
+theme_override_font_sizes/font_size = 30
 text = "City Name"
 
 [node name="Bottom" type="HBoxContainer" parent="SidePanel/VBoxContainer/HeaderSection/CityTitle" unique_id=471352211]
@@ -395,6 +395,7 @@ theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
 theme_override_constants/shadow_outline_size = 4
 theme_override_fonts/font = ExtResource("3_hqqrp")
+theme_override_font_sizes/font_size = 20
 text = "Controlled by:"
 
 [node name="OwnerLabel" type="Label" parent="SidePanel/VBoxContainer/HeaderSection/CityTitle/Bottom" unique_id=693247056]
@@ -407,6 +408,7 @@ theme_override_constants/shadow_offset_y = 1
 theme_override_constants/outline_size = 4
 theme_override_constants/shadow_outline_size = 4
 theme_override_fonts/font = ExtResource("3_hqqrp")
+theme_override_font_sizes/font_size = 20
 text = "Blue (You)"
 
 [node name="HSeparator" type="TextureRect" parent="SidePanel/VBoxContainer" unique_id=1691596901]
@@ -431,6 +433,7 @@ theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
 theme_override_constants/shadow_outline_size = 4
 theme_override_fonts/font = ExtResource("3_hqqrp")
+theme_override_font_sizes/font_size = 20
 text = "City Production"
 
 [node name="GridContainer" type="GridContainer" parent="SidePanel/VBoxContainer/ProductionSection/MarginContainer/VBoxContainer" unique_id=869294053]
@@ -474,6 +477,7 @@ theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
 theme_override_constants/shadow_outline_size = 4
 theme_override_fonts/font = ExtResource("3_hqqrp")
+theme_override_font_sizes/font_size = 20
 text = "Send Troops"
 
 [node name="SendInfoRow" type="HBoxContainer" parent="SidePanel/VBoxContainer/SendSection/MarginContainer/VBoxContainer" unique_id=36600244]
@@ -486,6 +490,7 @@ theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
 theme_override_constants/shadow_outline_size = 2
 theme_override_fonts/font = ExtResource("3_hqqrp")
+theme_override_font_sizes/font_size = 18
 text = "50%"
 
 [node name="TroopPreviewLabel" type="Label" parent="SidePanel/VBoxContainer/SendSection/MarginContainer/VBoxContainer/SendInfoRow" unique_id=38475648]
@@ -495,6 +500,7 @@ theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
 theme_override_constants/shadow_outline_size = 2
 theme_override_fonts/font = ExtResource("3_hqqrp")
+theme_override_font_sizes/font_size = 18
 text = "(12 troops)"
 
 [node name="SendSlider" type="HSlider" parent="SidePanel/VBoxContainer/SendSection/MarginContainer/VBoxContainer" unique_id=1700571210]
@@ -544,6 +550,7 @@ theme_override_constants/shadow_offset_x = 1
 theme_override_constants/shadow_offset_y = 1
 theme_override_constants/shadow_outline_size = 4
 theme_override_fonts/font = ExtResource("3_hqqrp")
+theme_override_font_sizes/font_size = 20
 text = "City Upgrades"
 
 [node name="ProductionUpgrade" parent="SidePanel/VBoxContainer/UpgradeSection" unique_id=1685063693 instance=ExtResource("9_taf65")]

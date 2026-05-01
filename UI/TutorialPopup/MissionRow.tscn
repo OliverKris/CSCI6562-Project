@@ -11,6 +11,7 @@ unchecked_texture = ExtResource("2_q1mp4")
 checked_texture = ExtResource("3_56upd")
 
 [node name="CheckBoxIcon" type="TextureRect" parent="." unique_id=370846310]
+custom_minimum_size = Vector2(32, 32)
 layout_mode = 2
 
 [node name="ObjectiveLabel" type="Label" parent="." unique_id=1334154362]
@@ -18,3 +19,4 @@ layout_mode = 2
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 0.5019608)
 theme_override_constants/shadow_outline_size = 4
 theme_override_fonts/font = ExtResource("2_qxvvq")
+theme_override_font_sizes/font_size = 32
