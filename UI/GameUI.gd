@@ -819,6 +819,7 @@ func _on_main_menu() -> void:
 	CustomSceneTransition.change_scene("res://UI/LevelSelect/LevelSelect.tscn")
 
 func show_game_over(player_won: bool) -> void:
+	get_tree().paused = true
 	if game_over_panel != null: 
 		game_over_panel.visible = true
 	if game_over_label != null: 

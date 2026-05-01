@@ -190,6 +190,9 @@ func build_from_level_data() -> void:
 	_game_over = false
 	FactionState.reset()
 
+	if level_data != null and level_data.level_name == "Level Tutorial":
+		FactionState.add_gold(1, 150.0)
+
 	# Spawn cities
 	for city_def in level_data.cities:
 		var city_instance := city_scene.instantiate()
