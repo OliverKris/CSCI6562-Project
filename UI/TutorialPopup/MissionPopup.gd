@@ -72,8 +72,6 @@ func mark_objective_complete(goal_id: String) -> void:
 			return
 
 func show_popup() -> void:
-	print("MissionPopup show_popup called")
-
 	_kill_tween()
 
 	visible = true
@@ -85,19 +83,12 @@ func show_popup() -> void:
 	# Recompute with the real final size.
 	panel.position = Vector2(_get_hidden_x(), _get_shown_y())
 
-	print("panel size after layout:", panel.size)
-	print("hidden x:", _get_hidden_x())
-	print("shown x:", _get_shown_x())
-	print("shown y:", _get_shown_y())
-	print("panel pos start:", panel.position)
-
 	_slide_tween = create_tween()
 	_slide_tween.set_trans(Tween.TRANS_CUBIC)
 	_slide_tween.set_ease(Tween.EASE_OUT)
 	_slide_tween.tween_property(panel, "position:x", _get_shown_x(), slide_duration)
 
 	await _slide_tween.finished
-	print("panel pos end:", panel.position)
 
 func hide_popup() -> void:
 	if panel == null:

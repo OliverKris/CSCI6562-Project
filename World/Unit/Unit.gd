@@ -297,12 +297,10 @@ func _try_play_attack_sound() -> void:
 
 func _apply_current_frame() -> void:
 	if sprite == null:
-		print("Sprite is null")
 		return
 
 	var frames := _get_current_frame_array()
 	if frames.is_empty():
-		print("No frames for current anim state: ", _anim_state)
 		return
 
 	_anim_frame_index = clamp(_anim_frame_index, 0, frames.size() - 1)

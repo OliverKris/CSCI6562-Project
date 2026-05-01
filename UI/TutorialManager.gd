@@ -209,15 +209,11 @@ func _show_popup(text: String, video_path: String) -> void:
 	get_tree().paused = true
 
 func _on_popup_dismissed() -> void:
-	print("Popup dismissed")
-	print("game_ui._paused =", game_ui._paused if game_ui != null else "no game_ui")
-	print("tree paused before unpause =", get_tree().paused)
 	_current_popup = null
 	_waiting_for_popup_close = false
 
 	if game_ui != null and not game_ui._paused:
 		get_tree().paused = false
-	print("tree paused after dismiss =", get_tree().paused)
 
 	await get_tree().process_frame
 	_show_mission_popup_for_current_step()
@@ -230,12 +226,10 @@ func _show_mission_popup_for_current_step() -> void:
 		return
 
 	if game_ui == null:
-		print("TutorialManager: game_ui is null, cannot show mission popup.")
 		return
 
 	var step := _get_current_step()
 	if step.is_empty():
-		print("TutorialManager: current step is empty, cannot show mission popup.")
 		return
 
 	if _mission_popup == null or not is_instance_valid(_mission_popup):
@@ -288,7 +282,6 @@ func _mark_goal_complete(goal_id: String) -> void:
 		return
 
 	_completed_goals[goal_id] = true
-	print("Tutorial goal completed:", goal_id)
 
 	if _mission_popup != null and is_instance_valid(_mission_popup):
 		if _mission_popup.has_method("mark_objective_complete"):
@@ -312,7 +305,6 @@ func _mark_goal_complete(goal_id: String) -> void:
 		return
 
 	_completed_goals[goal_id] = true
-	print("Tutorial goal completed:", goal_id)
 
 	if _mission_popup != null and is_instance_valid(_mission_popup):
 		if _mission_popup.has_method("mark_objective_complete"):

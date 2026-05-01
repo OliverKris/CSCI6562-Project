@@ -138,7 +138,6 @@ func play_city_deselect() -> void:
 	_play_sound(deselect_city_sfx, 0.0)
 
 func play_city_capture(agent: int) -> void:
-	print(agent)
 	if agent == 1:
 		_play_sound(city_capture_player_sfx, 0.0)
 	else:

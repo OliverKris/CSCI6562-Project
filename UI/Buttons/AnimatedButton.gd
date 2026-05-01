@@ -138,7 +138,6 @@ func _on_button_up_visual() -> void:
 	var this_anim := _anim_version
 
 	if is_toggle_button:
-		print(name, " button_up returning early")
 		return
 
 	_set_frame(3)
