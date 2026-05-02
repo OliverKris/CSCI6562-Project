@@ -53,9 +53,14 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="Panel/MarginContainer/VBoxContainer" unique_id=1173155003]
+[node name="VideoCenter" type="CenterContainer" parent="Panel/MarginContainer/VBoxContainer" unique_id=2041837621]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="Panel/MarginContainer/VBoxContainer/VideoCenter" unique_id=1173155003]
 custom_minimum_size = Vector2(900, 530)
 layout_mode = 2
+size_flags_horizontal = 4
 autoplay = true
 expand = true
 loop = true

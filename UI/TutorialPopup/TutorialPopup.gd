@@ -6,7 +6,7 @@ signal dismissed
 @onready var panel: PanelContainer = $Panel
 @onready var text_label: Label = $Panel/MarginContainer/VBoxContainer/Label
 @onready var ok_button: TextureButton = $Panel/MarginContainer/VBoxContainer/Button
-@onready var video_player: VideoStreamPlayer = $Panel/MarginContainer/VBoxContainer/VideoStreamPlayer
+@onready var video_player: VideoStreamPlayer = $Panel/MarginContainer/VBoxContainer/VideoCenter/VideoStreamPlayer
 
 @export var backdrop_target_alpha: float = 0.6
 @export var open_duration: float = 0.22
@@ -18,6 +18,7 @@ signal dismissed
 
 var _pending_text: String = ""
 var _pending_video: String = ""
+var _pending_video_size: Vector2 = Vector2.ZERO
 var _is_closing: bool = false
 var _panel_rest_position: Vector2
 var _active_tween: Tween = null
@@ -32,20 +33,21 @@ func _ready() -> void:
 		_panel_rest_position = panel.position
 
 	if _pending_text != "" or _pending_video != "":
-		_apply_content(_pending_text, _pending_video)
+		_apply_content(_pending_text, _pending_video, _pending_video_size)
 
 	_setup_initial_visual_state()
 	_animate_in()
 
-func set_content(text: String, video_path: String = "") -> void:
+func set_content(text: String, video_path: String = "", video_size: Vector2 = Vector2.ZERO) -> void:
 	if not is_inside_tree():
 		_pending_text = text
 		_pending_video = video_path
+		_pending_video_size = video_size
 		return
 
-	_apply_content(text, video_path)
+	_apply_content(text, video_path, video_size)
 
-func _apply_content(text: String, video_path: String) -> void:
+func _apply_content(text: String, video_path: String, video_size: Vector2 = Vector2.ZERO) -> void:
 	if text_label != null:
 		text_label.text = text
 
@@ -68,6 +70,11 @@ func _apply_content(text: String, video_path: String) -> void:
 
 	video_player.stream = stream
 	video_player.process_mode = Node.PROCESS_MODE_ALWAYS
+
+	if video_size != Vector2.ZERO:
+		video_player.custom_minimum_size = video_size
+		video_player.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+
 	video_player.show()
 	video_player.play()
 

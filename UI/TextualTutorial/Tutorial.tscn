@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://t5aw7gxjjhxo"]
 
-[ext_resource type="Script" uid="uid://dl5h3783gaevj" path="res://UI/TextualTutorial/Tutorial.gd" id="1_tut"]
+[ext_resource type="Script" uid="uid://dgtghkdonfs0k" path="res://UI/TextualTutorial/Tutorial.gd" id="1_tut"]
 [ext_resource type="Texture2D" uid="uid://fodg3pdcfgdi" path="res://UI/BackgroundImages/wave.jpg" id="2_5mqb1"]
 [ext_resource type="PackedScene" uid="uid://cgilpowmtbmlt" path="res://UI/Buttons/AnimatedButton.tscn" id="3_animbtn"]
 [ext_resource type="Texture2D" uid="uid://cg8k2skl0x14i" path="res://Sprites/Buttons/mainmenubtn.png" id="4_mainmenubtn"]

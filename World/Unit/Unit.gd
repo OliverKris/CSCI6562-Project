@@ -464,10 +464,16 @@ func _die() -> void:
 
 func _death_sequence() -> void:
 	while not _death_finished:
+		if not is_inside_tree():
+			return
 		await get_tree().process_frame
 
+	if not is_inside_tree():
+		return
 	await get_tree().create_timer(death_hold_time).timeout
 
+	if not is_inside_tree():
+		return
 	var tween := create_tween()
 	tween.tween_property(self, "modulate:a", 0.0, death_fade_time)
 	await tween.finished

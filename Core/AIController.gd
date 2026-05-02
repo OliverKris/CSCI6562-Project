@@ -4,11 +4,11 @@ class_name AIController
 const AI_OWNER: int = 2
 
 # How many cycles between attack decisions (increase to slow AI down)
-@export var decision_every_n_cycles: int = 8
+@export var decision_every_n_cycles: int = 14
 @export var min_attack_troops: int = 8
 @export var attack_ratio: float = 0.6
-@export var reinforce_ratio: float = 0.4
-@export var attack_confidence: float = 1.2
+@export var reinforce_ratio: float = 0.3
+@export var attack_confidence: float = .8
 
 var graph_map: GraphMap = null
 var _cycle_count: int = 0
@@ -93,11 +93,50 @@ func _is_threatened(city: City) -> bool:
 	return false
 
 func _make_attack_decisions() -> void:
-	for city in _get_ai_cities():
-		if city.data != null and city.data.army >= min_attack_troops:
-			_decide_for_city(city)
+	var ai_cities: Array[City] = _get_ai_cities()
+	if ai_cities.is_empty():
+		return
 
-func _decide_for_city(city: City) -> void:
+	# Build a frontier-distance map via BFS from all frontier cities.
+	# Frontier cities (adjacent to an enemy) get distance 0; each step
+	# away from the frontier increments the distance. This lets every
+	# rear city know which adjacent friendly city is closer to the front.
+	var frontier_dist: Dictionary = {}  # City -> int
+	var bfs_queue: Array[City] = []
+
+	for city in ai_cities:
+		if city.data == null:
+			continue
+		var is_frontier: bool = false
+		for n in graph_map.get_adjacent_cities(city):
+			if n is City and n.data != null and n.data.owner != AI_OWNER:
+				is_frontier = true
+				break
+		if is_frontier:
+			frontier_dist[city] = 0
+			bfs_queue.append(city)
+
+	var head: int = 0
+	while head < bfs_queue.size():
+		var current: City = bfs_queue[head]
+		head += 1
+		for n in graph_map.get_adjacent_cities(current):
+			if not (n is City):
+				continue
+			var neighbor: City = n as City
+			if neighbor.data == null or neighbor.data.owner != AI_OWNER:
+				continue
+			if not frontier_dist.has(neighbor):
+				frontier_dist[neighbor] = frontier_dist[current] + 1
+				bfs_queue.append(neighbor)
+
+	# Now decide for each city based on its frontier distance.
+	for city in ai_cities:
+		if city.data == null or city.data.army < min_attack_troops:
+			continue
+		_decide_for_city(city, frontier_dist)
+
+func _decide_for_city(city: City, frontier_dist: Dictionary) -> void:
 	var neighbors: Array[City] = []
 	for n in graph_map.get_adjacent_cities(city):
 		if n is City:
@@ -117,8 +156,38 @@ func _decide_for_city(city: City) -> void:
 		else:
 			friendly_neighbors.append(neighbor)
 
-	# Priority 0: Intercept an incoming enemy army marching toward this city
-	# (only if the city itself is not already under active siege)
+	var my_dist: int = frontier_dist.get(city, 9999)
+	var is_frontier: bool = (my_dist == 0)
+
+	# --- REAR CITIES: funnel toward the front, nothing else ---
+	# A rear city's only job is to push its surplus troops one hop
+	# closer to the frontier. It should never sit idle while frontier
+	# cities are outnumbered.
+	if not is_frontier:
+		# Find the adjacent friendly city that is closest to the frontier
+		# (lowest distance). Break ties by preferring the one with fewer troops.
+		var best_relay: City = null
+		var best_relay_dist: int = my_dist  # must be strictly closer than us
+		var best_relay_army: int = 999999
+
+		for neighbor in friendly_neighbors:
+			if neighbor.data == null:
+				continue
+			var nd: int = frontier_dist.get(neighbor, 9999)
+			if nd < best_relay_dist or (nd == best_relay_dist and neighbor.data.army < best_relay_army):
+				best_relay_dist = nd
+				best_relay_army = neighbor.data.army
+				best_relay = neighbor
+
+		if best_relay != null:
+			# Always push — don't wait until we're "significantly ahead".
+			# The frontier needs every troop it can get.
+			graph_map.send_units_from(city, best_relay, reinforce_ratio)
+		return
+
+	# --- FRONTIER CITIES: intercept, attack, or hold ---
+
+	# Priority 0: Intercept an incoming enemy army marching toward this city.
 	if not _city_is_under_siege(city):
 		for neighbor in enemy_neighbors:
 			if neighbor.data == null:
@@ -126,13 +195,11 @@ func _decide_for_city(city: City) -> void:
 			var road := graph_map.get_road_between(city.data.id, neighbor.data.id)
 			if road == null:
 				continue
-			# Check if an enemy unit is marching toward this city along that road
 			if _enemy_marching_toward(road, city) and city.data.army >= min_attack_troops:
-				# Send an interception sortie — use the full attack ratio for maximum effect
 				graph_map.send_units_from(city, neighbor, attack_ratio)
 				return
 
-	# Priority 1: Attack if clearly outnumbering
+	# Priority 1: Attack if we clearly outnumber the effective garrison.
 	var best_target: City = null
 	var best_ratio: float = 0.0
 
@@ -140,9 +207,7 @@ func _decide_for_city(city: City) -> void:
 		if target.data == null:
 			continue
 		var def_mult: float = target.data.get_defense_multiplier() if target.data.owner != 0 else 1.0
-		var effective_defense: float = float(target.data.army) * def_mult
-		if effective_defense < 1.0:
-			effective_defense = 1.0
+		var effective_defense: float = maxf(float(target.data.army) * def_mult, 1.0)
 		var ratio: float = float(city.data.army) / effective_defense
 		if ratio > best_ratio:
 			best_ratio = ratio
@@ -152,33 +217,8 @@ func _decide_for_city(city: City) -> void:
 		graph_map.send_units_from(city, best_target, attack_ratio)
 		return
 
-	# Priority 2: Reinforce threatened friendly neighbors
-	var reinforce_target: City = null
-	var lowest_army: int = city.data.army
-
-	for neighbor in friendly_neighbors:
-		if neighbor.data == null or neighbor.data.army >= lowest_army:
-			continue
-		var neighbor_neighbors: Array[City] = []
-		for nn in graph_map.get_adjacent_cities(neighbor):
-			if nn is City:
-				neighbor_neighbors.append(nn as City)
-		var threatened: bool = false
-		for nn in neighbor_neighbors:
-			if nn.data != null and nn.data.owner != AI_OWNER and nn.data.army > neighbor.data.army:
-				threatened = true
-				break
-		if threatened:
-			lowest_army = neighbor.data.army
-			reinforce_target = neighbor
-
-	if reinforce_target != null:
-		graph_map.send_units_from(city, reinforce_target, reinforce_ratio)
-		return
-
-	# Priority 3: Attack weakest adjacent enemy anyway
-	if best_target != null:
-		graph_map.send_units_from(city, best_target, attack_ratio)
+	# Priority 2: Hold — do not send troops backward to reinforce rear cities.
+	# Rear cities will push to us via the BFS relay above.
 
 ## Returns true if an active city-battle (enemy already at city walls) targets this city.
 func _city_is_under_siege(city: City) -> bool:

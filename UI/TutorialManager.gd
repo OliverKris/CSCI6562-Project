@@ -21,6 +21,7 @@ const STEPS := [
 		"title": "Learn Time Controls",
 		"text": "Click on the Speed Dials and Pause Buttons to navigate time!",
 		"video": VIDEO_UI,
+		"video_size": Vector2(480, 520),
 		"goals": [
 			{ "id": "speed_interacted", "text": "Use a speed control" },
 			{ "id": "paused", "text": "Pause the game" },
@@ -30,8 +31,9 @@ const STEPS := [
 	{
 		"id": "upgrades",
 		"title": "Upgrade a City",
-		"text": "Select one of your cities and use gold to purchase all three upgrade types!\nYou can see how much gold you have in the top left!\nTip: You can increase speed to finish this step sooner!",
+		"text": "Select your (Blue) city and use gold to purchase all three upgrade types!\nYou can see how much gold you have in the top left!",
 		"video": VIDEO_UPGRADE,
+		"video_size": Vector2(720, 520),
 		"goals": [
 			{ "id": "upgrade_production", "text": "Buy a production upgrade" },
 			{ "id": "upgrade_gold", "text": "Buy a gold upgrade" },
@@ -43,6 +45,7 @@ const STEPS := [
 		"title": "Capture a City",
 		"text": "Select a ratio and send troops by left-clicking a city and dragging to an adjacent enemy city to capture it!",
 		"video": VIDEO_SEND,
+		"video_size": Vector2(720, 520),
 		"goals": [
 			{ "id": "captured_city", "text": "Capture an enemy city" }
 		]
@@ -52,6 +55,7 @@ const STEPS := [
 		"title": "Win the Mission",
 		"text": "Play around with the Interface and Mechanics!\nWhen you feel confident, beat the game by capturing the final enemy city!",
 		"video": VIDEO_CONQUER,
+		"video_size": Vector2(880, 520),
 		"goals": [
 			{ "id": "won_game", "text": "Capture the final enemy city" }
 		]
@@ -182,9 +186,9 @@ func _show_tutorial_popup_for_current_step() -> void:
 	if step.is_empty():
 		return
 
-	_show_popup(step["text"], step["video"])
+	_show_popup(step["text"], step["video"], step.get("video_size", Vector2.ZERO))
 
-func _show_popup(text: String, video_path: String) -> void:
+func _show_popup(text: String, video_path: String, video_size: Vector2 = Vector2.ZERO) -> void:
 	if game_ui == null:
 		return
 
@@ -201,7 +205,7 @@ func _show_popup(text: String, video_path: String) -> void:
 		push_error("TutorialManager: Popup instance is missing set_content().")
 		return
 
-	popup.set_content(text, video_path)
+	popup.set_content(text, video_path, video_size)
 
 	if popup.has_signal("dismissed") and not popup.dismissed.is_connected(_on_popup_dismissed):
 		popup.dismissed.connect(_on_popup_dismissed)
