@@ -11,8 +11,24 @@ config_version=5
 [application]
 
 config/name="CSCI6562Project"
+run/main_scene="uid://q8pl84yttemw"
 config/features=PackedStringArray("4.6", "Forward Plus")
-config/icon="res://icon.svg"
+
+[autoload]
+
+CycleClock="*uid://c4rt1ghrw3cqm"
+FactionState="*uid://dq00uwal06v7b"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="canvas_items"
+mouse_cursor/custom_image="uid://7lpwkx62o36v"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/HexLevelEditor/plugin.cfg")
 
 [physics]
 
@@ -20,4 +36,5 @@ config/icon="res://icon.svg"
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"

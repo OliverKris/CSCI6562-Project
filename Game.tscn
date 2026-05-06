@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://dft0d5fq0ygy"]
+
+[ext_resource type="Script" uid="uid://cinv73jthkfa" path="res://Core/GameController.gd" id="5_t88pq"]
+[ext_resource type="PackedScene" uid="uid://cbvhpscow3qng" path="res://World/GenericLevel.tscn" id="6_r0x5m"]
+[ext_resource type="PackedScene" uid="uid://uyvmyacuhary" path="res://UI/GameUI.tscn" id="7_0f2yp"]
+[ext_resource type="PackedScene" uid="uid://ufj8ovng30v" path="res://LevelData/Level1.tscn" id="7_3mrqo"]
+[ext_resource type="Script" uid="uid://c8bgr2ikgw8m7" path="res://Core/DragOverlay.gd" id="7_ud676"]
+[ext_resource type="Script" uid="uid://c3yum54r5pmg1" path="res://Core/Camera2D.gd" id="7_vm4q1"]
+[ext_resource type="Script" uid="uid://bj4m3k5yvbxf6" path="res://Core/AIController.gd" id="8_ai001"]
+
+[node name="Game" type="Node" unique_id=1038235609]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=426326793]
+position = Vector2(15, 7)
+script = ExtResource("7_vm4q1")
+
+[node name="UILayer" type="CanvasLayer" parent="." unique_id=801347472]
+
+[node name="GameUi" parent="UILayer" unique_id=780121621 instance=ExtResource("7_0f2yp")]
+
+[node name="World" type="Node" parent="." unique_id=1978962306]
+
+[node name="LevelContainer" type="Node2D" parent="World" unique_id=1157508564]
+
+[node name="LevelRoot" parent="World/LevelContainer" unique_id=1973178716 instance=ExtResource("6_r0x5m")]
+
+[node name="Units" type="Node2D" parent="World" unique_id=1103904084]
+
+[node name="Battles" type="Node" parent="World" unique_id=1103904085]
+
+[node name="DragOverlay" type="Node2D" parent="World" unique_id=1540511203]
+script = ExtResource("7_ud676")
+
+[node name="AIController" type="Node" parent="." unique_id=1111111201]
+script = ExtResource("8_ai001")
+
+[node name="GameController" type="Node" parent="." unique_id=383778992 node_paths=PackedStringArray("game_camera")]
+script = ExtResource("5_t88pq")
+level_scenes = Array[PackedScene]([ExtResource("7_3mrqo")])
+game_camera = NodePath("../Camera2D")
